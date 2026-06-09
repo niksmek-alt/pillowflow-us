@@ -11,15 +11,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#ffffff;
-  --section:#f7f4ef;
+  --bg:#f7f5ef;
+  --surface:#ffffff;
+  --surface-2:#f0ede6;
+  --section:#f0ede6;
+  --ink:#111111;
+  --dim:#6f6a62;
+  --faint:rgba(17,17,17,.46);
+  --hair:rgba(17,17,17,.12);
+  --hair-soft:rgba(17,17,17,.07);
   --card:#ffffff;
-  --text:#111827;
+  --text:#111111;
   --secondary:#4b5563;
-  --muted:#6b7280;
+  --muted:#6f6a62;
   --border:#e5e7eb;
   --accent:#e8673a;
+  --accent-deep:#b3441d;
   --accent-2:#f59e0b;
+  --success:#2f8f5b;
   --navy:#0f172a;
   --green:#15803d;
   --amber:#b45309;
@@ -28,7 +37,13 @@
   --soft-shadow:0 10px 28px rgba(15,23,42,.06);
   --max:1180px;
   --radius:8px;
+  --gutter:clamp(20px,5vw,72px);
+  --font-display:"Instrument Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-body:"Instrument Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-mono:"SF Mono","Segoe UI Mono",ui-monospace,monospace;
   --ease:cubic-bezier(.16,1,.3,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-cine:cubic-bezier(.76,0,.18,1);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -36,7 +51,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:"Instrument Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:var(--font-body);
   font-size:16px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
@@ -47,6 +62,46 @@ img,svg{display:block;max-width:100%}
 button,input,textarea{font:inherit}
 ::selection{background:#ffedd5;color:var(--navy)}
 :focus-visible{outline:3px solid rgba(232,103,58,.34);outline-offset:3px;border-radius:6px}
+
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  background:var(--bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform 1s var(--ease-cine);
+}
+.loader.done{transform:translateY(-100.5%)}
+.loader-inner{text-align:center}
+.loader-mark{
+  font-family:var(--font-display);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.02em;
+  font-size:clamp(18px,2.4vw,26px);
+  color:var(--ink);
+  overflow:hidden;
+}
+.loader-mark span{display:inline-block;transform:translateY(120%);transition:transform .9s var(--ease-out)}
+.loader.tick .loader-mark span{transform:translateY(0)}
+.loader-count{
+  margin-top:14px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.3em;
+  color:var(--dim);
+}
+.loader-bar{
+  width:120px;
+  height:1px;
+  background:var(--hair);
+  margin:18px auto 0;
+  position:relative;
+  overflow:hidden;
+}
+.loader-bar i{position:absolute;inset:0;background:var(--accent);transform-origin:left;transform:scaleX(0)}
 
 .wrap{width:min(100% - 40px,var(--max));margin-inline:auto}
 .eyebrow{
@@ -257,7 +312,10 @@ section{padding:86px 0}
   gap:34px;
   align-items:stretch;
 }
-.definition-card,.object-card,.value-card,.scope-card,.story-card{
+.product-grid-intro{
+  grid-template-columns:minmax(0,820px);
+}
+.definition-card,.value-card,.scope-card,.story-card{
   background:var(--card);
   border:1px solid var(--border);
   border-radius:var(--radius);
@@ -283,167 +341,6 @@ section{padding:86px 0}
   color:var(--accent);
   font-size:14px;
   font-weight:900;
-}
-
-.object-card{
-  position:relative;
-  overflow:hidden;
-  min-height:640px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  color:var(--navy);
-  background:
-    radial-gradient(circle at 50% 36%,rgba(232,103,58,.12),transparent 34%),
-    radial-gradient(circle at 75% 70%,rgba(232,103,58,.07),transparent 30%),
-    linear-gradient(180deg,#ffffff 0%,#fffaf5 46%,#ffffff 100%);
-  border-color:var(--border);
-  box-shadow:0 18px 44px rgba(15,23,42,.08),0 12px 34px rgba(232,103,58,.08);
-}
-.object-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  opacity:.72;
-  background:
-    linear-gradient(rgba(15,23,42,.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(15,23,42,.045) 1px,transparent 1px);
-  background-size:42px 42px;
-  mask-image:radial-gradient(circle at center,black 0%,transparent 76%);
-}
-.object-card::after{
-  content:"";
-  position:absolute;
-  left:12%;
-  right:12%;
-  top:58%;
-  height:34px;
-  border-radius:50%;
-  background:rgba(15,23,42,.12);
-  filter:blur(22px);
-  pointer-events:none;
-}
-.object-stage{
-  position:relative;
-  z-index:1;
-  padding:32px 30px 24px;
-  will-change:transform;
-  animation:floatProduct 6s var(--ease) infinite;
-}
-.object-meta{
-  display:flex;
-  justify-content:space-between;
-  gap:18px;
-  color:rgba(15,23,42,.48);
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-}
-.product-svg{
-  position:relative;
-  z-index:1;
-  width:100%;
-  max-width:840px;
-  margin:50px auto 18px;
-  overflow:visible;
-  filter:drop-shadow(0 24px 42px rgba(15,23,42,.16));
-}
-.product-svg .baseline{
-  stroke:rgba(15,23,42,.18);
-  stroke-width:2;
-  transform-box:fill-box;
-  transform-origin:center;
-  opacity:0;
-  transform:scaleX(0);
-}
-.product-svg .construct{
-  fill:none;
-  stroke:rgba(15,23,42,.14);
-  stroke-width:1.4;
-  opacity:0;
-}
-.product-svg .body-fill{
-  fill:rgba(232,103,58,.075);
-  opacity:0;
-}
-.product-svg .outer{
-  fill:rgba(232,103,58,.025);
-  stroke:rgba(15,23,42,.72);
-  stroke-width:2.2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  vector-effect:non-scaling-stroke;
-}
-.product-svg .inner,
-.product-svg .cutout{
-  fill:none;
-  stroke:rgba(15,23,42,.38);
-  stroke-width:2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  vector-effect:non-scaling-stroke;
-}
-.product-svg .cutout{stroke:rgba(15,23,42,.62)}
-.product-svg .highlight{
-  fill:none;
-  stroke:var(--accent);
-  stroke-width:3;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  filter:drop-shadow(0 0 10px rgba(232,103,58,.22));
-  vector-effect:non-scaling-stroke;
-}
-.product-svg .tick{
-  stroke:rgba(15,23,42,.3);
-  stroke-width:2;
-  opacity:0;
-}
-.object-caption{
-  position:relative;
-  z-index:2;
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:20px;
-  align-items:end;
-  padding:0 30px 30px;
-}
-.product-name{
-  opacity:0;
-  transform:translateY(24px);
-  color:var(--navy);
-  font-weight:900;
-  line-height:.88;
-  letter-spacing:-.05em;
-  font-size:clamp(58px,9vw,116px);
-}
-.product-name span{display:block}
-.product-name strong{display:block;color:var(--navy)}
-.product-name strong span{display:inline;color:var(--accent)}
-.finish-row{
-  opacity:0;
-  transform:translateY(18px);
-  display:flex;
-  align-items:center;
-  gap:clamp(14px,2vw,24px);
-  padding-bottom:10px;
-}
-.finish{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.18em;
-  font-size:12px;
-  font-weight:700;
-}
-.swatch{
-  width:15px;
-  height:15px;
-  border-radius:99px;
-  border:1px solid rgba(15,23,42,.2);
 }
 
 .value-grid{
@@ -680,11 +577,6 @@ section{padding:86px 0}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.is-visible{opacity:1;transform:none}
 @keyframes drawLine{to{stroke-dashoffset:0}}
-@keyframes floatProduct{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
-}
-
 @media (max-width:1020px){
   .hero-grid,.product-grid,.scope-grid,.story-grid{grid-template-columns:1fr}
   .hero-panel{max-width:640px}
@@ -703,15 +595,7 @@ section{padding:86px 0}
   .section-head p{margin-top:14px}
   section{padding:62px 0}
   .value-grid,.case-grid,.operator-grid,.steps-grid,.roi-grid{grid-template-columns:1fr}
-  .object-card{min-height:auto}
-  .object-stage{padding:24px 18px 18px}
-  .object-meta{font-size:10px}
-  .product-svg{width:100%;max-width:none;margin-left:0;margin-top:34px}
-  .object-caption{grid-template-columns:1fr;padding:0 18px 22px}
-  .product-name{font-size:clamp(52px,17vw,78px)}
-  .finish-row{justify-content:space-between;width:100%;padding-bottom:0;gap:10px}
   .finish{gap:7px;letter-spacing:.14em;font-size:10px}
-  .swatch{width:13px;height:13px}
   .cta-panel{display:block}
   .cta-panel .hero-actions{margin-top:26px}
   .footer-grid{grid-template-columns:1fr 1fr}
@@ -722,6 +606,160 @@ section{padding:86px 0}
   h1{font-size:38px}
   .hero-actions,.cta-panel .hero-actions{display:grid}
   .footer-grid{grid-template-columns:1fr}
+}
+
+/* Source PF-X01 pinned scroll animation, recolored for the PillowFlow.us light theme */
+.object-track{position:relative;height:380vh;background:var(--bg)}
+.object-track .object-stage{
+  position:sticky;
+  top:0;
+  height:100vh;
+  height:100svh;
+  display:flex;
+  flex-direction:column;
+  padding:96px var(--gutter) 28px;
+  overflow:hidden;
+  animation:none;
+  transform:none;
+}
+.stage-corners{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--dim);
+}
+.stage-canvas{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  min-height:0;
+}
+.stage-glow{
+  position:absolute;
+  left:50%;
+  top:58%;
+  width:90vmin;
+  height:46vmin;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,rgba(232,103,58,.08),transparent 70%);
+  opacity:0;
+  pointer-events:none;
+}
+.object-svg{width:min(1240px,100%);height:auto;position:relative;overflow:visible}
+.object-svg .doutline{
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:2.1;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:1;
+  stroke-dashoffset:1;
+  vector-effect:non-scaling-stroke;
+  filter:url(#glowW);
+}
+.object-svg .drim{
+  fill:none;
+  stroke:var(--accent);
+  stroke-width:2.6;
+  stroke-linecap:round;
+  stroke-dasharray:1;
+  stroke-dashoffset:1;
+  vector-effect:non-scaling-stroke;
+  filter:url(#glowO);
+}
+.object-svg .dbore{
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:1.9;
+  stroke-linecap:round;
+  stroke-dasharray:1;
+  stroke-dashoffset:1;
+  vector-effect:non-scaling-stroke;
+  filter:url(#glowW);
+}
+.object-svg .borehole{fill:var(--bg)}
+.object-svg .ribbing line{stroke:rgba(17,17,17,.045);stroke-width:1;vector-effect:non-scaling-stroke}
+.object-svg #dimGroup,.object-svg #specGroup,.object-svg #ringGroup{opacity:0;will-change:opacity,transform}
+.object-svg .dimline{stroke:rgba(17,17,17,.32);stroke-width:1;vector-effect:non-scaling-stroke}
+.object-svg .dimext{stroke:rgba(17,17,17,.16);stroke-width:1;stroke-dasharray:3 4;vector-effect:non-scaling-stroke}
+.object-svg .dimtick{stroke:rgba(17,17,17,.32);stroke-width:1;vector-effect:non-scaling-stroke}
+.object-svg .dimarrow{fill:rgba(17,17,17,.5)}
+.object-svg .dimlabel{font-family:var(--font-mono);font-size:13px;letter-spacing:.22em;fill:var(--dim)}
+.object-svg .ring{fill:none;stroke:rgba(17,17,17,.14);stroke-width:1;stroke-dasharray:4 5;vector-effect:non-scaling-stroke}
+.object-svg .cross line{stroke:rgba(17,17,17,.45);stroke-width:1;vector-effect:non-scaling-stroke}
+.object-svg .cross circle{stroke:rgba(17,17,17,.32);stroke-width:1;vector-effect:non-scaling-stroke}
+.object-svg .spec-k{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;fill:var(--dim)}
+.object-svg .spec-v{font-family:var(--font-mono);font-size:14px;letter-spacing:.12em;fill:rgba(17,17,17,.92)}
+.stage-designation{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  opacity:0;
+  transform:translateY(18px);
+  will-change:opacity,transform;
+}
+.stage-designation .name{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(40px,7vw,96px);
+  line-height:.9;
+  letter-spacing:0;
+  color:var(--ink);
+}
+.stage-designation .name i{font-style:normal;color:var(--accent)}
+.stage-finishes{display:flex;gap:18px;margin-top:14px;justify-content:flex-end}
+.stage-finishes .finish{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--dim);
+}
+.stage-finishes .sw{
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  border:1px solid rgba(17,17,17,.18);
+}
+.stage-designation .spec{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dim);
+  text-align:left;
+  line-height:1.9;
+}
+.spec-mobile{display:none;padding:56px var(--gutter) 8px;background:var(--bg)}
+.spec-mobile ul{list-style:none}
+.spec-mobile li{
+  display:flex;
+  gap:16px;
+  align-items:baseline;
+  padding:18px 0;
+  border-bottom:1px solid var(--hair-soft);
+}
+.spec-mobile .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none;transform:translateY(-2px)}
+.spec-mobile .s1{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.spec-mobile .s2{color:var(--dim);font-size:13px;margin-top:2px}
+@media (max-width:820px){
+  .object-track{height:300vh}
+  .object-track .object-stage{padding:82px 18px 24px}
+  .stage-corners{font-size:9px;letter-spacing:.16em}
+  .object-svg #specGroup{display:none}
+  .object-svg .dimlabel{font-size:16px}
+  .stage-designation .spec{display:none}
+  .spec-mobile{display:block}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -735,13 +773,25 @@ section{padding:86px 0}
   .reveal{opacity:1;transform:none}
   .metric-track i{width:var(--w)}
   .object-stage{animation:none;transform:none !important}
-  [data-draw]{stroke-dashoffset:0}
-  [data-baseline]{opacity:1;transform:scaleX(1)}
-  [data-construct],[data-tick],[data-body-fill],[data-title],[data-colors]{opacity:1;transform:none}
+  .loader{display:none}
+  .object-svg .doutline,.object-svg .drim,.object-svg .dbore{stroke-dashoffset:0}
+  #bodyFill{opacity:1}
+  .object-svg #dimGroup,.object-svg #specGroup,.object-svg #ringGroup{opacity:1}
+  .stage-designation,.stage-glow{opacity:1;transform:none}
+  .object-track{height:auto}
+  .object-track .object-stage{position:relative;height:auto;min-height:100svh}
 }
 </style>
 </head>
 <body>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-mark"><span>PillowFlow<sup>®</sup></span></div>
+    <div class="loader-count" id="loaderCount">000</div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+  </div>
+</div>
+
 <header class="site-header">
   <div class="wrap nav" aria-label="Primary navigation">
     <a class="brand" href="#top" aria-label="PillowFlow home">
@@ -810,7 +860,7 @@ section{padding:86px 0}
         <p>Standard vehicle seats are designed for everyday commuting — not for occupational shifts of 6-10 hours with continuous pedal operation.</p>
       </div>
 
-      <div class="product-grid">
+      <div class="product-grid product-grid-intro">
         <article class="definition-card reveal">
           <p class="kicker">What PillowFlow addresses</p>
           <h3>PF-X01 supports the thigh while keeping pedal access free.</h3>
@@ -822,55 +872,130 @@ section{padding:86px 0}
             <li><span class="check">4</span><span>Different body types can experience seat-length mismatch and unsupported leg weight.</span></li>
           </ul>
         </article>
-
-        <article class="object-card reveal" aria-label="PF-X01 cinematic engineering blueprint">
-          <div class="object-stage">
-            <div class="object-meta">
-              <span>PF-X01 object</span>
-              <span>PF-X01 / Production Spec</span>
-            </div>
-            <svg class="product-svg" viewBox="0 0 900 420" role="img" aria-label="PillowFlow PF-X01 technical blueprint animation">
-              <line data-baseline class="baseline" x1="80" y1="315" x2="820" y2="315"/>
-              <ellipse data-construct class="construct" cx="355" cy="238" rx="62" ry="82"/>
-              <ellipse data-construct class="construct" cx="575" cy="222" rx="82" ry="112"/>
-              <path data-construct class="construct" d="M140 260 C240 185 315 178 392 211 C470 240 505 140 635 157 C735 172 785 235 760 300"/>
-              <path class="body-fill" data-body-fill d="M120 287 C105 248 128 224 171 207 C212 190 254 178 296 145 C324 123 350 129 373 163 C397 198 445 202 484 169 C529 130 596 105 665 128 C724 148 760 205 778 258 C790 294 772 315 729 315 L175 315 C139 315 125 306 120 287 Z"/>
-              <path data-draw data-outer class="outer" d="M120 287 C105 248 128 224 171 207 C212 190 254 178 296 145 C324 123 350 129 373 163 C397 198 445 202 484 169 C529 130 596 105 665 128 C724 148 760 205 778 258 C790 294 772 315 729 315 L175 315 C139 315 125 306 120 287 Z"/>
-              <path data-draw data-inner class="inner" d="M160 286 C255 238 370 236 500 253 C588 265 654 282 728 286"/>
-              <path data-draw data-inner class="inner" d="M250 300 C342 282 514 283 674 300"/>
-              <ellipse data-draw data-inner class="cutout" cx="355" cy="243" rx="48" ry="67"/>
-              <ellipse data-draw data-inner class="cutout" cx="575" cy="226" rx="66" ry="91"/>
-              <ellipse data-draw data-inner class="inner" cx="174" cy="265" rx="18" ry="45"/>
-              <circle data-draw data-inner class="inner" cx="665" cy="230" r="17"/>
-              <path data-draw data-inner class="inner" d="M682 230 H725"/>
-              <path data-draw data-highlight class="highlight" d="M123 273 C144 225 222 199 296 145 C324 123 350 129 373 163 C397 198 445 202 484 169 C529 130 596 105 665 128"/>
-              <line data-tick class="tick" x1="220" y1="315" x2="220" y2="329"/>
-              <line data-tick class="tick" x1="270" y1="315" x2="270" y2="329"/>
-              <line data-tick class="tick" x1="320" y1="315" x2="320" y2="329"/>
-              <line data-tick class="tick" x1="370" y1="315" x2="370" y2="329"/>
-              <line data-tick class="tick" x1="420" y1="315" x2="420" y2="329"/>
-              <line data-tick class="tick" x1="470" y1="315" x2="470" y2="329"/>
-              <line data-tick class="tick" x1="520" y1="315" x2="520" y2="329"/>
-              <line data-tick class="tick" x1="570" y1="315" x2="570" y2="329"/>
-              <line data-tick class="tick" x1="620" y1="315" x2="620" y2="329"/>
-              <line data-tick class="tick" x1="670" y1="315" x2="670" y2="329"/>
-              <line data-tick class="tick" x1="720" y1="315" x2="720" y2="329"/>
-            </svg>
-          </div>
-          <div class="object-caption">
-            <div class="product-name" data-title>
-              <span>PF-</span>
-              <strong>X<span>01</span></strong>
-            </div>
-            <div class="finish-row" data-colors aria-label="Representative finishes">
-              <span class="finish"><span class="swatch" style="background:#3b4650"></span>Charcoal</span>
-              <span class="finish"><span class="swatch" style="background:#e8dfcf"></span>Sand</span>
-              <span class="finish"><span class="swatch" style="background:#f26b3a"></span>Orange</span>
-            </div>
-          </div>
-        </article>
       </div>
     </div>
+  </section>
+
+  <section class="object-track" id="objectTrack" aria-label="The product — PF-X01">
+    <div class="object-stage">
+      <div class="stage-corners" aria-hidden="true">
+        <span>02 — The object</span>
+        <span>PF-X01 / Production spec</span>
+      </div>
+
+      <div class="stage-canvas">
+        <div class="stage-glow" id="stageGlow" aria-hidden="true"></div>
+
+        <svg class="object-svg" viewBox="0 0 1000 560" role="img"
+             aria-label="Production-spec drawing of the PF-X01 driver support: a sculpted profile with two flow channels, dimensioned 312mm long, 128mm and 78mm tall, molded in PF-FOAM with a tolerance of plus or minus 0.5mm. Available in three finishes.">
+          <defs>
+            <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff"/>
+              <stop offset=".5" stop-color="#f0ebe3"/>
+              <stop offset="1" stop-color="#dfd6c9"/>
+            </linearGradient>
+            <linearGradient id="sweepGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#171717" stop-opacity="0"/>
+              <stop offset=".5" stop-color="#171717" stop-opacity=".10"/>
+              <stop offset="1" stop-color="#171717" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="glowW" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation=".45" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="glowO" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="1.4" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <clipPath id="bodyClip"><path d="M 238.2 212.0 C 229.0 232.2 221.4 259.7 218.4 284.8 C 215.4 309.8 215.8 337.1 220.0 362.3 C 224.2 387.6 233.1 417.2 243.5 436.1 C 254.0 455.0 271.1 468.8 282.6 475.7 C 294.1 482.7 300.2 480.8 312.5 477.9 C 324.8 474.9 341.3 462.1 356.4 458.1 C 371.5 454.1 374.8 450.2 402.9 453.8 C 431.1 457.4 488.6 479.4 525.4 479.5 C 562.2 479.6 589.7 454.3 623.8 454.3 C 658.0 454.3 707.8 477.1 730.3 479.5 C 752.7 481.9 750.8 474.4 758.6 468.8 C 766.4 463.2 772.9 455.7 776.8 445.8 C 780.6 435.9 784.0 421.0 781.6 409.4 C 779.2 397.8 772.8 384.6 762.3 376.2 C 751.9 367.9 737.2 361.3 719.0 359.1 C 700.8 357.0 669.6 364.4 653.2 363.4 C 636.8 362.4 642.2 375.9 620.6 353.2 C 599.0 330.6 557.1 246.1 523.8 227.6 C 490.5 209.0 443.6 243.5 420.6 242.0 C 397.6 240.5 398.6 231.7 385.8 218.5 C 373.0 205.3 355.7 174.2 343.6 162.8 C 331.4 151.4 324.7 149.8 313.1 150.0 C 301.4 150.2 286.0 153.6 273.5 163.9 C 261.0 174.2 247.4 191.9 238.2 212.0 Z"/></clipPath>
+          </defs>
+
+          <g id="dimGroup">
+            <line class="dimline" x1="216.8" y1="520" x2="783.2" y2="520"/>
+            <polygon class="dimarrow" points="216.8,520 222.8,516.4 222.8,523.6"/><polygon class="dimarrow" points="783.2,520 777.2,516.4 777.2,523.6"/>
+            <line class="dimtick" x1="256" y1="515" x2="256" y2="525"/><line class="dimtick" x1="326" y1="515" x2="326" y2="525"/><line class="dimtick" x1="396" y1="515" x2="396" y2="525"/><line class="dimtick" x1="466" y1="515" x2="466" y2="525"/><line class="dimtick" x1="536" y1="515" x2="536" y2="525"/><line class="dimtick" x1="606" y1="515" x2="606" y2="525"/><line class="dimtick" x1="676" y1="515" x2="676" y2="525"/><line class="dimtick" x1="746" y1="515" x2="746" y2="525"/>
+            <line class="dimext" x1="216.8" y1="476.0" x2="216.8" y2="513"/>
+            <line class="dimext" x1="783.2" y1="476.0" x2="783.2" y2="513"/>
+            <text class="dimlabel" x="500" y="546" text-anchor="middle">312 MM</text>
+            <line class="dimline" x1="124" y1="150.0" x2="124" y2="480.0"/>
+            <polygon class="dimarrow" points="124,150.0 120.4,156.0 127.6,156.0"/><polygon class="dimarrow" points="124,480.0 120.4,474.0 127.6,474.0"/>
+            <line class="dimext" x1="131" y1="150.0" x2="301.1" y2="150.0"/>
+            <line class="dimext" x1="131" y1="480.0" x2="236.8" y2="480.0"/>
+            <text class="dimlabel" x="110" y="315.0" text-anchor="middle" transform="rotate(-90 110 315.0)">128 MM</text>
+            <line class="dimline" x1="876" y1="288" x2="876" y2="480.0"/>
+            <polygon class="dimarrow" points="876,288 872.4,294 879.6,294"/><polygon class="dimarrow" points="876,480.0 872.4,474.0 879.6,474.0"/>
+            <line class="dimext" x1="869" y1="288" x2="775.6" y2="288"/>
+            <line class="dimext" x1="869" y1="480.0" x2="751.6" y2="480.0"/>
+            <text class="dimlabel" x="892" y="384.0" text-anchor="middle" transform="rotate(-90 892 384.0)">78 MM</text>
+          </g>
+
+          <g id="bodyFill" opacity="0">
+            <path d="M 238.2 212.0 C 229.0 232.2 221.4 259.7 218.4 284.8 C 215.4 309.8 215.8 337.1 220.0 362.3 C 224.2 387.6 233.1 417.2 243.5 436.1 C 254.0 455.0 271.1 468.8 282.6 475.7 C 294.1 482.7 300.2 480.8 312.5 477.9 C 324.8 474.9 341.3 462.1 356.4 458.1 C 371.5 454.1 374.8 450.2 402.9 453.8 C 431.1 457.4 488.6 479.4 525.4 479.5 C 562.2 479.6 589.7 454.3 623.8 454.3 C 658.0 454.3 707.8 477.1 730.3 479.5 C 752.7 481.9 750.8 474.4 758.6 468.8 C 766.4 463.2 772.9 455.7 776.8 445.8 C 780.6 435.9 784.0 421.0 781.6 409.4 C 779.2 397.8 772.8 384.6 762.3 376.2 C 751.9 367.9 737.2 361.3 719.0 359.1 C 700.8 357.0 669.6 364.4 653.2 363.4 C 636.8 362.4 642.2 375.9 620.6 353.2 C 599.0 330.6 557.1 246.1 523.8 227.6 C 490.5 209.0 443.6 243.5 420.6 242.0 C 397.6 240.5 398.6 231.7 385.8 218.5 C 373.0 205.3 355.7 174.2 343.6 162.8 C 331.4 151.4 324.7 149.8 313.1 150.0 C 301.4 150.2 286.0 153.6 273.5 163.9 C 261.0 174.2 247.4 191.9 238.2 212.0 Z" fill="url(#bodyGrad)"/>
+            <g clip-path="url(#bodyClip)">
+              <g class="ribbing">
+                <line x1="206.8" y1="170" x2="793.2" y2="170"/><line x1="206.8" y1="186" x2="793.2" y2="186"/><line x1="206.8" y1="202" x2="793.2" y2="202"/><line x1="206.8" y1="218" x2="793.2" y2="218"/><line x1="206.8" y1="234" x2="793.2" y2="234"/><line x1="206.8" y1="250" x2="793.2" y2="250"/><line x1="206.8" y1="266" x2="793.2" y2="266"/><line x1="206.8" y1="282" x2="793.2" y2="282"/><line x1="206.8" y1="298" x2="793.2" y2="298"/><line x1="206.8" y1="314" x2="793.2" y2="314"/><line x1="206.8" y1="330" x2="793.2" y2="330"/><line x1="206.8" y1="346" x2="793.2" y2="346"/><line x1="206.8" y1="362" x2="793.2" y2="362"/><line x1="206.8" y1="378" x2="793.2" y2="378"/><line x1="206.8" y1="394" x2="793.2" y2="394"/><line x1="206.8" y1="410" x2="793.2" y2="410"/><line x1="206.8" y1="426" x2="793.2" y2="426"/><line x1="206.8" y1="442" x2="793.2" y2="442"/><line x1="206.8" y1="458" x2="793.2" y2="458"/><line x1="206.8" y1="474" x2="793.2" y2="474"/>
+              </g>
+              <rect id="sweep" x="-360" y="120" width="300" height="430" fill="url(#sweepGrad)" transform="skewX(-16)"/>
+            </g>
+            <ellipse class="borehole" cx="325.4" cy="308.8" rx="49.3" ry="81.7" transform="rotate(177.1 325.4 308.8)"/>
+            <ellipse class="borehole" cx="516.0" cy="370.8" rx="42.4" ry="54.4" transform="rotate(176.4 516.0 370.8)"/>
+          </g>
+
+          <g id="ringGroup">
+            <ellipse class="ring" cx="325.4" cy="308.8" rx="65.3" ry="97.7" transform="rotate(177.1 325.4 308.8)" />
+            <ellipse class="ring" cx="516.0" cy="370.8" rx="56.4" ry="68.4" transform="rotate(176.4 516.0 370.8)" />
+          </g>
+
+          <path class="doutline" id="d-body" pathLength="1" d="M 238.2 212.0 C 229.0 232.2 221.4 259.7 218.4 284.8 C 215.4 309.8 215.8 337.1 220.0 362.3 C 224.2 387.6 233.1 417.2 243.5 436.1 C 254.0 455.0 271.1 468.8 282.6 475.7 C 294.1 482.7 300.2 480.8 312.5 477.9 C 324.8 474.9 341.3 462.1 356.4 458.1 C 371.5 454.1 374.8 450.2 402.9 453.8 C 431.1 457.4 488.6 479.4 525.4 479.5 C 562.2 479.6 589.7 454.3 623.8 454.3 C 658.0 454.3 707.8 477.1 730.3 479.5 C 752.7 481.9 750.8 474.4 758.6 468.8 C 766.4 463.2 772.9 455.7 776.8 445.8 C 780.6 435.9 784.0 421.0 781.6 409.4 C 779.2 397.8 772.8 384.6 762.3 376.2 C 751.9 367.9 737.2 361.3 719.0 359.1 C 700.8 357.0 669.6 364.4 653.2 363.4 C 636.8 362.4 642.2 375.9 620.6 353.2 C 599.0 330.6 557.1 246.1 523.8 227.6 C 490.5 209.0 443.6 243.5 420.6 242.0 C 397.6 240.5 398.6 231.7 385.8 218.5 C 373.0 205.3 355.7 174.2 343.6 162.8 C 331.4 151.4 324.7 149.8 313.1 150.0 C 301.4 150.2 286.0 153.6 273.5 163.9 C 261.0 174.2 247.4 191.9 238.2 212.0 Z"/>
+          <path class="drim" id="rimLight" pathLength="1" d="M 218.4 284.8 C 221.7 272.7 229.0 232.2 238.2 212.0 C 247.4 191.9 261.0 174.2 273.5 163.9 C 286.0 153.6 301.4 150.2 313.1 150.0 C 324.7 149.8 331.4 151.4 343.6 162.8 C 355.7 174.2 373.0 205.3 385.8 218.5 C 398.6 231.7 397.6 240.5 420.6 242.0 C 443.6 243.5 490.5 209.0 523.8 227.6 C 557.1 246.1 599.0 330.6 620.6 353.2 C 642.2 375.9 636.8 362.4 653.2 363.4 C 669.6 364.4 700.8 357.0 719.0 359.1 C 737.2 361.3 751.9 367.9 762.3 376.2 C 772.8 384.6 778.4 403.9 781.6 409.4"/>
+          <ellipse class="dbore" cx="325.4" cy="308.8" rx="49.3" ry="81.7" transform="rotate(177.1 325.4 308.8)" id="d-bore1" pathLength="1"/>
+          <ellipse class="dbore" cx="516.0" cy="370.8" rx="42.4" ry="54.4" transform="rotate(176.4 516.0 370.8)" id="d-bore2" pathLength="1"/>
+
+          <g id="specGroup">
+            <g class="cross">
+              <line x1="806" y1="186" x2="824" y2="186"/>
+              <line x1="815" y1="177" x2="815" y2="195"/>
+              <circle cx="815" cy="186" r="7" fill="none"/>
+            </g>
+            <text class="spec-k" x="842" y="180">MATERIAL</text>
+            <text class="spec-v" x="842" y="197">PF-FOAM™</text>
+            <text class="spec-k" x="842" y="227">DENSITY</text>
+            <text class="spec-v" x="842" y="244">AUTO-GRADE</text>
+            <text class="spec-k" x="842" y="274">TOLERANCE</text>
+            <text class="spec-v" x="842" y="291">±0.5 MM</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="stage-designation" id="designation">
+        <div>
+          <div class="name">PF—X<i>01</i></div>
+        </div>
+        <div>
+          <div class="spec">
+            Driver comfort.<br>
+            Fleet evaluation.
+          </div>
+          <div class="stage-finishes" aria-label="Available finishes">
+            <span class="finish"><span class="sw" style="background:#2f3a44" aria-hidden="true"></span>Charcoal</span>
+            <span class="finish"><span class="sw" style="background:#d8cdb8" aria-hidden="true"></span>Sand</span>
+            <span class="finish"><span class="sw" style="background:#e8673a" aria-hidden="true"></span>Orange</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spec-mobile" aria-label="PF-X01 specifications">
+    <ul>
+      <li><span class="dot" aria-hidden="true"></span><div><div class="s1">Dimensions</div><div class="s2">312 mm long · 128 mm and 78 mm tall.</div></div></li>
+      <li><span class="dot" aria-hidden="true"></span><div><div class="s1">Material — PF-FOAM™</div><div class="s2">Closed-cell, auto-grade density. Precision-molded.</div></div></li>
+      <li><span class="dot" aria-hidden="true"></span><div><div class="s1">Tolerance ±0.5 mm</div><div class="s2">The same geometry, unit after unit.</div></div></li>
+      <li><span class="dot" aria-hidden="true"></span><div><div class="s1">Twin flow channels</div><div class="s2">Bored vents for airflow and right-leg support consistency.</div></div></li>
+    </ul>
+    <ul style="margin-top:8px">
+      <li><span class="dot" aria-hidden="true"></span><div><div class="s1">Three finishes</div><div class="s2">Charcoal · Sand · Signature Orange.</div></div></li>
+    </ul>
   </section>
 
   <section id="value">
@@ -1073,6 +1198,8 @@ section{padding:86px 0}
           <li><a href="#value">Business case</a></li>
           <li><a href="#pilots">Pilot steps</a></li>
           <li><a href="#scope">Evaluation scope</a></li>
+          <li><a href="https://pillowflow.com/pages/fleet-pilot-program" target="_blank" rel="noopener">Fleet pilot program</a></li>
+          <li><a href="https://pillowflow.com/products/pillowflow-thigh-support-pillow" target="_blank" rel="noopener">PF-X01 product</a></li>
         </ul>
       </div>
       <div>
@@ -1114,125 +1241,134 @@ section{padding:86px 0}
   "use strict";
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var revealItems = Array.prototype.slice.call(document.querySelectorAll(".reveal, .hero-panel, .object-card"));
-  var objectCard = document.querySelector(".object-card");
-  var drawItems = Array.prototype.slice.call(document.querySelectorAll("[data-draw]"));
-  var constructItems = Array.prototype.slice.call(document.querySelectorAll("[data-construct]"));
-  var tickItems = Array.prototype.slice.call(document.querySelectorAll("[data-tick]"));
-  var baseline = document.querySelector("[data-baseline]");
-  var bodyFill = document.querySelector("[data-body-fill]");
-  var productTitle = document.querySelector("[data-title]");
-  var productColors = document.querySelector("[data-colors]");
+  var docEl = document.documentElement;
+  if (reduced) docEl.classList.add("rm");
 
-  function clamp(value, min, max){
-    return Math.max(min, Math.min(max, value));
+  var vh = window.innerHeight;
+  window.addEventListener("resize", function(){ vh = window.innerHeight; }, { passive:true });
+
+  function clamp(value, min, max){ return Math.max(min, Math.min(max, value)); }
+  function sub(progress, start, end){ return clamp((progress - start) / (end - start), 0, 1); }
+  function lerp(a, b, t){ return a + (b - a) * t; }
+
+  var loader = document.getElementById("loader");
+  var countEl = document.getElementById("loaderCount");
+  var barEl = document.getElementById("loaderBar");
+
+  function finishLoad(){
+    if (loader) loader.classList.add("done");
+    document.body.classList.add("ready");
+    setTimeout(function(){
+      if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+    }, 1300);
   }
 
-  function segment(progress, start, end){
-    return clamp((progress - start) / (end - start), 0, 1);
+  if (reduced || !loader) {
+    if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+    document.body.classList.add("ready");
+  } else {
+    requestAnimationFrame(function(){ loader.classList.add("tick"); });
+    var loadStart = null;
+    var loadDuration = 1400;
+    function loadStep(timestamp){
+      if (loadStart === null) loadStart = timestamp;
+      var p = clamp((timestamp - loadStart) / loadDuration, 0, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      if (countEl) countEl.textContent = String(Math.round(eased * 100)).padStart(3, "0");
+      if (barEl) barEl.style.transform = "scaleX(" + eased + ")";
+      if (p < 1) requestAnimationFrame(loadStep);
+      else setTimeout(finishLoad, 220);
+    }
+    requestAnimationFrame(loadStep);
   }
 
-  function setDraw(el, progress){
-    var length = Number(el.dataset.length || 1);
-    el.style.strokeDashoffset = String(length * (1 - progress));
-  }
-
-  drawItems.forEach(function(el){
-    var length = 1;
-    try {
-      length = el.getTotalLength();
-    } catch (error) {
-      length = 100;
-    }
-    el.dataset.length = String(length);
-    el.style.strokeDasharray = String(length);
-    el.style.strokeDashoffset = String(length);
-  });
-
-  function setObjectProgress(progress){
-    if (!objectCard) return;
-
-    var baselineProgress = segment(progress, 0.02, 0.16);
-    if (baseline) {
-      baseline.style.opacity = String(baselineProgress);
-      baseline.style.transform = "scaleX(" + baselineProgress.toFixed(3) + ")";
-    }
-
-    constructItems.forEach(function(el, index){
-      el.style.opacity = String(segment(progress, 0.10 + index * 0.035, 0.34 + index * 0.035));
-    });
-
-    drawItems.forEach(function(el){
-      var drawProgress = 0;
-      if (el.hasAttribute("data-outer")) {
-        drawProgress = segment(progress, 0.26, 0.58);
-      } else if (el.hasAttribute("data-highlight")) {
-        drawProgress = segment(progress, 0.68, 0.90);
-      } else {
-        drawProgress = segment(progress, 0.42, 0.76);
-      }
-      setDraw(el, drawProgress);
-    });
-
-    if (bodyFill) {
-      bodyFill.style.opacity = (segment(progress, 0.52, 0.78) * 0.85).toFixed(3);
-    }
-
-    tickItems.forEach(function(el, index){
-      var tickProgress = segment(progress, 0.60 + index * 0.012, 0.75 + index * 0.012);
-      el.style.opacity = String(tickProgress);
-      el.style.transform = "translateY(" + ((1 - tickProgress) * 6).toFixed(2) + "px)";
-    });
-
-    var titleProgress = segment(progress, 0.74, 0.92);
-    if (productTitle) {
-      productTitle.style.opacity = String(titleProgress);
-      productTitle.style.transform = "translateY(" + ((1 - titleProgress) * 24).toFixed(2) + "px)";
-    }
-
-    var colorsProgress = segment(progress, 0.80, 0.96);
-    if (productColors) {
-      productColors.style.opacity = String(colorsProgress);
-      productColors.style.transform = "translateY(" + ((1 - colorsProgress) * 18).toFixed(2) + "px)";
-    }
-  }
-
+  var revealItems = Array.prototype.slice.call(document.querySelectorAll(".reveal, .hero-panel"));
   if (reduced || !("IntersectionObserver" in window)) {
     revealItems.forEach(function(el){ el.classList.add("is-visible"); });
-    setObjectProgress(1);
-    return;
+  } else {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold:.18, rootMargin:"0px 0px -8% 0px" });
+    revealItems.forEach(function(el){ observer.observe(el); });
   }
 
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
+  var track = document.getElementById("objectTrack");
+  var drawSeq = [
+    { el:document.getElementById("d-body"), a:0.00, b:0.30 },
+    { el:document.getElementById("rimLight"), a:0.26, b:0.52 },
+    { el:document.getElementById("d-bore1"), a:0.30, b:0.50 },
+    { el:document.getElementById("d-bore2"), a:0.34, b:0.54 }
+  ];
+  var bodyFill = document.getElementById("bodyFill");
+  var sweep = document.getElementById("sweep");
+  var stageGlow = document.getElementById("stageGlow");
+  var designation = document.getElementById("designation");
+  var dimGroup = document.getElementById("dimGroup");
+  var specGroup = document.getElementById("specGroup");
+  var ringGroup = document.getElementById("ringGroup");
+  var objP = 0;
+  var objPT = 0;
+
+  function setObjectStatic(){
+    drawSeq.forEach(function(item){
+      if (item.el) item.el.style.strokeDashoffset = "0";
     });
-  }, { threshold: .18, rootMargin: "0px 0px -8% 0px" });
-
-  revealItems.forEach(function(el){ observer.observe(el); });
-
-  var ticking = false;
-  function updateObjectAnimation(){
-    ticking = false;
-    if (!objectCard) return;
-    var rect = objectCard.getBoundingClientRect();
-    var viewport = window.innerHeight || document.documentElement.clientHeight;
-    var progress = clamp((viewport * 0.88 - rect.top) / (viewport * 0.86), 0, 1);
-    setObjectProgress(progress);
+    if (bodyFill) bodyFill.setAttribute("opacity", "1");
+    if (ringGroup) ringGroup.style.opacity = "1";
+    if (stageGlow) stageGlow.style.opacity = "1";
+    if (dimGroup) {
+      dimGroup.style.opacity = "1";
+      dimGroup.style.transform = "translateY(0)";
+    }
+    if (specGroup) specGroup.style.opacity = "1";
+    if (designation) {
+      designation.style.opacity = "1";
+      designation.style.transform = "translateY(0)";
+    }
   }
 
-  function requestObjectAnimation(){
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(updateObjectAnimation);
+  function updateObject(progress){
+    drawSeq.forEach(function(item){
+      if (item.el) item.el.style.strokeDashoffset = String(1 - sub(progress, item.a, item.b));
+    });
+    if (bodyFill) bodyFill.setAttribute("opacity", sub(progress, 0.30, 0.55).toFixed(3));
+    if (sweep) {
+      var sx = -360 + sub(progress, 0.36, 0.64) * 1500;
+      sweep.setAttribute("x", sx.toFixed(1));
+    }
+    if (ringGroup) ringGroup.style.opacity = sub(progress, 0.42, 0.62).toFixed(3);
+    if (stageGlow) stageGlow.style.opacity = sub(progress, 0.30, 0.56).toFixed(3);
+    if (dimGroup) {
+      var gp = sub(progress, 0.54, 0.78);
+      dimGroup.style.opacity = gp.toFixed(3);
+      dimGroup.style.transform = "translateY(" + ((1 - gp) * 10).toFixed(2) + "px)";
+    }
+    if (specGroup) specGroup.style.opacity = sub(progress, 0.62, 0.85).toFixed(3);
+    if (designation) {
+      var dp = sub(progress, 0.50, 0.64);
+      designation.style.opacity = dp.toFixed(3);
+      designation.style.transform = "translateY(" + ((1 - dp) * 18).toFixed(2) + "px)";
+    }
   }
 
-  window.addEventListener("scroll", requestObjectAnimation, { passive:true });
-  window.addEventListener("resize", requestObjectAnimation, { passive:true });
-  updateObjectAnimation();
+  function frame(){
+    if (track) {
+      var rect = track.getBoundingClientRect();
+      var total = rect.height - vh;
+      objPT = total > 0 ? clamp(-rect.top / total, 0, 1) : 1;
+      objP = lerp(objP, objPT, 0.16);
+      updateObject(objP);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  if (reduced) setObjectStatic();
+  else requestAnimationFrame(frame);
 })();
 </script>
 </body>
