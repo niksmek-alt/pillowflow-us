@@ -288,82 +288,163 @@ section{padding:86px 0}
 .object-card{
   position:relative;
   overflow:hidden;
-  min-height:520px;
+  min-height:640px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+  color:#f4f1ea;
+  background:
+    radial-gradient(circle at 50% 36%,rgba(255,255,255,.065),transparent 34%),
+    radial-gradient(circle at 75% 70%,rgba(232,103,58,.09),transparent 30%),
+    linear-gradient(180deg,#111111 0%,#181818 42%,#101010 100%);
+  border-color:rgba(232,103,58,.34);
+  box-shadow:0 30px 70px rgba(15,23,42,.18),0 18px 54px rgba(232,103,58,.11);
 }
 .object-card::before{
   content:"";
   position:absolute;
   inset:0;
+  pointer-events:none;
+  opacity:.2;
   background:
-    radial-gradient(ellipse at 52% 52%,rgba(232,103,58,.16),transparent 48%),
-    linear-gradient(#ede7df 1px,transparent 1px),
-    linear-gradient(90deg,#ede7df 1px,transparent 1px);
-  background-size:28px 28px;
-  mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.2));
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:radial-gradient(circle at center,black 0%,transparent 76%);
 }
-.object-stage{position:relative;padding:32px 30px 24px}
-.object-stage::after{
+.object-card::after{
   content:"";
   position:absolute;
   left:12%;
   right:12%;
-  bottom:54px;
-  height:28px;
+  top:58%;
+  height:34px;
   border-radius:50%;
-  background:rgba(15,23,42,.12);
+  background:rgba(0,0,0,.42);
   filter:blur(22px);
+  pointer-events:none;
+}
+.object-stage{
+  position:relative;
+  z-index:1;
+  padding:32px 30px 24px;
+  will-change:transform;
+  animation:floatProduct 6s var(--ease) infinite;
 }
 .object-meta{
   display:flex;
   justify-content:space-between;
   gap:18px;
-  color:var(--muted);
+  color:rgba(244,241,234,.42);
   font-size:12px;
   font-weight:700;
-  letter-spacing:.08em;
+  letter-spacing:.22em;
   text-transform:uppercase;
 }
 .product-svg{
   position:relative;
   z-index:1;
   width:100%;
-  max-width:720px;
-  margin:28px auto 10px;
-  filter:drop-shadow(0 30px 28px rgba(15,23,42,.16));
-  animation:floatProduct 6s var(--ease) infinite;
+  max-width:840px;
+  margin:50px auto 18px;
+  overflow:visible;
+  filter:drop-shadow(0 24px 60px rgba(0,0,0,.42));
 }
-.product-svg .draw{
+.product-svg .baseline{
+  stroke:rgba(244,241,234,.26);
+  stroke-width:2;
+  transform-box:fill-box;
+  transform-origin:center;
+  opacity:0;
+  transform:scaleX(0);
+}
+.product-svg .construct{
   fill:none;
-  stroke:#1f2937;
-  stroke-width:1.7;
+  stroke:rgba(244,241,234,.15);
+  stroke-width:1.4;
+  opacity:0;
+}
+.product-svg .body-fill{
+  fill:rgba(244,241,234,.04);
+  opacity:0;
+}
+.product-svg .outer{
+  fill:rgba(244,241,234,.018);
+  stroke:rgba(244,241,234,.72);
+  stroke-width:2.2;
   stroke-linecap:round;
   stroke-linejoin:round;
-  stroke-dasharray:1;
-  stroke-dashoffset:1;
   vector-effect:non-scaling-stroke;
 }
-.product-svg .soft{stroke:#94a3b8;stroke-width:1.1}
-.product-svg .accent-line{stroke:var(--accent);stroke-width:2.2}
-.product-svg .fill{fill:url(#productFill);opacity:.94}
-.object-card.is-visible .draw{animation:drawLine 1.5s var(--ease) forwards}
-.object-card.is-visible .draw.d2{animation-delay:.12s}
-.object-card.is-visible .draw.d3{animation-delay:.22s}
-.object-card.is-visible .draw.d4{animation-delay:.34s}
+.product-svg .inner,
+.product-svg .cutout{
+  fill:none;
+  stroke:rgba(244,241,234,.42);
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.product-svg .cutout{stroke:rgba(244,241,234,.72)}
+.product-svg .highlight{
+  fill:none;
+  stroke:#f2b39d;
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 0 14px rgba(242,107,58,.42));
+  vector-effect:non-scaling-stroke;
+}
+.product-svg .tick{
+  stroke:rgba(244,241,234,.34);
+  stroke-width:2;
+  opacity:0;
+}
 .object-caption{
   position:relative;
+  z-index:2;
   display:grid;
   grid-template-columns:1fr auto;
   gap:20px;
   align-items:end;
   padding:0 30px 30px;
 }
-.object-caption strong{display:block;color:var(--navy);font-size:28px;line-height:1}
-.object-caption span{color:var(--muted);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-.finish-row{display:flex;gap:9px}
-.swatch{width:18px;height:18px;border-radius:99px;border:1px solid rgba(15,23,42,.18)}
+.product-name{
+  opacity:0;
+  transform:translateY(24px);
+  color:#f4f1ea;
+  font-weight:900;
+  line-height:.88;
+  letter-spacing:-.05em;
+  font-size:clamp(58px,9vw,116px);
+}
+.product-name span{display:block}
+.product-name strong{display:block;color:#f4f1ea}
+.product-name strong span{display:inline;color:var(--accent)}
+.finish-row{
+  opacity:0;
+  transform:translateY(18px);
+  display:flex;
+  align-items:center;
+  gap:clamp(14px,2vw,24px);
+  padding-bottom:10px;
+}
+.finish{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:rgba(244,241,234,.58);
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:12px;
+  font-weight:700;
+}
+.swatch{
+  width:15px;
+  height:15px;
+  border-radius:99px;
+  border:1px solid rgba(244,241,234,.28);
+}
 
 .value-grid{
   display:grid;
@@ -516,7 +597,12 @@ section{padding:86px 0}
   .object-card{min-height:auto}
   .object-stage{padding:24px 18px 18px}
   .object-meta{font-size:10px}
+  .product-svg{width:112%;max-width:none;margin-left:-6%;margin-top:42px}
   .object-caption{grid-template-columns:1fr;padding:0 18px 22px}
+  .product-name{font-size:clamp(64px,20vw,92px)}
+  .finish-row{justify-content:space-between;width:100%;padding-bottom:0}
+  .finish{gap:7px;letter-spacing:.14em;font-size:10px}
+  .swatch{width:13px;height:13px}
   .cta-panel{display:block}
   .cta-panel .hero-actions{margin-top:26px}
   .footer-grid{grid-template-columns:1fr 1fr}
@@ -538,7 +624,10 @@ section{padding:86px 0}
   }
   .reveal{opacity:1;transform:none}
   .metric-track i{width:var(--w)}
-  .product-svg .draw{stroke-dashoffset:0}
+  .object-stage{animation:none;transform:none !important}
+  [data-draw]{stroke-dashoffset:0}
+  [data-baseline]{opacity:1;transform:scaleX(1)}
+  [data-construct],[data-tick],[data-body-fill],[data-title],[data-colors]{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -622,39 +711,49 @@ section{padding:86px 0}
           </ul>
         </article>
 
-        <article class="object-card reveal" aria-label="PF-X01 engineering card">
+        <article class="object-card reveal" aria-label="PF-X01 cinematic engineering blueprint">
           <div class="object-stage">
             <div class="object-meta">
-              <span>PF-X01 / Engineering view</span>
-              <span>Lightweight support geometry</span>
+              <span>02 - The Object</span>
+              <span>PF-X01 / Production Spec</span>
             </div>
-            <svg class="product-svg" viewBox="0 0 900 470" role="img" aria-label="Technical outline of PF-X01 product">
-              <defs>
-                <linearGradient id="productFill" x1="90" y1="90" x2="780" y2="380" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#fffaf5"/>
-                  <stop offset=".52" stop-color="#fed7aa"/>
-                  <stop offset="1" stop-color="#fdba74"/>
-                </linearGradient>
-              </defs>
-              <path class="fill" d="M102 302C150 224 219 167 318 132C453 84 603 83 724 127C778 147 820 181 831 224C846 285 783 331 689 352C555 382 376 383 236 356C158 341 85 330 102 302Z"/>
-              <path class="draw d1" pathLength="1" d="M102 302C150 224 219 167 318 132C453 84 603 83 724 127C778 147 820 181 831 224C846 285 783 331 689 352C555 382 376 383 236 356C158 341 85 330 102 302Z"/>
-              <path class="draw soft d2" pathLength="1" d="M182 287C245 231 338 197 452 188C570 179 678 194 751 232"/>
-              <path class="draw soft d3" pathLength="1" d="M218 324C319 290 439 276 577 283C641 286 703 296 760 314"/>
-              <ellipse class="draw d3" pathLength="1" cx="432" cy="245" rx="61" ry="24"/>
-              <ellipse class="draw d4" pathLength="1" cx="604" cy="242" rx="61" ry="24"/>
-              <path class="draw accent-line d4" pathLength="1" d="M141 304C212 340 352 357 508 352C661 348 775 320 815 270"/>
-              <path class="draw soft d4" pathLength="1" d="M252 145L209 112M390 111L376 71M553 108L571 70M713 147L761 116"/>
+            <svg class="product-svg" viewBox="0 0 900 420" role="img" aria-label="PillowFlow PF-X01 technical blueprint animation">
+              <line data-baseline class="baseline" x1="80" y1="315" x2="820" y2="315"/>
+              <ellipse data-construct class="construct" cx="355" cy="238" rx="62" ry="82"/>
+              <ellipse data-construct class="construct" cx="575" cy="222" rx="82" ry="112"/>
+              <path data-construct class="construct" d="M140 260 C240 185 315 178 392 211 C470 240 505 140 635 157 C735 172 785 235 760 300"/>
+              <path class="body-fill" data-body-fill d="M120 287 C105 248 128 224 171 207 C212 190 254 178 296 145 C324 123 350 129 373 163 C397 198 445 202 484 169 C529 130 596 105 665 128 C724 148 760 205 778 258 C790 294 772 315 729 315 L175 315 C139 315 125 306 120 287 Z"/>
+              <path data-draw data-outer class="outer" d="M120 287 C105 248 128 224 171 207 C212 190 254 178 296 145 C324 123 350 129 373 163 C397 198 445 202 484 169 C529 130 596 105 665 128 C724 148 760 205 778 258 C790 294 772 315 729 315 L175 315 C139 315 125 306 120 287 Z"/>
+              <path data-draw data-inner class="inner" d="M160 286 C255 238 370 236 500 253 C588 265 654 282 728 286"/>
+              <path data-draw data-inner class="inner" d="M250 300 C342 282 514 283 674 300"/>
+              <ellipse data-draw data-inner class="cutout" cx="355" cy="243" rx="48" ry="67"/>
+              <ellipse data-draw data-inner class="cutout" cx="575" cy="226" rx="66" ry="91"/>
+              <ellipse data-draw data-inner class="inner" cx="174" cy="265" rx="18" ry="45"/>
+              <circle data-draw data-inner class="inner" cx="665" cy="230" r="17"/>
+              <path data-draw data-inner class="inner" d="M682 230 H725"/>
+              <path data-draw data-highlight class="highlight" d="M123 273 C144 225 222 199 296 145 C324 123 350 129 373 163 C397 198 445 202 484 169 C529 130 596 105 665 128"/>
+              <line data-tick class="tick" x1="220" y1="315" x2="220" y2="329"/>
+              <line data-tick class="tick" x1="270" y1="315" x2="270" y2="329"/>
+              <line data-tick class="tick" x1="320" y1="315" x2="320" y2="329"/>
+              <line data-tick class="tick" x1="370" y1="315" x2="370" y2="329"/>
+              <line data-tick class="tick" x1="420" y1="315" x2="420" y2="329"/>
+              <line data-tick class="tick" x1="470" y1="315" x2="470" y2="329"/>
+              <line data-tick class="tick" x1="520" y1="315" x2="520" y2="329"/>
+              <line data-tick class="tick" x1="570" y1="315" x2="570" y2="329"/>
+              <line data-tick class="tick" x1="620" y1="315" x2="620" y2="329"/>
+              <line data-tick class="tick" x1="670" y1="315" x2="670" y2="329"/>
+              <line data-tick class="tick" x1="720" y1="315" x2="720" y2="329"/>
             </svg>
           </div>
           <div class="object-caption">
-            <div>
-              <strong>PF-X01</strong>
-              <span>Product object, field pilot, documented closeout</span>
+            <div class="product-name" data-title>
+              <span>PF-</span>
+              <strong>X<span>01</span></strong>
             </div>
-            <div class="finish-row" aria-label="Representative finishes">
-              <span class="swatch" style="background:#111827" title="Charcoal"></span>
-              <span class="swatch" style="background:#e8673a" title="Signature orange"></span>
-              <span class="swatch" style="background:#f7f4ef" title="Light"></span>
+            <div class="finish-row" data-colors aria-label="Representative finishes">
+              <span class="finish"><span class="swatch" style="background:#3b4650"></span>Charcoal</span>
+              <span class="finish"><span class="swatch" style="background:#e8dfcf"></span>Sand</span>
+              <span class="finish"><span class="swatch" style="background:#f26b3a"></span>Orange</span>
             </div>
           </div>
         </article>
@@ -797,9 +896,91 @@ section{padding:86px 0}
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var revealItems = Array.prototype.slice.call(document.querySelectorAll(".reveal, .hero-panel, .object-card"));
+  var objectCard = document.querySelector(".object-card");
+  var drawItems = Array.prototype.slice.call(document.querySelectorAll("[data-draw]"));
+  var constructItems = Array.prototype.slice.call(document.querySelectorAll("[data-construct]"));
+  var tickItems = Array.prototype.slice.call(document.querySelectorAll("[data-tick]"));
+  var baseline = document.querySelector("[data-baseline]");
+  var bodyFill = document.querySelector("[data-body-fill]");
+  var productTitle = document.querySelector("[data-title]");
+  var productColors = document.querySelector("[data-colors]");
+
+  function clamp(value, min, max){
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function segment(progress, start, end){
+    return clamp((progress - start) / (end - start), 0, 1);
+  }
+
+  function setDraw(el, progress){
+    var length = Number(el.dataset.length || 1);
+    el.style.strokeDashoffset = String(length * (1 - progress));
+  }
+
+  drawItems.forEach(function(el){
+    var length = 1;
+    try {
+      length = el.getTotalLength();
+    } catch (error) {
+      length = 100;
+    }
+    el.dataset.length = String(length);
+    el.style.strokeDasharray = String(length);
+    el.style.strokeDashoffset = String(length);
+  });
+
+  function setObjectProgress(progress){
+    if (!objectCard) return;
+
+    var baselineProgress = segment(progress, 0.02, 0.16);
+    if (baseline) {
+      baseline.style.opacity = String(baselineProgress);
+      baseline.style.transform = "scaleX(" + baselineProgress.toFixed(3) + ")";
+    }
+
+    constructItems.forEach(function(el, index){
+      el.style.opacity = String(segment(progress, 0.10 + index * 0.035, 0.34 + index * 0.035));
+    });
+
+    drawItems.forEach(function(el){
+      var drawProgress = 0;
+      if (el.hasAttribute("data-outer")) {
+        drawProgress = segment(progress, 0.26, 0.58);
+      } else if (el.hasAttribute("data-highlight")) {
+        drawProgress = segment(progress, 0.68, 0.90);
+      } else {
+        drawProgress = segment(progress, 0.42, 0.76);
+      }
+      setDraw(el, drawProgress);
+    });
+
+    if (bodyFill) {
+      bodyFill.style.opacity = (segment(progress, 0.52, 0.78) * 0.85).toFixed(3);
+    }
+
+    tickItems.forEach(function(el, index){
+      var tickProgress = segment(progress, 0.60 + index * 0.012, 0.75 + index * 0.012);
+      el.style.opacity = String(tickProgress);
+      el.style.transform = "translateY(" + ((1 - tickProgress) * 6).toFixed(2) + "px)";
+    });
+
+    var titleProgress = segment(progress, 0.74, 0.92);
+    if (productTitle) {
+      productTitle.style.opacity = String(titleProgress);
+      productTitle.style.transform = "translateY(" + ((1 - titleProgress) * 24).toFixed(2) + "px)";
+    }
+
+    var colorsProgress = segment(progress, 0.80, 0.96);
+    if (productColors) {
+      productColors.style.opacity = String(colorsProgress);
+      productColors.style.transform = "translateY(" + ((1 - colorsProgress) * 18).toFixed(2) + "px)";
+    }
+  }
 
   if (reduced || !("IntersectionObserver" in window)) {
     revealItems.forEach(function(el){ el.classList.add("is-visible"); });
+    setObjectProgress(1);
     return;
   }
 
@@ -813,6 +994,26 @@ section{padding:86px 0}
   }, { threshold: .18, rootMargin: "0px 0px -8% 0px" });
 
   revealItems.forEach(function(el){ observer.observe(el); });
+
+  var ticking = false;
+  function updateObjectAnimation(){
+    ticking = false;
+    if (!objectCard) return;
+    var rect = objectCard.getBoundingClientRect();
+    var viewport = window.innerHeight || document.documentElement.clientHeight;
+    var progress = clamp((viewport * 0.88 - rect.top) / (viewport * 0.86), 0, 1);
+    setObjectProgress(progress);
+  }
+
+  function requestObjectAnimation(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(updateObjectAnimation);
+  }
+
+  window.addEventListener("scroll", requestObjectAnimation, { passive:true });
+  window.addEventListener("resize", requestObjectAnimation, { passive:true });
+  updateObjectAnimation();
 })();
 </script>
 </body>
