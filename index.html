@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PillowFlow | PF-X01 Fleet Comfort Pilots</title>
-<meta name="description" content="PillowFlow helps automotive fleets evaluate PF-X01 in real seats with driver comfort feedback, fit observations, usage consistency, and business-ready pilot reporting.">
+<title>PillowFlow for Fleets | Driver Comfort Pilot Program</title>
+<meta name="description" content="PillowFlow helps fleet operators evaluate PF-X01, an ergonomic thigh-support device, through practical driver comfort pilots, route feedback, and business-ready closeout reporting.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='8' width='22' height='16' rx='7' fill='%23e8673a'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -451,6 +451,17 @@ section{padding:86px 0}
   grid-template-columns:repeat(5,1fr);
   gap:16px;
 }
+.case-grid,.operator-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.steps-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:16px;
+  margin-top:34px;
+}
 .value-card{
   padding:22px;
   min-height:210px;
@@ -468,6 +479,85 @@ section{padding:86px 0}
   margin-bottom:20px;
 }
 .value-card p{margin-top:10px;font-size:14.5px}
+.operator-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--soft-shadow);
+  padding:24px;
+}
+.operator-card h3{margin-top:10px}
+.operator-card p{margin-top:12px;font-size:14.5px}
+.operator-chip{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:4px 10px;
+  border-radius:6px;
+  background:#ffedd5;
+  color:#9a3412;
+  font-size:12px;
+  font-weight:800;
+}
+.use-case{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:13px;
+}
+.use-case b{display:block;color:var(--navy);font-size:13px}
+
+.roi-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-bottom:30px;
+}
+.table-card,.quote-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--soft-shadow);
+  padding:22px;
+}
+.table-card h3,.quote-card h3{font-size:18px}
+.mini-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:16px;
+  font-size:13px;
+}
+.mini-table th,.mini-table td{
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+  vertical-align:top;
+}
+.mini-table th:last-child,.mini-table td:last-child{text-align:right;color:var(--navy);font-weight:700}
+.quote-number{
+  display:block;
+  margin:18px 0 8px;
+  color:var(--accent);
+  font-size:48px;
+  line-height:1;
+  font-weight:900;
+}
+.quote-card blockquote{
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid var(--border);
+  color:var(--navy);
+  font-size:17px;
+  line-height:1.6;
+}
+.quote-card cite{
+  display:block;
+  margin-top:12px;
+  color:var(--muted);
+  font-size:13px;
+  font-style:normal;
+}
 
 .scope-grid{
   display:grid;
@@ -567,6 +657,25 @@ section{padding:86px 0}
   color:var(--muted);
   font-size:13px;
 }
+.sources{
+  margin-top:30px;
+  padding-top:24px;
+  border-top:1px solid var(--border);
+}
+.sources h3{margin-bottom:12px}
+.sources ol{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px 28px;
+  padding-left:18px;
+  color:var(--muted);
+  font-size:12.5px;
+}
+.sources p{
+  margin-top:16px;
+  max-width:980px;
+  font-size:12.5px;
+}
 
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.is-visible{opacity:1;transform:none}
@@ -579,7 +688,7 @@ section{padding:86px 0}
 @media (max-width:1020px){
   .hero-grid,.product-grid,.scope-grid,.story-grid{grid-template-columns:1fr}
   .hero-panel{max-width:640px}
-  .value-grid{grid-template-columns:repeat(2,1fr)}
+  .value-grid,.case-grid,.operator-grid,.steps-grid,.roi-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:720px){
   .wrap{width:min(100% - 28px,var(--max))}
@@ -593,7 +702,7 @@ section{padding:86px 0}
   .section-head{display:block}
   .section-head p{margin-top:14px}
   section{padding:62px 0}
-  .value-grid{grid-template-columns:1fr}
+  .value-grid,.case-grid,.operator-grid,.steps-grid,.roi-grid{grid-template-columns:1fr}
   .object-card{min-height:auto}
   .object-stage{padding:24px 18px 18px}
   .object-meta{font-size:10px}
@@ -606,6 +715,7 @@ section{padding:86px 0}
   .cta-panel{display:block}
   .cta-panel .hero-actions{margin-top:26px}
   .footer-grid{grid-template-columns:1fr 1fr}
+  .sources ol{grid-template-columns:1fr}
   .footer-bottom{display:block}
 }
 @media (max-width:460px){
@@ -640,8 +750,9 @@ section{padding:86px 0}
     </a>
     <nav class="nav-links" aria-label="Page sections">
       <a href="#product">Product</a>
-      <a href="#value">Business value</a>
-      <a href="#scope">Evaluation scope</a>
+      <a href="#value">Business case</a>
+      <a href="#pilots">Pilot steps</a>
+      <a href="#scope">Evaluation</a>
       <a href="#company">Who we are</a>
     </nav>
   </div>
@@ -651,36 +762,36 @@ section{padding:86px 0}
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy reveal">
-        <p class="eyebrow">PF-X01 fleet pilot program</p>
-        <h1>Evaluate PF-X01 in the driver's seat.</h1>
-        <p>PillowFlow brings PF-X01 into real vehicles, captures driver comfort and fit observations, and closes the pilot with documentation a buyer can actually use.</p>
+        <p class="eyebrow">Fleet performance program</p>
+        <h1>Your drivers are costing you more than fuel.</h1>
+        <p>Most fleets track mileage, maintenance, and fuel to the decimal. Few track the cumulative cost of driver discomfort — until it shows up on the turnover report.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:support@pillowflow.com?subject=PillowFlow%20fleet%20pilot%20request">Contact / Start Pilot <span class="arrow" aria-hidden="true">-></span></a>
-          <a class="btn btn-secondary" href="#product">Learn About Product</a>
+          <a class="btn btn-primary" href="mailto:support@pillowflow.com?subject=PillowFlow%20fleet%20pilot%20request">Start a risk-free pilot <span class="arrow" aria-hidden="true">-></span></a>
+          <a class="btn btn-secondary" href="#product">See why it happens</a>
         </div>
         <div class="hero-proof" aria-label="Pilot structure highlights">
-          <div class="proof-tile"><strong>30</strong><span>Day field window for structured driver feedback.</span></div>
-          <div class="proof-tile"><strong>Seat</strong><span>Fit and control notes captured in the vehicle.</span></div>
-          <div class="proof-tile"><strong>Report</strong><span>A closeout written for operational review.</span></div>
+          <div class="proof-tile"><strong>90%+</strong><span>Reported annual driver turnover at large truckload carriers.</span></div>
+          <div class="proof-tile"><strong>$5-12K</strong><span>Estimated cost to recruit, onboard, and train one replacement driver.</span></div>
+          <div class="proof-tile"><strong>#1</strong><span>Musculoskeletal disorders lead missed-workday categories in transportation.</span></div>
         </div>
       </div>
 
       <aside class="hero-panel reveal" aria-label="Sample field pilot log">
         <div class="panel-top">
-          <span class="panel-title">Field pilot log</span>
+          <span class="panel-title">Fleet pilot snapshot</span>
           <span class="status"><i aria-hidden="true"></i>Sample</span>
         </div>
         <div class="pilot-card">
           <div class="metric">
-            <div class="metric-label"><span>Route-day check-ins</span><b>Collected</b></div>
+            <div class="metric-label"><span>Driver comfort survey</span><b>5 min</b></div>
             <div class="metric-track"><i style="--w:86%"></i></div>
           </div>
           <div class="metric">
-            <div class="metric-label"><span>Seat fit and control notes</span><b>Reviewed</b></div>
+            <div class="metric-label"><span>Typical pilot batch</span><b>10-40 units</b></div>
             <div class="metric-track"><i style="--w:74%"></i></div>
           </div>
           <div class="metric">
-            <div class="metric-label"><span>PF-X01 usage consistency</span><b>Tracked</b></div>
+            <div class="metric-label"><span>In-vehicle trial window</span><b>30 days</b></div>
             <div class="metric-track"><i style="--w:68%"></i></div>
           </div>
           <p class="panel-note"><b>Observational data only — not causal.</b><br>Sample metrics are illustrative. PillowFlow is a comfort aid, not a medical device or safety system.</p>
@@ -693,28 +804,29 @@ section{padding:86px 0}
     <div class="wrap">
       <div class="section-head reveal">
         <div>
-          <p class="eyebrow">Product</p>
-          <h2>A physical product, staged for a real fleet decision.</h2>
+          <p class="eyebrow">The root cause</p>
+          <h2>The seat wasn't built for the job.</h2>
         </div>
-        <p>PF-X01 stays front and center: a consistent object to place, observe, and evaluate across seats, routes, and driver profiles.</p>
+        <p>Standard vehicle seats are designed for everyday commuting — not for occupational shifts of 6-10 hours with continuous pedal operation.</p>
       </div>
 
       <div class="product-grid">
         <article class="definition-card reveal">
-          <p class="kicker">What PillowFlow is</p>
-          <h3>PF-X01 plus the pilot process around it.</h3>
-          <p>PF-X01 is designed to support driver thigh comfort and seating fit during normal vehicle use. PillowFlow adds the structure around the object: who uses it, what gets observed, and how the pilot is closed out.</p>
+          <p class="kicker">What PillowFlow addresses</p>
+          <h3>PF-X01 supports the thigh while keeping pedal access free.</h3>
+          <p>PillowFlow is an ergonomic thigh-support device for fleet evaluation programs. The goal is practical: support the driver's upper leg during prolonged seated work, preserve lower-leg mobility, and collect feedback your team can review.</p>
           <ul class="spec-list">
-            <li><span class="check">✓</span><span>Tool-free placement for fleet pilot use.</span></li>
-            <li><span class="check">✓</span><span>Contoured PF-X01 geometry remains the visual and product anchor.</span></li>
-            <li><span class="check">✓</span><span>Designed for feedback programs, not medical diagnosis or treatment.</span></li>
+            <li><span class="check">1</span><span>Continuous pedal work can keep the accelerator leg partially elevated for long periods.</span></li>
+            <li><span class="check">2</span><span>Inadequate seat depth or lateral support can concentrate pressure under the lower thigh.</span></li>
+            <li><span class="check">3</span><span>Mild discomfort early in a shift can accumulate into stronger fatigue later in the route.</span></li>
+            <li><span class="check">4</span><span>Different body types can experience seat-length mismatch and unsupported leg weight.</span></li>
           </ul>
         </article>
 
         <article class="object-card reveal" aria-label="PF-X01 cinematic engineering blueprint">
           <div class="object-stage">
             <div class="object-meta">
-              <span>02 - The Object</span>
+              <span>PF-X01 object</span>
               <span>PF-X01 / Production Spec</span>
             </div>
             <svg class="product-svg" viewBox="0 0 900 420" role="img" aria-label="PillowFlow PF-X01 technical blueprint animation">
@@ -765,58 +877,151 @@ section{padding:86px 0}
     <div class="wrap">
       <div class="section-head reveal">
         <div>
-          <p class="eyebrow">Business value</p>
-          <h2>More useful than a sample box and a verbal demo.</h2>
+          <p class="eyebrow">The business case</p>
+          <h2>What you're actually paying for.</h2>
         </div>
-        <p>PillowFlow focuses on practical field signals that fleet and automotive buyers can review without overclaiming outcomes.</p>
+        <p>Driver discomfort doesn't appear as a budget line. It appears as retention pressure, claims exposure, and declining route performance.</p>
       </div>
-      <div class="value-grid">
+      <div class="case-grid">
         <article class="value-card reveal">
-          <div class="icon" aria-hidden="true">01</div>
-          <h3>Driver comfort feedback</h3>
-          <p>Collect structured impressions from drivers using PF-X01 during normal route days.</p>
+          <div class="icon" aria-hidden="true">↑</div>
+          <h3>Retention is your largest untracked cost</h3>
+          <p>Physical discomfort is consistently cited among the reasons commercial drivers leave. Drivers do not always file exit reports blaming the seat; they just do not renew.</p>
         </article>
         <article class="value-card reveal">
-          <div class="icon" aria-hidden="true">02</div>
-          <h3>Fit and control feedback</h3>
-          <p>Capture whether PF-X01 feels compatible with seating position and vehicle controls.</p>
+          <div class="icon" aria-hidden="true">↑</div>
+          <h3>Lower-body discomfort is a quiet liability</h3>
+          <p>Occupational driving research documents load across the lower back, hip, and thigh. A pilot gives your team a structured way to observe one contributor to discomfort.</p>
         </article>
         <article class="value-card reveal">
-          <div class="icon" aria-hidden="true">03</div>
-          <h3>Usage consistency</h3>
-          <p>Track whether units are used consistently enough to justify broader deployment review.</p>
-        </article>
-        <article class="value-card reveal">
-          <div class="icon" aria-hidden="true">04</div>
-          <h3>Operational evaluation</h3>
-          <p>Turn pilot activity into a concise closeout for purchasing, operations, and leadership.</p>
-        </article>
-        <article class="value-card reveal">
-          <div class="icon" aria-hidden="true">05</div>
-          <h3>Safety signal awareness</h3>
-          <p>Surface observations that may need additional review without making causal safety claims.</p>
+          <div class="icon" aria-hidden="true">↓</div>
+          <h3>Fatigued drivers deliver less</h3>
+          <p>Research on driver fatigue links cumulative bodily discomfort with performance pressure, not just drowsiness. Experienced drivers are not immune to accumulated discomfort.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section id="scope" class="section-alt">
+  <section id="pilots" class="section-alt">
     <div class="wrap">
       <div class="section-head reveal">
         <div>
-          <p class="eyebrow">Evaluation scope</p>
-          <h2>Clear boundaries for credible business review.</h2>
+          <p class="eyebrow">Early adopters</p>
+          <h2>Who's running with PillowFlow.</h2>
         </div>
+        <p>These operators are currently piloting PillowFlow across active driving operations in delivery, healthcare, and field service.</p>
+      </div>
+
+      <div class="operator-grid">
+        <article class="operator-card reveal">
+          <span class="operator-chip">Food & delivery</span>
+          <h3>Symple Foods</h3>
+          <p>Prepared meal delivery company running active multi-route delivery operations across the U.S. Letter of support on file.</p>
+          <p class="use-case"><b>Use case</b>Delivery drivers on daily urban and suburban routes with high-frequency stop-and-start pedal cycling.</p>
+        </article>
+        <article class="operator-card reveal">
+          <span class="operator-chip">Healthcare fleet</span>
+          <h3>HomeAssist Home Health</h3>
+          <p>Medicare-accredited home health agency whose clinical staff drives daily to provide in-home care services. Letter of support on file.</p>
+          <p class="use-case"><b>Use case</b>Healthcare drivers completing multi-stop residential routes with repeated vehicle entry and exit.</p>
+        </article>
+        <article class="operator-card reveal">
+          <span class="operator-chip">Field service</span>
+          <h3>TV InstallationOne</h3>
+          <p>Field installation and service operation with active daily driving requirements across service territories. Letter of support on file.</p>
+          <p class="use-case"><b>Use case</b>Technicians in transit between service calls with extended seated driving across the full shift.</p>
+        </article>
+      </div>
+
+      <div class="section-head reveal" style="margin-top:64px">
+        <div>
+          <p class="eyebrow">How it works</p>
+          <h2>Start a pilot in 5 steps.</h2>
+        </div>
+        <p>No long-term contract. No procurement cycle. Fits inside your existing operation without changing anything your drivers do.</p>
+      </div>
+      <div class="steps-grid">
+        <article class="value-card reveal">
+          <div class="icon" aria-hidden="true">1</div>
+          <h3>Tell us about your operation</h3>
+          <p>Fleet size, vehicle type, shift length, and route profile. A 10-minute call or email is enough to size the pilot batch.</p>
+        </article>
+        <article class="value-card reveal">
+          <div class="icon" aria-hidden="true">2</div>
+          <h3>We ship the pilot batch</h3>
+          <p>Typically 10-40 units. PF-X01 arrives with driver install cards and no training session requirement.</p>
+        </article>
+        <article class="value-card reveal">
+          <div class="icon" aria-hidden="true">3</div>
+          <h3>Drivers use it for 30 days</h3>
+          <p>Installation takes under 60 seconds using the integrated seat strap. No tools and no vehicle modification.</p>
+        </article>
+        <article class="value-card reveal">
+          <div class="icon" aria-hidden="true">4</div>
+          <h3>You collect data</h3>
+          <p>We provide a simple before-and-after driver comfort survey. You own the results and compare them with metrics you already track.</p>
+        </article>
+        <article class="value-card reveal">
+          <div class="icon" aria-hidden="true">5</div>
+          <h3>You decide whether to scale</h3>
+          <p>If results support it, we quote fleet rates. If they do not, you have spent only the near-cost pilot batch price.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="scope">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">The math</p>
+          <h2>$44.99 per driver vs. $5,000 to replace one.</h2>
+        </div>
+        <p>The cost of trying is smaller than it looks. The cost of not trying is larger than most operators track.</p>
+      </div>
+      <div class="roi-grid reveal">
+        <article class="table-card">
+          <h3>PillowFlow - cost per driver</h3>
+          <table class="mini-table">
+            <thead><tr><th>Item</th><th>Per driver</th></tr></thead>
+            <tbody>
+              <tr><td>PillowFlow unit</td><td>$39.99</td></tr>
+              <tr><td>Packaging & preparation</td><td>$3.00</td></tr>
+              <tr><td>Domestic delivery</td><td>$2.00</td></tr>
+            </tbody>
+            <tfoot><tr><td>Total pilot cost</td><td>$44.99</td></tr></tfoot>
+          </table>
+        </article>
+        <article class="table-card">
+          <h3>Replacing one driver</h3>
+          <table class="mini-table">
+            <thead><tr><th>Cost component</th><th>Range</th></tr></thead>
+            <tbody>
+              <tr><td>Recruitment and advertising</td><td>$800-2,500</td></tr>
+              <tr><td>Screening, interviews, admin</td><td>$500-1,200</td></tr>
+              <tr><td>Training and onboarding</td><td>$1,500-4,000</td></tr>
+              <tr><td>Productivity loss during transition</td><td>$1,000-3,500</td></tr>
+            </tbody>
+            <tfoot><tr><td>Estimated total</td><td>$5K-12K+</td></tr></tfoot>
+          </table>
+        </article>
+        <article class="quote-card">
+          <h3>Order-of-magnitude case</h3>
+          <span class="quote-number">111x</span>
+          <p>Comparison ratio between one $44.99 pilot unit and the low end of a $5,000 replacement-cost estimate.</p>
+          <blockquote>"I need right thigh support so I can relax my thigh by having it supported."</blockquote>
+          <cite>A driver in Maine, via PillowFlow contact form</cite>
+        </article>
       </div>
       <div class="scope-grid">
         <article class="scope-card primary reveal">
           <p class="eyebrow">Compliance note</p>
           <h3>Observational data only — not causal.</h3>
-          <p>PillowFlow pilot reports summarize feedback and usage observations. They do not prove medical, ergonomic, safety, or productivity outcomes, and PF-X01 is not a medical device.</p>
+          <p>These are order-of-magnitude estimates. PillowFlow does not claim to eliminate driver turnover, reduce injuries, or prove medical, ergonomic, safety, or productivity outcomes. PF-X01 is not a medical device.</p>
         </article>
         <ul class="scope-list reveal" aria-label="Evaluation boundaries">
-          <li><span class="dot" aria-hidden="true"></span><div><b>Included</b><span>Comfort ratings, fit notes, usage patterns, and implementation feedback.</span></div></li>
-          <li><span class="dot" aria-hidden="true"></span><div><b>Not included</b><span>Clinical claims, treatment claims, or causal claims about incident reduction.</span></div></li>
+          <li><span class="dot" aria-hidden="true"></span><div><b>Included</b><span>Comfort ratings, fit notes, usage patterns, route profile, and implementation feedback.</span></div></li>
+          <li><span class="dot" aria-hidden="true"></span><div><b>Not included</b><span>Clinical validation, treatment claims, or causal claims about turnover, incident reduction, or safety performance.</span></div></li>
           <li><span class="dot" aria-hidden="true"></span><div><b>Buyer output</b><span>A professional pilot closeout that supports a practical go, no-go, or next-test decision.</span></div></li>
         </ul>
       </div>
@@ -827,13 +1032,13 @@ section{padding:86px 0}
     <div class="wrap story-grid">
       <article class="story-card reveal">
         <p class="eyebrow">Who we are</p>
-        <h2>Built around a simple idea: test the seat experience where it happens.</h2>
-        <p>PillowFlow develops PF-X01 and the supporting pilot process for teams that operate vehicles at scale. The work is practical: put the product into real seats, collect the observations, and make the next decision easier.</p>
-        <p>We keep the claims narrow and the output useful: define the pilot, place the product, collect feedback, and close with documentation that can be reviewed internally.</p>
+        <h2>Built for fleets that want to test the seat experience where it happens.</h2>
+        <p>PillowFlow develops PF-X01 and the supporting pilot process for operators that manage real driving work at scale. We work directly with fleet operators, logistics managers, and procurement teams.</p>
+        <p>No distributor. No minimum order to start. The first step is a focused pilot that puts PF-X01 into the vehicles your team already operates.</p>
       </article>
       <ul class="facts reveal" aria-label="Company facts">
         <li><b>PillowFlow LLC</b><span>Aventura, Florida, United States</span></li>
-        <li><b>Product focus</b><span>PF-X01 driver thigh support concept</span></li>
+        <li><b>Product focus</b><span>PF-X01 ergonomic thigh-support device</span></li>
         <li><b>Support</b><span><a href="mailto:support@pillowflow.com">support@pillowflow.com</a></span></li>
       </ul>
     </div>
@@ -843,11 +1048,11 @@ section{padding:86px 0}
     <div class="wrap cta-panel">
       <div>
         <p class="eyebrow" style="color:#fbbf24">Start a pilot</p>
-        <h2>Put PF-X01 into the vehicles you actually operate.</h2>
-        <p>Contact PillowFlow to discuss vehicle type, pilot size, timeline, and the field notes your team needs before deciding what comes next.</p>
+        <h2>Ready to run a pilot with your fleet?</h2>
+        <p>Contact PillowFlow to discuss fleet size, vehicle type, shift length, route profile, pilot batch size, and the field notes your team needs before deciding what comes next.</p>
       </div>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="mailto:support@pillowflow.com?subject=PillowFlow%20fleet%20pilot%20request">Contact / Start Pilot <span class="arrow" aria-hidden="true">-></span></a>
+        <a class="btn btn-primary" href="mailto:support@pillowflow.com?subject=PillowFlow%20fleet%20pilot%20request">Request a pilot <span class="arrow" aria-hidden="true">-></span></a>
         <a class="btn btn-secondary" href="https://pillowflow.com" target="_blank" rel="noopener">Visit pillowflow.com</a>
       </div>
     </div>
@@ -859,13 +1064,14 @@ section{padding:86px 0}
     <div class="footer-grid">
       <div>
         <h3>PillowFlow</h3>
-        <p>B2B automotive and fleet comfort evaluation for PF-X01.</p>
+        <p>Fleet comfort pilots for PF-X01, an ergonomic thigh-support device.</p>
       </div>
       <div>
         <h3>Product</h3>
         <ul>
           <li><a href="#product">PF-X01 overview</a></li>
-          <li><a href="#value">Business value</a></li>
+          <li><a href="#value">Business case</a></li>
+          <li><a href="#pilots">Pilot steps</a></li>
           <li><a href="#scope">Evaluation scope</a></li>
         </ul>
       </div>
@@ -882,6 +1088,19 @@ section{padding:86px 0}
           <li><a href="mailto:support@pillowflow.com">support@pillowflow.com</a></li>
         </ul>
       </div>
+    </div>
+    <div class="sources">
+      <h3>Sources — cited research documents the problem; citations do not constitute product validation</h3>
+      <ol>
+        <li>Bovenzi M, Hulshof CTJ. Updated review of epidemiologic studies on whole-body vibration and low back pain.</li>
+        <li>Gyi DE, Porter JM. Musculoskeletal problems and driving in police officers.</li>
+        <li>Kolich M, Taboun SM. Ergonomics modelling of automobile seat comfort.</li>
+        <li>De Looze MP et al. Sitting comfort and discomfort and objective measures.</li>
+        <li>American Trucking Associations. Trucking Activity Report and driver turnover index.</li>
+        <li>U.S. Bureau of Labor Statistics. Nonfatal Occupational Injuries — Transportation occupations.</li>
+        <li>NIOSH. Work-Related Musculoskeletal Disorders: Evidence for Work-Relatedness.</li>
+      </ol>
+      <p>PillowFlow is an ergonomic thigh-support device. It is not a medical device and makes no therapeutic claims. No clinical trials have been completed at time of publication. The citations above support the documented problem of occupational driver musculoskeletal load, not product outcomes.</p>
     </div>
     <div class="footer-bottom">
       <span>© 2026 PillowFlow. All rights reserved.</span>
