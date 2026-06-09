@@ -292,23 +292,23 @@ section{padding:86px 0}
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  color:#f4f1ea;
+  color:var(--navy);
   background:
-    radial-gradient(circle at 50% 36%,rgba(255,255,255,.065),transparent 34%),
-    radial-gradient(circle at 75% 70%,rgba(232,103,58,.09),transparent 30%),
-    linear-gradient(180deg,#111111 0%,#181818 42%,#101010 100%);
-  border-color:rgba(232,103,58,.34);
-  box-shadow:0 30px 70px rgba(15,23,42,.18),0 18px 54px rgba(232,103,58,.11);
+    radial-gradient(circle at 50% 36%,rgba(232,103,58,.12),transparent 34%),
+    radial-gradient(circle at 75% 70%,rgba(232,103,58,.07),transparent 30%),
+    linear-gradient(180deg,#ffffff 0%,#fffaf5 46%,#ffffff 100%);
+  border-color:var(--border);
+  box-shadow:0 18px 44px rgba(15,23,42,.08),0 12px 34px rgba(232,103,58,.08);
 }
 .object-card::before{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.2;
+  opacity:.72;
   background:
-    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    linear-gradient(rgba(15,23,42,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(15,23,42,.045) 1px,transparent 1px);
   background-size:42px 42px;
   mask-image:radial-gradient(circle at center,black 0%,transparent 76%);
 }
@@ -320,7 +320,7 @@ section{padding:86px 0}
   top:58%;
   height:34px;
   border-radius:50%;
-  background:rgba(0,0,0,.42);
+  background:rgba(15,23,42,.12);
   filter:blur(22px);
   pointer-events:none;
 }
@@ -335,7 +335,7 @@ section{padding:86px 0}
   display:flex;
   justify-content:space-between;
   gap:18px;
-  color:rgba(244,241,234,.42);
+  color:rgba(15,23,42,.48);
   font-size:12px;
   font-weight:700;
   letter-spacing:.22em;
@@ -348,10 +348,10 @@ section{padding:86px 0}
   max-width:840px;
   margin:50px auto 18px;
   overflow:visible;
-  filter:drop-shadow(0 24px 60px rgba(0,0,0,.42));
+  filter:drop-shadow(0 24px 42px rgba(15,23,42,.16));
 }
 .product-svg .baseline{
-  stroke:rgba(244,241,234,.26);
+  stroke:rgba(15,23,42,.18);
   stroke-width:2;
   transform-box:fill-box;
   transform-origin:center;
@@ -360,17 +360,17 @@ section{padding:86px 0}
 }
 .product-svg .construct{
   fill:none;
-  stroke:rgba(244,241,234,.15);
+  stroke:rgba(15,23,42,.14);
   stroke-width:1.4;
   opacity:0;
 }
 .product-svg .body-fill{
-  fill:rgba(244,241,234,.04);
+  fill:rgba(232,103,58,.075);
   opacity:0;
 }
 .product-svg .outer{
-  fill:rgba(244,241,234,.018);
-  stroke:rgba(244,241,234,.72);
+  fill:rgba(232,103,58,.025);
+  stroke:rgba(15,23,42,.72);
   stroke-width:2.2;
   stroke-linecap:round;
   stroke-linejoin:round;
@@ -379,24 +379,24 @@ section{padding:86px 0}
 .product-svg .inner,
 .product-svg .cutout{
   fill:none;
-  stroke:rgba(244,241,234,.42);
+  stroke:rgba(15,23,42,.38);
   stroke-width:2;
   stroke-linecap:round;
   stroke-linejoin:round;
   vector-effect:non-scaling-stroke;
 }
-.product-svg .cutout{stroke:rgba(244,241,234,.72)}
+.product-svg .cutout{stroke:rgba(15,23,42,.62)}
 .product-svg .highlight{
   fill:none;
-  stroke:#f2b39d;
+  stroke:var(--accent);
   stroke-width:3;
   stroke-linecap:round;
   stroke-linejoin:round;
-  filter:drop-shadow(0 0 14px rgba(242,107,58,.42));
+  filter:drop-shadow(0 0 10px rgba(232,103,58,.22));
   vector-effect:non-scaling-stroke;
 }
 .product-svg .tick{
-  stroke:rgba(244,241,234,.34);
+  stroke:rgba(15,23,42,.3);
   stroke-width:2;
   opacity:0;
 }
@@ -412,14 +412,14 @@ section{padding:86px 0}
 .product-name{
   opacity:0;
   transform:translateY(24px);
-  color:#f4f1ea;
+  color:var(--navy);
   font-weight:900;
   line-height:.88;
   letter-spacing:-.05em;
   font-size:clamp(58px,9vw,116px);
 }
 .product-name span{display:block}
-.product-name strong{display:block;color:#f4f1ea}
+.product-name strong{display:block;color:var(--navy)}
 .product-name strong span{display:inline;color:var(--accent)}
 .finish-row{
   opacity:0;
@@ -433,7 +433,7 @@ section{padding:86px 0}
   display:flex;
   align-items:center;
   gap:10px;
-  color:rgba(244,241,234,.58);
+  color:var(--muted);
   text-transform:uppercase;
   letter-spacing:.18em;
   font-size:12px;
@@ -443,7 +443,7 @@ section{padding:86px 0}
   width:15px;
   height:15px;
   border-radius:99px;
-  border:1px solid rgba(244,241,234,.28);
+  border:1px solid rgba(15,23,42,.2);
 }
 
 .value-grid{
@@ -597,10 +597,10 @@ section{padding:86px 0}
   .object-card{min-height:auto}
   .object-stage{padding:24px 18px 18px}
   .object-meta{font-size:10px}
-  .product-svg{width:112%;max-width:none;margin-left:-6%;margin-top:42px}
+  .product-svg{width:100%;max-width:none;margin-left:0;margin-top:34px}
   .object-caption{grid-template-columns:1fr;padding:0 18px 22px}
-  .product-name{font-size:clamp(64px,20vw,92px)}
-  .finish-row{justify-content:space-between;width:100%;padding-bottom:0}
+  .product-name{font-size:clamp(52px,17vw,78px)}
+  .finish-row{justify-content:space-between;width:100%;padding-bottom:0;gap:10px}
   .finish{gap:7px;letter-spacing:.14em;font-size:10px}
   .swatch{width:13px;height:13px}
   .cta-panel{display:block}
