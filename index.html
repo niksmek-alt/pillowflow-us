@@ -3,27 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PillowFlow | Fleet Comfort Evaluation</title>
-<meta name="description" content="PillowFlow helps automotive fleets run structured comfort and fit evaluations with PF-X01, driver feedback, usage consistency tracking, and business-ready pilot reporting.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='8' width='22' height='16' rx='7' fill='%232563eb'/%3E%3C/svg%3E">
+<title>PillowFlow | PF-X01 Fleet Comfort Pilots</title>
+<meta name="description" content="PillowFlow helps automotive fleets evaluate PF-X01 in real seats with driver comfort feedback, fit observations, usage consistency, and business-ready pilot reporting.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='8' width='22' height='16' rx='7' fill='%23e8673a'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#ffffff;
-  --section:#f5f7fa;
+  --section:#f7f4ef;
   --card:#ffffff;
   --text:#111827;
   --secondary:#4b5563;
   --muted:#6b7280;
   --border:#e5e7eb;
-  --accent:#2563eb;
-  --accent-2:#60a5fa;
+  --accent:#e8673a;
+  --accent-2:#f59e0b;
   --navy:#0f172a;
   --green:#15803d;
   --amber:#b45309;
-  --shadow:0 18px 44px rgba(15,23,42,.08);
+  --warm:#fff7ed;
+  --shadow:0 18px 44px rgba(15,23,42,.09),0 12px 34px rgba(232,103,58,.08);
   --soft-shadow:0 10px 28px rgba(15,23,42,.06);
   --max:1180px;
   --radius:8px;
@@ -44,8 +45,8 @@ body{
 a{color:inherit;text-decoration:none}
 svg{display:block;max-width:100%}
 button,input,textarea{font:inherit}
-::selection{background:#dbeafe;color:var(--navy)}
-:focus-visible{outline:3px solid rgba(37,99,235,.34);outline-offset:3px;border-radius:6px}
+::selection{background:#ffedd5;color:var(--navy)}
+:focus-visible{outline:3px solid rgba(232,103,58,.34);outline-offset:3px;border-radius:6px}
 
 .wrap{width:min(100% - 40px,var(--max));margin-inline:auto}
 .eyebrow{
@@ -79,8 +80,8 @@ p{color:var(--secondary)}
   transition:transform .22s var(--ease),box-shadow .22s var(--ease),background .22s var(--ease),border-color .22s var(--ease);
 }
 .btn:hover{transform:translateY(-1px)}
-.btn-primary{background:var(--accent);color:white;box-shadow:0 10px 22px rgba(37,99,235,.22)}
-.btn-primary:hover{background:#1d4ed8}
+.btn-primary{background:var(--accent);color:white;box-shadow:0 10px 22px rgba(232,103,58,.24)}
+.btn-primary:hover{background:#c2410c}
 .btn-secondary{background:white;color:var(--navy);border-color:#cbd5e1}
 .btn-secondary:hover{border-color:#94a3b8;box-shadow:var(--soft-shadow)}
 .arrow{font-size:18px;line-height:1}
@@ -111,7 +112,7 @@ p{color:var(--secondary)}
   width:28px;
   height:28px;
   border-radius:7px;
-  background:linear-gradient(135deg,var(--accent),#93c5fd);
+  background:linear-gradient(135deg,var(--accent),#fbbf24);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.55);
 }
 .nav-links{display:flex;align-items:center;gap:24px;color:var(--secondary);font-size:14px;font-weight:600}
@@ -122,8 +123,8 @@ p{color:var(--secondary)}
   isolation:isolate;
   padding:86px 0 64px;
   background:
-    radial-gradient(circle at 78% 8%,rgba(96,165,250,.22),transparent 32%),
-    linear-gradient(180deg,#ffffff 0%,#ffffff 64%,#f8fafc 100%);
+    radial-gradient(ellipse at 76% 8%,rgba(232,103,58,.2),transparent 34%),
+    linear-gradient(160deg,#ffffff 0%,#fffaf5 54%,#f8fafc 100%);
   overflow:hidden;
 }
 .hero::before{
@@ -132,11 +133,24 @@ p{color:var(--secondary)}
   inset:auto -8% 0 auto;
   width:58%;
   height:58%;
-  background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(15,23,42,.02));
+  background:linear-gradient(135deg,rgba(232,103,58,.11),rgba(15,23,42,.025));
   transform:skewY(-7deg);
   z-index:-1;
 }
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(15,23,42,.04),transparent 18%,transparent 82%,rgba(15,23,42,.04)),
+    repeating-linear-gradient(0deg,rgba(15,23,42,.025) 0 1px,transparent 1px 7px);
+  opacity:.34;
+  mix-blend-mode:multiply;
+}
 .hero-grid{
+  position:relative;
+  z-index:1;
   display:grid;
   grid-template-columns:minmax(0,1.05fr) minmax(340px,.72fr);
   gap:56px;
@@ -161,7 +175,7 @@ p{color:var(--secondary)}
   border:1px solid var(--border);
   border-radius:var(--radius);
   padding:16px;
-  box-shadow:var(--soft-shadow);
+  box-shadow:var(--soft-shadow),inset 0 2px 0 rgba(232,103,58,.08);
 }
 .proof-tile strong{display:block;color:var(--navy);font-size:24px;line-height:1}
 .proof-tile span{display:block;margin-top:8px;color:var(--muted);font-size:13px;line-height:1.4}
@@ -180,7 +194,7 @@ p{color:var(--secondary)}
   gap:12px;
   padding:16px 18px;
   border-bottom:1px solid var(--border);
-  background:#f8fafc;
+  background:#fff7ed;
 }
 .panel-title{font-size:13px;font-weight:800;color:var(--navy);letter-spacing:.05em;text-transform:uppercase}
 .status{
@@ -209,10 +223,10 @@ p{color:var(--secondary)}
 .panel-note{
   margin-top:22px;
   padding:14px;
-  border:1px solid #bfdbfe;
+  border:1px solid #fed7aa;
   border-radius:var(--radius);
-  background:#eff6ff;
-  color:#1e3a8a;
+  background:#fff7ed;
+  color:#7c2d12;
   font-size:13px;
   line-height:1.5;
 }
@@ -256,7 +270,7 @@ section{padding:86px 0}
   border-radius:6px;
   display:grid;
   place-items:center;
-  background:#dbeafe;
+  background:#ffedd5;
   color:var(--accent);
   font-size:14px;
   font-weight:900;
@@ -265,7 +279,7 @@ section{padding:86px 0}
 .object-card{
   position:relative;
   overflow:hidden;
-  min-height:480px;
+  min-height:520px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -275,12 +289,24 @@ section{padding:86px 0}
   position:absolute;
   inset:0;
   background:
-    linear-gradient(#eef2f7 1px,transparent 1px),
-    linear-gradient(90deg,#eef2f7 1px,transparent 1px);
+    radial-gradient(ellipse at 52% 52%,rgba(232,103,58,.16),transparent 48%),
+    linear-gradient(#ede7df 1px,transparent 1px),
+    linear-gradient(90deg,#ede7df 1px,transparent 1px);
   background-size:28px 28px;
   mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.2));
 }
 .object-stage{position:relative;padding:32px 30px 24px}
+.object-stage::after{
+  content:"";
+  position:absolute;
+  left:12%;
+  right:12%;
+  bottom:54px;
+  height:28px;
+  border-radius:50%;
+  background:rgba(15,23,42,.12);
+  filter:blur(22px);
+}
 .object-meta{
   display:flex;
   justify-content:space-between;
@@ -292,10 +318,12 @@ section{padding:86px 0}
   text-transform:uppercase;
 }
 .product-svg{
+  position:relative;
+  z-index:1;
   width:100%;
   max-width:720px;
   margin:28px auto 10px;
-  filter:drop-shadow(0 28px 30px rgba(15,23,42,.12));
+  filter:drop-shadow(0 30px 28px rgba(15,23,42,.16));
   animation:floatProduct 6s var(--ease) infinite;
 }
 .product-svg .draw{
@@ -338,14 +366,14 @@ section{padding:86px 0}
   min-height:210px;
   transition:transform .24s var(--ease),box-shadow .24s var(--ease),border-color .24s var(--ease);
 }
-.value-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#bfdbfe}
+.value-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#fed7aa}
 .icon{
   width:36px;
   height:36px;
   border-radius:8px;
   display:grid;
   place-items:center;
-  background:#eff6ff;
+  background:#ffedd5;
   color:var(--accent);
   margin-bottom:20px;
 }
@@ -359,8 +387,8 @@ section{padding:86px 0}
 }
 .scope-card{padding:30px}
 .scope-card.primary{
-  border-color:#bfdbfe;
-  background:linear-gradient(180deg,#ffffff,#f8fbff);
+  border-color:#fed7aa;
+  background:linear-gradient(180deg,#ffffff,#fff7ed);
 }
 .scope-card.primary h3{font-size:28px}
 .scope-card.primary p{margin-top:14px;font-size:17px}
@@ -408,8 +436,8 @@ section{padding:86px 0}
 
 .cta-band{
   background:
-    radial-gradient(circle at 85% 0%,rgba(96,165,250,.28),transparent 34%),
-    linear-gradient(135deg,var(--navy),#1e3a8a);
+    radial-gradient(ellipse at 85% 0%,rgba(232,103,58,.38),transparent 36%),
+    linear-gradient(135deg,var(--navy),#2d160f);
   color:white;
   padding:70px 0;
 }
@@ -524,36 +552,36 @@ section{padding:86px 0}
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy reveal">
-        <p class="eyebrow">B2B automotive comfort evaluation</p>
-        <h1>Structured fleet pilots for driver comfort feedback.</h1>
-        <p>PillowFlow helps automotive, logistics, and fleet operators evaluate PF-X01 in real vehicles with driver feedback, fit and control observations, usage consistency, and a clear business closeout.</p>
+        <p class="eyebrow">PF-X01 fleet pilot program</p>
+        <h1>Evaluate PF-X01 in the driver's seat.</h1>
+        <p>PillowFlow brings PF-X01 into real vehicles, captures driver comfort and fit observations, and closes the pilot with documentation a buyer can actually use.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="mailto:support@pillowflow.com?subject=PillowFlow%20fleet%20pilot%20request">Contact / Start Pilot <span class="arrow" aria-hidden="true">-></span></a>
           <a class="btn btn-secondary" href="#product">Learn About Product</a>
         </div>
         <div class="hero-proof" aria-label="Pilot structure highlights">
-          <div class="proof-tile"><strong>30</strong><span>Day evaluation window for structured feedback.</span></div>
-          <div class="proof-tile"><strong>3</strong><span>Views across driver, manager, and admin needs.</span></div>
-          <div class="proof-tile"><strong>1</strong><span>Closeout report for operational review.</span></div>
+          <div class="proof-tile"><strong>30</strong><span>Day field window for structured driver feedback.</span></div>
+          <div class="proof-tile"><strong>Seat</strong><span>Fit and control notes captured in the vehicle.</span></div>
+          <div class="proof-tile"><strong>Report</strong><span>A closeout written for operational review.</span></div>
         </div>
       </div>
 
-      <aside class="hero-panel reveal" aria-label="Sample pilot dashboard">
+      <aside class="hero-panel reveal" aria-label="Sample field pilot log">
         <div class="panel-top">
-          <span class="panel-title">Pilot closeout snapshot</span>
-          <span class="status"><i aria-hidden="true"></i>Ready</span>
+          <span class="panel-title">Field pilot log</span>
+          <span class="status"><i aria-hidden="true"></i>Sample</span>
         </div>
         <div class="pilot-card">
           <div class="metric">
-            <div class="metric-label"><span>Driver comfort feedback</span><b>Collected</b></div>
+            <div class="metric-label"><span>Route-day check-ins</span><b>Collected</b></div>
             <div class="metric-track"><i style="--w:86%"></i></div>
           </div>
           <div class="metric">
-            <div class="metric-label"><span>Fit and control notes</span><b>Reviewed</b></div>
+            <div class="metric-label"><span>Seat fit and control notes</span><b>Reviewed</b></div>
             <div class="metric-track"><i style="--w:74%"></i></div>
           </div>
           <div class="metric">
-            <div class="metric-label"><span>Usage consistency</span><b>Tracked</b></div>
+            <div class="metric-label"><span>PF-X01 usage consistency</span><b>Tracked</b></div>
             <div class="metric-track"><i style="--w:68%"></i></div>
           </div>
           <p class="panel-note"><b>Observational data only — not causal.</b><br>Sample metrics are illustrative. PillowFlow is a comfort aid, not a medical device or safety system.</p>
@@ -567,19 +595,19 @@ section{padding:86px 0}
       <div class="section-head reveal">
         <div>
           <p class="eyebrow">Product</p>
-          <h2>PF-X01 is a physical comfort aid built for repeatable fleet evaluation.</h2>
+          <h2>A physical product, staged for a real fleet decision.</h2>
         </div>
-        <p>It gives teams a consistent product object to place, observe, and evaluate across different seats, routes, and driver profiles.</p>
+        <p>PF-X01 stays front and center: a consistent object to place, observe, and evaluate across seats, routes, and driver profiles.</p>
       </div>
 
       <div class="product-grid">
         <article class="definition-card reveal">
           <p class="kicker">What PillowFlow is</p>
-          <h3>A clean pilot package around a simple in-seat support product.</h3>
-          <p>PF-X01 is designed to support driver thigh comfort and seating fit during normal vehicle use. PillowFlow packages the product with structured check-ins and business reporting so buyers can decide from operational feedback.</p>
+          <h3>PF-X01 plus the pilot process around it.</h3>
+          <p>PF-X01 is designed to support driver thigh comfort and seating fit during normal vehicle use. PillowFlow adds the structure around the object: who uses it, what gets observed, and how the pilot is closed out.</p>
           <ul class="spec-list">
             <li><span class="check">✓</span><span>Tool-free placement for fleet pilot use.</span></li>
-            <li><span class="check">✓</span><span>Contoured PF-X01 object concept preserved for product continuity.</span></li>
+            <li><span class="check">✓</span><span>Contoured PF-X01 geometry remains the visual and product anchor.</span></li>
             <li><span class="check">✓</span><span>Designed for feedback programs, not medical diagnosis or treatment.</span></li>
           </ul>
         </article>
@@ -593,9 +621,9 @@ section{padding:86px 0}
             <svg class="product-svg" viewBox="0 0 900 470" role="img" aria-label="Technical outline of PF-X01 product">
               <defs>
                 <linearGradient id="productFill" x1="90" y1="90" x2="780" y2="380" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#f8fafc"/>
-                  <stop offset=".52" stop-color="#dbeafe"/>
-                  <stop offset="1" stop-color="#bfdbfe"/>
+                  <stop offset="0" stop-color="#fffaf5"/>
+                  <stop offset=".52" stop-color="#fed7aa"/>
+                  <stop offset="1" stop-color="#fdba74"/>
                 </linearGradient>
               </defs>
               <path class="fill" d="M102 302C150 224 219 167 318 132C453 84 603 83 724 127C778 147 820 181 831 224C846 285 783 331 689 352C555 382 376 383 236 356C158 341 85 330 102 302Z"/>
@@ -611,12 +639,12 @@ section{padding:86px 0}
           <div class="object-caption">
             <div>
               <strong>PF-X01</strong>
-              <span>Premium product concept, business-ready evaluation</span>
+              <span>Product object, field pilot, documented closeout</span>
             </div>
             <div class="finish-row" aria-label="Representative finishes">
               <span class="swatch" style="background:#111827" title="Charcoal"></span>
-              <span class="swatch" style="background:#dbeafe" title="Blue gray"></span>
-              <span class="swatch" style="background:#f8fafc" title="Light"></span>
+              <span class="swatch" style="background:#e8673a" title="Signature orange"></span>
+              <span class="swatch" style="background:#f7f4ef" title="Light"></span>
             </div>
           </div>
         </article>
@@ -629,25 +657,25 @@ section{padding:86px 0}
       <div class="section-head reveal">
         <div>
           <p class="eyebrow">Business value</p>
-          <h2>Designed for pilot teams that need usable evidence before scaling.</h2>
+          <h2>More useful than a sample box and a verbal demo.</h2>
         </div>
-        <p>PillowFlow focuses on practical evaluation signals that fleet and automotive buyers can review without overclaiming outcomes.</p>
+        <p>PillowFlow focuses on practical field signals that fleet and automotive buyers can review without overclaiming outcomes.</p>
       </div>
       <div class="value-grid">
         <article class="value-card reveal">
           <div class="icon" aria-hidden="true">01</div>
           <h3>Driver comfort feedback</h3>
-          <p>Collect structured driver impressions from normal use, route days, and seat contexts.</p>
+          <p>Collect structured impressions from drivers using PF-X01 during normal route days.</p>
         </article>
         <article class="value-card reveal">
           <div class="icon" aria-hidden="true">02</div>
           <h3>Fit and control feedback</h3>
-          <p>Capture whether the product feels compatible with seating position and vehicle controls.</p>
+          <p>Capture whether PF-X01 feels compatible with seating position and vehicle controls.</p>
         </article>
         <article class="value-card reveal">
           <div class="icon" aria-hidden="true">03</div>
           <h3>Usage consistency</h3>
-          <p>Track whether units are used regularly enough to justify broader deployment review.</p>
+          <p>Track whether units are used consistently enough to justify broader deployment review.</p>
         </article>
         <article class="value-card reveal">
           <div class="icon" aria-hidden="true">04</div>
@@ -690,9 +718,9 @@ section{padding:86px 0}
     <div class="wrap story-grid">
       <article class="story-card reveal">
         <p class="eyebrow">Who we are</p>
-        <h2>Building a practical comfort product for business vehicle environments.</h2>
-        <p>PillowFlow develops PF-X01 and the supporting pilot process for teams that operate vehicles at scale. Our focus is straightforward: help buyers evaluate driver comfort and product fit with clearer structure than a one-off sample or informal demo.</p>
-        <p>We work from a business-facing approach: define the pilot, place the product, collect observations, and close with documentation that can be reviewed internally.</p>
+        <h2>Built around a simple idea: test the seat experience where it happens.</h2>
+        <p>PillowFlow develops PF-X01 and the supporting pilot process for teams that operate vehicles at scale. The work is practical: put the product into real seats, collect the observations, and make the next decision easier.</p>
+        <p>We keep the claims narrow and the output useful: define the pilot, place the product, collect feedback, and close with documentation that can be reviewed internally.</p>
       </article>
       <ul class="facts reveal" aria-label="Company facts">
         <li><b>PillowFlow LLC</b><span>Aventura, Florida, United States</span></li>
@@ -705,9 +733,9 @@ section{padding:86px 0}
   <section class="cta-band" aria-label="Start a PillowFlow pilot">
     <div class="wrap cta-panel">
       <div>
-        <p class="eyebrow" style="color:#93c5fd">Start a pilot</p>
-        <h2>Evaluate PF-X01 with a process built for fleet decisions.</h2>
-        <p>Contact PillowFlow to discuss vehicles, pilot size, timeline, and the feedback structure needed for your organization.</p>
+        <p class="eyebrow" style="color:#fbbf24">Start a pilot</p>
+        <h2>Put PF-X01 into the vehicles you actually operate.</h2>
+        <p>Contact PillowFlow to discuss vehicle type, pilot size, timeline, and the field notes your team needs before deciding what comes next.</p>
       </div>
       <div class="hero-actions">
         <a class="btn btn-primary" href="mailto:support@pillowflow.com?subject=PillowFlow%20fleet%20pilot%20request">Contact / Start Pilot <span class="arrow" aria-hidden="true">-></span></a>
