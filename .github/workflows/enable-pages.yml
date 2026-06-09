@@ -1,0 +1,38 @@
+name: Enable GitHub Pages
+
+# One-time bootstrap: enables Pages (deploy from main / root) and sets the
+# custom domain. Safe to re-run; delete this file once HTTPS is enforced.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  pages: write
+
+jobs:
+  enable:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REPO: ${{ github.repository }}
+    steps:
+      - name: Enable Pages (deploy from branch main, folder /)
+        run: |
+          gh api -X POST "repos/${REPO}/pages" \
+            -f 'source[branch]=main' -f 'source[path]=/' \
+          || echo "Pages already enabled (or POST not permitted) — continuing"
+
+      - name: Set custom domain, then try to enforce HTTPS
+        run: |
+          gh api -X PUT "repos/${REPO}/pages" -f 'cname=pillowflow.us' \
+          || echo "Custom domain will be picked up from the CNAME file instead"
+          # Cert issuance takes a few minutes after DNS verifies; 422 here is expected
+          # on the first run. Re-run this workflow later to enforce HTTPS.
+          gh api -X PUT "repos/${REPO}/pages" \
+            -f 'cname=pillowflow.us' -F 'https_enforced=true' \
+          || echo "HTTPS not enforceable yet — re-run once the certificate is issued"
+
+      - name: Show Pages status
+        run: gh api "repos/${REPO}/pages" || true
