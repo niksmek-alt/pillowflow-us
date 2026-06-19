@@ -676,67 +676,106 @@ section{padding:86px 0}
 .facts b{display:block;color:var(--navy)}
 .facts span{color:var(--muted);font-size:14px}
 
-.cta-band{
+.pilot-apply{
   background:
     radial-gradient(ellipse at 85% 0%,rgba(232,103,58,.38),transparent 36%),
     linear-gradient(135deg,var(--navy),#2d160f);
   color:white;
-  padding:70px 0;
+  padding:72px 0;
 }
-.cta-panel{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:36px;
+.pilot-apply-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.72fr) minmax(540px,1.28fr);
+  gap:48px;
+  align-items:start;
 }
-.cta-panel h2{color:white}
-.cta-panel p{color:#cbd5e1;margin-top:16px;font-size:18px;max-width:620px}
-.cta-panel .btn-secondary{border-color:rgba(255,255,255,.24);background:rgba(255,255,255,.08);color:white}
-.cta-panel .btn-secondary:hover{background:rgba(255,255,255,.14)}
+.pilot-apply-copy{position:sticky;top:106px}
+.pilot-apply-copy h2{color:white}
+.pilot-apply-copy>p{max-width:480px;margin-top:16px;color:#cbd5e1;font-size:17px}
+.pilot-apply-note{padding-top:18px;border-top:1px solid rgba(255,255,255,.14);font-size:13px!important}
+.pilot-form{
+  padding:28px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.98);
+  box-shadow:0 24px 70px rgba(0,0,0,.22);
+}
+.pilot-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.pilot-field{display:grid;gap:6px}
+.pilot-field.full{grid-column:1/-1}
+.pilot-field label{color:var(--navy);font-size:12px;font-weight:800}
+.pilot-field label span{color:var(--muted);font-weight:500}
+.pilot-field input,.pilot-field select,.pilot-field textarea{
+  width:100%;
+  min-height:46px;
+  padding:11px 12px;
+  border:1px solid #cbd5e1;
+  border-radius:6px;
+  background:white;
+  color:var(--navy);
+  font:inherit;
+  font-size:14px;
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+.pilot-field textarea{min-height:100px;resize:vertical}
+.pilot-field input:focus,.pilot-field select:focus,.pilot-field textarea:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(232,103,58,.13);
+}
+.pilot-form-actions{display:flex;align-items:center;gap:16px;margin-top:20px}
+.pilot-form-actions .btn{cursor:pointer}
+.pilot-form-status{color:var(--muted);font-size:12px}
 
 .footer{
   background:#f8fafc;
   border-top:1px solid var(--border);
-  padding:36px 0;
+  padding:28px 0 22px;
 }
 .footer-grid{
   display:grid;
-  grid-template-columns:1.2fr repeat(3,.8fr);
-  gap:28px;
+  grid-template-columns:1.25fr .9fr .75fr 1fr;
+  gap:clamp(22px,4vw,54px);
   align-items:start;
+  max-width:1040px;
+  margin-inline:auto;
 }
-.footer h3{font-size:15px;margin-bottom:10px}
-.footer p,.footer a{color:var(--muted);font-size:14px}
+.footer h3{font-size:13px;margin-bottom:7px}
+.footer p,.footer a{color:var(--muted);font-size:12.5px;line-height:1.5}
 .footer a:hover{color:var(--accent)}
-.footer ul{list-style:none;display:grid;gap:7px}
+.footer ul{list-style:none;display:grid;gap:4px}
 .footer-bottom{
-  margin-top:28px;
-  padding-top:22px;
+  max-width:1040px;
+  margin:20px auto 0;
+  padding-top:16px;
   border-top:1px solid var(--border);
   display:flex;
   justify-content:space-between;
   gap:20px;
   color:var(--muted);
-  font-size:13px;
+  font-size:11.5px;
 }
 .sources{
-  margin-top:30px;
-  padding-top:24px;
+  max-width:1040px;
+  margin:22px auto 0;
+  padding-top:18px;
   border-top:1px solid var(--border);
 }
-.sources h3{margin-bottom:12px}
+.sources h3{margin-bottom:9px;font-size:12px}
 .sources ol{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:8px 28px;
+  gap:5px 26px;
   padding-left:18px;
   color:var(--muted);
-  font-size:12.5px;
+  font-size:11.5px;
 }
+.sources li{padding-left:2px}
+.sources a{font-size:inherit;font-weight:700;text-decoration:underline;text-underline-offset:2px}
 .sources p{
-  margin-top:16px;
-  max-width:980px;
-  font-size:12.5px;
+  margin-top:11px;
+  max-width:920px;
+  font-size:11.5px;
 }
 
 .reveal{
@@ -754,8 +793,9 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
 .value-card.reveal.is-visible:hover{transform:translateY(-3px)}
 @keyframes drawLine{to{stroke-dashoffset:0}}
 @media (max-width:1020px){
-  .hero-grid,.product-grid,.scope-grid,.story-grid{grid-template-columns:1fr}
+  .hero-grid,.product-grid,.scope-grid,.story-grid,.pilot-apply-grid{grid-template-columns:1fr}
   .hero-panel{max-width:640px}
+  .pilot-apply-copy{position:static}
   .value-grid,.case-grid,.operator-grid,.steps-grid,.roi-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:720px){
@@ -772,8 +812,9 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   section{padding:62px 0}
   .value-grid,.case-grid,.operator-grid,.steps-grid,.roi-grid{grid-template-columns:1fr}
   .finish{gap:7px;letter-spacing:.14em;font-size:10px}
-  .cta-panel{display:block}
-  .cta-panel .hero-actions{margin-top:26px}
+  .pilot-form-grid{grid-template-columns:1fr}
+  .pilot-field.full{grid-column:auto}
+  .pilot-form-actions{align-items:stretch;flex-direction:column}
   .footer-grid{grid-template-columns:1fr 1fr}
   .sources ol{grid-template-columns:1fr}
   .footer-bottom{display:block}
@@ -980,6 +1021,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       <a href="#product">Product</a>
       <a href="#value">Business case</a>
       <a href="#pilots">Pilot steps</a>
+      <a href="#apply">Apply</a>
       <a href="#scope">Evaluation</a>
       <a href="#company">Who we are</a>
     </nav>
@@ -994,7 +1036,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         <h1>Your drivers are costing you more than fuel.</h1>
         <p>Most fleets track mileage, maintenance, and fuel to the decimal. Few track the cumulative cost of driver discomfort — until it shows up on the turnover report.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:support@pillowflow.com?subject=PillowFlow%20fleet%20pilot%20request">Start a risk-free pilot <span class="arrow" aria-hidden="true">-></span></a>
+          <a class="btn btn-primary" href="#apply">Start a risk-free pilot <span class="arrow" aria-hidden="true">-></span></a>
           <a class="btn btn-secondary" href="#product">See why it happens</a>
         </div>
         <div class="hero-proof" aria-label="Pilot structure highlights">
@@ -1366,17 +1408,40 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
     </div>
   </section>
 
-  <section class="cta-band" aria-label="Start a PillowFlow pilot">
-    <div class="wrap cta-panel">
-      <div>
-        <p class="eyebrow" style="color:#fbbf24">Start a pilot</p>
-        <h2>Ready to run a pilot with your fleet?</h2>
-        <p>Contact PillowFlow to discuss fleet size, vehicle type, shift length, route profile, pilot batch size, and the field notes your team needs before deciding what comes next.</p>
+  <section class="pilot-apply" id="apply" aria-labelledby="pilot-apply-title">
+    <div class="wrap pilot-apply-grid">
+      <div class="pilot-apply-copy reveal">
+        <p class="eyebrow" style="color:#fbbf24">Fleet pilot application</p>
+        <h2 id="pilot-apply-title">Apply for a PillowFlow fleet pilot.</h2>
+        <p>Share the essentials about your operation. We will use them to size the evaluation and follow up with practical next steps.</p>
+        <p class="pilot-apply-note">Submitting prepares an email to <a href="mailto:support@pillowflow.com">support@pillowflow.com</a>, so your team keeps a copy of the request.</p>
       </div>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="mailto:support@pillowflow.com?subject=PillowFlow%20fleet%20pilot%20request">Request a pilot <span class="arrow" aria-hidden="true">-></span></a>
-        <a class="btn btn-secondary" href="https://pillowflow.com" target="_blank" rel="noopener">Visit pillowflow.com</a>
-      </div>
+      <form class="pilot-form reveal" id="pilot-apply-form" action="mailto:support@pillowflow.com" method="post" enctype="text/plain">
+        <div class="pilot-form-grid">
+          <div class="pilot-field"><label for="pilot-company">Company name</label><input id="pilot-company" name="company_name" type="text" autocomplete="organization" required></div>
+          <div class="pilot-field"><label for="pilot-contact">Contact name</label><input id="pilot-contact" name="contact_name" type="text" autocomplete="name" required></div>
+          <div class="pilot-field"><label for="pilot-email">Business email</label><input id="pilot-email" name="business_email" type="email" autocomplete="email" required></div>
+          <div class="pilot-field"><label for="pilot-phone">Phone <span>optional</span></label><input id="pilot-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="pilot-field">
+            <label for="pilot-fleet-type">Fleet type <span>optional</span></label>
+            <select id="pilot-fleet-type" name="fleet_type">
+              <option value="">Select fleet type</option><option value="Rideshare / taxi">Rideshare / taxi</option><option value="Delivery / courier">Delivery / courier</option><option value="Trucking / logistics">Trucking / logistics</option><option value="Home health / field service">Home health / field service</option><option value="Municipal / government fleet">Municipal / government fleet</option><option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="pilot-field">
+            <label for="pilot-drivers">Total drivers <span>optional</span></label>
+            <select id="pilot-drivers" name="total_drivers_range">
+              <option value="">Select range</option><option value="1–10">1–10</option><option value="11–50">11–50</option><option value="51–250">51–250</option><option value="251–1,000">251–1,000</option><option value="1,000+">1,000+</option>
+            </select>
+          </div>
+          <div class="pilot-field full"><label for="pilot-start">Target start date <span>optional</span></label><input id="pilot-start" name="target_start_date" type="date"></div>
+          <div class="pilot-field full"><label for="pilot-message">Additional notes <span>optional</span></label><textarea id="pilot-message" name="message" placeholder="Anything we should know about your fleet or evaluation goals."></textarea></div>
+        </div>
+        <div class="pilot-form-actions">
+          <button class="btn btn-primary" type="submit">Apply for a Fleet Pilot <span class="arrow" aria-hidden="true">-></span></button>
+          <p class="pilot-form-status" id="pilot-form-status" aria-live="polite">Your email application will open for review.</p>
+        </div>
+      </form>
     </div>
   </section>
 </main>
@@ -1394,16 +1459,15 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
           <li><a href="#product">PF-X01 overview</a></li>
           <li><a href="#value">Business case</a></li>
           <li><a href="#pilots">Pilot steps</a></li>
+          <li><a href="#apply">Apply for a pilot</a></li>
           <li><a href="#scope">Evaluation scope</a></li>
-          <li><a href="https://pillowflow.com/pages/fleet-pilot-program" target="_blank" rel="noopener">Fleet pilot program</a></li>
-          <li><a href="https://pillowflow.com/products/pillowflow-thigh-support-pillow" target="_blank" rel="noopener">PF-X01 product</a></li>
         </ul>
       </div>
       <div>
         <h3>Company</h3>
         <ul>
           <li><a href="#company">Who we are</a></li>
-          <li><a href="https://pillowflow.com" target="_blank" rel="noopener">pillowflow.com</a></li>
+          <li><a href="https://pillowflow.com" target="_blank" rel="noopener">Shop PillowFlow</a></li>
         </ul>
       </div>
       <div>
@@ -1416,13 +1480,13 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
     <div class="sources">
       <h3>Sources — cited research documents the problem; citations do not constitute product validation</h3>
       <ol>
-        <li>Bovenzi M, Hulshof CTJ. Updated review of epidemiologic studies on whole-body vibration and low back pain.</li>
-        <li>Gyi DE, Porter JM. Musculoskeletal problems and driving in police officers.</li>
-        <li>Kolich M, Taboun SM. Ergonomics modelling of automobile seat comfort.</li>
-        <li>De Looze MP et al. Sitting comfort and discomfort and objective measures.</li>
-        <li>American Trucking Associations. Trucking Activity Report and driver turnover index.</li>
-        <li>U.S. Bureau of Labor Statistics. Nonfatal Occupational Injuries — Transportation occupations.</li>
-        <li>NIOSH. Work-Related Musculoskeletal Disorders: Evidence for Work-Relatedness.</li>
+        <li><a href="https://doi.org/10.1007/s004200050387" target="_blank" rel="noopener">Bovenzi &amp; Hulshof</a> — whole-body vibration and low-back pain review.</li>
+        <li><a href="https://doi.org/10.1093/occmed/48.3.153" target="_blank" rel="noopener">Gyi &amp; Porter</a> — musculoskeletal problems and police driving.</li>
+        <li><a href="https://doi.org/10.1080/0014013042000193273" target="_blank" rel="noopener">Kolich &amp; Taboun</a> — automobile-seat comfort modelling.</li>
+        <li><a href="https://doi.org/10.1080/0014013031000121977" target="_blank" rel="noopener">De Looze et al.</a> — sitting comfort and objective measures.</li>
+        <li><a href="https://www.trucking.org/economics-and-industry-data" target="_blank" rel="noopener">American Trucking Associations</a> — economics and industry data.</li>
+        <li><a href="https://www.bls.gov/iif/nonfatal-injuries-and-illnesses-tables.htm" target="_blank" rel="noopener">U.S. Bureau of Labor Statistics</a> — occupational injury and illness data.</li>
+        <li><a href="https://www.cdc.gov/niosh/ergonomics/about/index.html" target="_blank" rel="noopener">NIOSH</a> — ergonomics and work-related musculoskeletal disorders.</li>
       </ol>
       <p>PillowFlow is an ergonomic thigh-support device. It is not a medical device and makes no therapeutic claims. No clinical trials have been completed at time of publication. The citations above support the documented problem of occupational driver musculoskeletal load, not product outcomes.</p>
     </div>
@@ -1488,6 +1552,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
     ".steps-grid > *",
     ".scope-grid > *",
     ".facts > *",
+    ".pilot-apply-grid > *",
     ".footer-grid > *"
   ];
   staggerSelectors.forEach(function(selector){
@@ -1515,6 +1580,33 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       });
     }, { threshold:.18, rootMargin:"0px 0px -8% 0px" });
     revealItems.forEach(function(el){ observer.observe(el); });
+  }
+
+  var pilotForm = document.getElementById("pilot-apply-form");
+  var pilotStatus = document.getElementById("pilot-form-status");
+  if (pilotForm) {
+    pilotForm.addEventListener("submit",function(event){
+      event.preventDefault();
+      if (!pilotForm.checkValidity()) {
+        pilotForm.reportValidity();
+        return;
+      }
+      var data = new FormData(pilotForm);
+      var company = data.get("company_name") || "Fleet";
+      var fields = [
+        ["Company",data.get("company_name")],
+        ["Contact",data.get("contact_name")],
+        ["Business email",data.get("business_email")],
+        ["Phone",data.get("phone")],
+        ["Fleet type",data.get("fleet_type")],
+        ["Total drivers",data.get("total_drivers_range")],
+        ["Target start date",data.get("target_start_date")],
+        ["Additional notes",data.get("message")]
+      ];
+      var body = fields.filter(function(item){ return item[1]; }).map(function(item){ return item[0] + ": " + item[1]; }).join("\n");
+      if (pilotStatus) pilotStatus.textContent = "Opening your email application…";
+      window.location.href = "mailto:support@pillowflow.com?subject=" + encodeURIComponent("Fleet Pilot Application — " + company) + "&body=" + encodeURIComponent(body);
+    });
   }
 
   var track = document.getElementById("objectTrack");
