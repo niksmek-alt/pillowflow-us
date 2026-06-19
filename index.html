@@ -456,6 +456,90 @@ section{padding:86px 0}
   font-style:normal;
 }
 
+/* ROI/math section only */
+.roi-math .roi-grid{align-items:stretch}
+.roi-math .roi-card-copy{margin-top:14px;font-size:15px}
+.roi-math .roi-supporting-copy{
+  margin-top:12px;
+  color:var(--muted);
+  font-size:13px;
+}
+.roi-math .roi-model{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+}
+.roi-math .roi-model h4{
+  color:var(--navy);
+  font-size:13px;
+}
+.roi-math .roi-model dl{
+  display:grid;
+  gap:8px;
+  margin-top:10px;
+  font-size:12.5px;
+}
+.roi-math .roi-model div{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+}
+.roi-math .roi-model dt{color:var(--muted)}
+.roi-math .roi-model dd{
+  color:var(--navy);
+  font-weight:700;
+  text-align:right;
+}
+.roi-math .roi-footnote{
+  margin-top:16px;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:11.5px;
+}
+.roi-math .roi-footnote b{color:var(--navy)}
+.roi-math .roi-sources{
+  display:grid;
+  gap:14px;
+  margin-top:18px;
+}
+.roi-math .roi-source{
+  padding-top:14px;
+  border-top:1px solid var(--border);
+}
+.roi-math .roi-source:first-child{
+  padding-top:0;
+  border-top:0;
+}
+.roi-math .roi-source a{
+  color:var(--navy);
+  font-size:13px;
+  font-weight:800;
+  text-decoration:underline;
+  text-decoration-color:rgba(232,103,58,.45);
+  text-underline-offset:3px;
+}
+.roi-math .roi-source p{margin-top:5px;font-size:12.5px}
+.roi-math .roi-callout{
+  margin-bottom:30px;
+  padding:22px;
+  border:1px solid #fed7aa;
+  border-radius:var(--radius);
+  background:linear-gradient(180deg,#ffffff,#fff7ed);
+  box-shadow:var(--soft-shadow);
+}
+.roi-math .roi-callout h3{font-size:22px}
+.roi-math .roi-callout p{margin-top:7px}
+.roi-math .roi-number-reveal{
+  opacity:0;
+  transform:translateY(10px) scale(.96);
+  transition:opacity .8s var(--ease),transform .8s var(--ease);
+}
+.roi-math .roi-number-reveal.is-visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
 .scope-grid{
   display:grid;
   grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);
@@ -1097,46 +1181,65 @@ section{padding:86px 0}
 
   <section id="scope">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <p class="eyebrow">The math</p>
-          <h2>$44.99 per driver vs. $5,000 to replace one.</h2>
+      <div class="roi-math">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">The math</p>
+            <h2>The cost of one missed driver shift.</h2>
+          </div>
+          <p>An order-of-magnitude comparison for evaluating a small fleet comfort pilot.</p>
         </div>
-        <p>The cost of trying is smaller than it looks. The cost of not trying is larger than most operators track.</p>
-      </div>
-      <div class="roi-grid reveal">
-        <article class="table-card">
-          <h3>PillowFlow - cost per driver</h3>
-          <table class="mini-table">
-            <thead><tr><th>Item</th><th>Per driver</th></tr></thead>
-            <tbody>
-              <tr><td>PillowFlow unit</td><td>$39.99</td></tr>
-              <tr><td>Packaging & preparation</td><td>$3.00</td></tr>
-              <tr><td>Domestic delivery</td><td>$2.00</td></tr>
-            </tbody>
-            <tfoot><tr><td>Total pilot cost</td><td>$44.99</td></tr></tfoot>
-          </table>
-        </article>
-        <article class="table-card">
-          <h3>Replacing one driver</h3>
-          <table class="mini-table">
-            <thead><tr><th>Cost component</th><th>Range</th></tr></thead>
-            <tbody>
-              <tr><td>Recruitment and advertising</td><td>$800-2,500</td></tr>
-              <tr><td>Screening, interviews, admin</td><td>$500-1,200</td></tr>
-              <tr><td>Training and onboarding</td><td>$1,500-4,000</td></tr>
-              <tr><td>Productivity loss during transition</td><td>$1,000-3,500</td></tr>
-            </tbody>
-            <tfoot><tr><td>Estimated total</td><td>$5K-12K+</td></tr></tfoot>
-          </table>
-        </article>
-        <article class="quote-card">
-          <h3>Order-of-magnitude case</h3>
-          <span class="quote-number">111x</span>
-          <p>Comparison ratio between one $44.99 pilot unit and the low end of a $5,000 replacement-cost estimate.</p>
-          <blockquote>"I need right thigh support so I can relax my thigh by having it supported."</blockquote>
-          <cite>A driver in Maine, via PillowFlow contact form</cite>
-        </article>
+        <div class="roi-grid reveal">
+          <article class="table-card">
+            <h3>PillowFlow – cost per driver</h3>
+            <table class="mini-table">
+              <thead><tr><th>Item</th><th>Per driver</th></tr></thead>
+              <tbody>
+                <tr><td>PillowFlow unit</td><td>$59.99</td></tr>
+                <tr><td>Packaging &amp; preparation</td><td>$3.00</td></tr>
+                <tr><td>Domestic delivery</td><td>$6.00</td></tr>
+              </tbody>
+              <tfoot><tr><td>Total pilot cost</td><td>$68.99</td></tr></tfoot>
+            </table>
+          </article>
+          <article class="quote-card">
+            <h3>Order-of-magnitude case</h3>
+            <span class="quote-number roi-number-reveal reveal">15x</span>
+            <p class="roi-card-copy">One unexpected driver absence can place more revenue at risk than the cost of 15 PillowFlow pilot units.</p>
+            <p class="roi-supporting-copy">Based on an illustrative fleet-loss estimate of $800–$1,300 for a missed driver shift, including route revenue disruption, replacement coverage, overtime, and rescheduling impacts.</p>
+            <div class="roi-model">
+              <h4>Fleet-loss model</h4>
+              <dl>
+                <div><dt>Daily route / vehicle revenue</dt><dd>$450–$760</dd></div>
+                <div><dt>Replacement or overtime coverage</dt><dd>$150–$300</dd></div>
+                <div><dt>Dispatch delays / rerouting / missed stops</dt><dd>$100–$250</dd></div>
+                <div><dt>Estimated loss per missed driver shift</dt><dd>$800–$1,300</dd></div>
+              </dl>
+            </div>
+            <p class="roi-footnote"><b>Average illustrative loss: $1,050 per missed shift.</b><br>Illustrative comparison only. Actual impact varies by fleet size, route value, labor availability, and dispatch flexibility. Not a claim of product performance.</p>
+          </article>
+          <article class="table-card">
+            <h3>Independent sources on fleet downtime economics</h3>
+            <div class="roi-sources">
+              <div class="roi-source">
+                <a href="https://www.reuters.com/business/trump-trade-war-is-wrecking-hope-2025-us-trucking-rebound-2025-04-24/" target="_blank" rel="noopener">Reuters</a>
+                <p>National average dry van spot rates around $1.60/mile reported in April 2025.</p>
+              </div>
+              <div class="roi-source">
+                <a href="https://www.dat.com/industry-trends/spot-market-conditions" target="_blank" rel="noopener">DAT Freight &amp; Analytics</a>
+                <p>National average dry van spot rates reached $2.43/mile in January 2026.</p>
+              </div>
+              <div class="roi-source">
+                <a href="https://www.trucking.org/wp-content/uploads/2024/10/An-Analysis-of-the-Operational-Costs-of-Trucking-2024-Update.pdf" target="_blank" rel="noopener">ATA – Trucking.org</a>
+                <p>Typical total operating cost of a Class 8 truck is $1.70–$2.10 per mile, including driver, fixed, variable, and ownership costs.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+        <aside class="roi-callout reveal">
+          <h3>Downtime costs are real.</h3>
+          <p>The question is whether small comfort interventions are worth evaluating before those costs occur.</p>
+        </aside>
       </div>
       <div class="scope-grid">
         <article class="scope-card primary reveal">
