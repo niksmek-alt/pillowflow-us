@@ -274,11 +274,12 @@ p{color:var(--secondary)}
 .hero::before{
   content:"";
   position:absolute;
-  inset:auto -8% 0 auto;
+  inset:8% -10% auto auto;
   width:58%;
-  height:58%;
-  background:linear-gradient(135deg,rgba(232,103,58,.11),rgba(15,23,42,.025));
-  transform:translate3d(0,var(--hero-shift),0) skewY(-7deg);
+  height:78%;
+  border-radius:50%;
+  background:radial-gradient(ellipse at 42% 48%,rgba(232,103,58,.14),rgba(232,103,58,.045) 54%,transparent 73%);
+  transform:translate3d(0,var(--hero-shift),0) rotate(-6deg);
   transition:transform .12s linear;
   z-index:-1;
 }
@@ -734,10 +735,10 @@ section{padding:86px 0}
 }
 .footer-grid{
   display:grid;
-  grid-template-columns:1.25fr .9fr .75fr 1fr;
-  gap:clamp(22px,4vw,54px);
+  grid-template-columns:minmax(240px,1.2fr) repeat(3,minmax(150px,.8fr));
+  gap:clamp(38px,5vw,76px);
   align-items:start;
-  max-width:1040px;
+  max-width:var(--max);
   margin-inline:auto;
 }
 .footer h3{font-size:13px;margin-bottom:7px}
@@ -745,7 +746,7 @@ section{padding:86px 0}
 .footer a:hover{color:var(--accent)}
 .footer ul{list-style:none;display:grid;gap:4px}
 .footer-bottom{
-  max-width:1040px;
+  max-width:var(--max);
   margin:20px auto 0;
   padding-top:16px;
   border-top:1px solid var(--border);
@@ -756,7 +757,7 @@ section{padding:86px 0}
   font-size:11.5px;
 }
 .sources{
-  max-width:1040px;
+  max-width:var(--max);
   margin:22px auto 0;
   padding-top:18px;
   border-top:1px solid var(--border);
@@ -1041,7 +1042,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         </div>
         <div class="hero-proof" aria-label="Pilot structure highlights">
           <div class="proof-tile"><strong>90%+</strong><span>Reported annual driver turnover at large truckload carriers.</span></div>
-          <div class="proof-tile"><strong>$5-12K</strong><span>Estimated cost to recruit, onboard, and train one replacement driver.</span></div>
+          <div class="proof-tile"><strong>$800–$1,300</strong><span>Illustrative loss range for one missed driver shift.</span></div>
           <div class="proof-tile"><strong>#1</strong><span>Musculoskeletal disorders lead missed-workday categories in transportation.</span></div>
         </div>
       </div>
@@ -1142,11 +1143,11 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
             <line class="dimext" x1="131" y1="150.0" x2="301.1" y2="150.0"/>
             <line class="dimext" x1="131" y1="480.0" x2="236.8" y2="480.0"/>
             <text class="dimlabel" x="110" y="315.0" text-anchor="middle" transform="rotate(-90 110 315.0)">87.68 MM</text>
-            <line class="dimline" x1="876" y1="288" x2="876" y2="480.0"/>
-            <polygon class="dimarrow" points="876,288 872.4,294 879.6,294"/><polygon class="dimarrow" points="876,480.0 872.4,474.0 879.6,474.0"/>
-            <line class="dimext" x1="869" y1="288" x2="775.6" y2="288"/>
-            <line class="dimext" x1="869" y1="480.0" x2="751.6" y2="480.0"/>
-            <text class="dimlabel" x="892" y="384.0" text-anchor="middle" transform="rotate(-90 892 384.0)">68.8 MM</text>
+            <line class="dimline" x1="944" y1="288" x2="944" y2="480.0"/>
+            <polygon class="dimarrow" points="944,288 940.4,294 947.6,294"/><polygon class="dimarrow" points="944,480.0 940.4,474.0 947.6,474.0"/>
+            <line class="dimext" x1="937" y1="288" x2="775.6" y2="288"/>
+            <line class="dimext" x1="937" y1="480.0" x2="751.6" y2="480.0"/>
+            <text class="dimlabel" x="960" y="384.0" text-anchor="middle" transform="rotate(-90 960 384.0)">68.8 MM</text>
           </g>
 
           <g id="bodyFill" opacity="0">
