@@ -980,6 +980,45 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   .spec-mobile{display:block}
 }
 
+/* Floating contact widget */
+.contact-widget{
+  position:fixed;
+  right:max(18px,env(safe-area-inset-right));
+  bottom:max(18px,env(safe-area-inset-bottom));
+  z-index:50;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:10px;
+  font-family:var(--font-body);
+}
+.contact-widget-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  min-height:48px;
+  padding:12px 18px;
+  border:1px solid rgba(179,68,29,.24);
+  border-radius:999px;
+  background:var(--accent);
+  color:#fff;
+  box-shadow:0 12px 30px rgba(179,68,29,.25);
+  cursor:pointer;
+  font-size:14px;
+  font-weight:700;
+  line-height:1;
+  transition:background .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.contact-widget-toggle:hover{background:var(--accent-deep);box-shadow:0 14px 34px rgba(179,68,29,.3);transform:translateY(-1px)}
+.contact-widget-toggle svg{width:18px;height:18px;flex:none}
+@media (max-width:520px){
+  .contact-widget{
+    right:max(12px,env(safe-area-inset-right));
+    bottom:max(12px,env(safe-area-inset-bottom));
+  }
+  .contact-widget-toggle{min-height:46px;padding:11px 16px}
+}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{
@@ -1497,6 +1536,14 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
     </div>
   </div>
 </footer>
+
+<!-- Floating contact widget -->
+<aside class="contact-widget" id="contact-widget" aria-label="Contact PillowFlow">
+  <a class="contact-widget-toggle" href="https://wa.me/14157247080?text=Hey%2C%20I%20drive%20long%20hours.%20I%20want%20to%20try%20PillowFlow." target="_blank" rel="noopener" aria-label="Start a WhatsApp chat with PillowFlow at 415 724 7080">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.6-4.7A8.5 8.5 0 1 1 20.5 11.5z"/><path d="M8.4 7.7c.2-.4.4-.4.7-.4h.5c.2 0 .3.1.4.4l.7 1.7c.1.3.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .7.5.9 1.3 1.7 2.2 2.2.3.2.5.2.7 0l.7-.8c.2-.2.4-.3.7-.2l1.7.8c.3.1.4.3.4.5 0 .3-.2 1.3-.8 1.8-.5.5-1.2.8-2.1.6-1.1-.2-2.8-.8-4.6-2.5-1.4-1.3-2.3-2.9-2.6-4-.3-1 .1-1.6.4-2.1z"/></svg>
+    <span>Talk to PillowFlow</span>
+  </a>
+</aside>
 
 <script>
 (function(){
