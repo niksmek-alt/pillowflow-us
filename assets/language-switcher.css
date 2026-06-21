@@ -1,0 +1,43 @@
+.language-control {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex: none;
+  border: 1px solid rgba(100, 116, 139, .35);
+  border-radius: 999px;
+  background: #fff;
+  padding: 3px;
+}
+
+.language-control a {
+  display: grid;
+  place-items: center;
+  min-width: 38px;
+  min-height: 32px;
+  border-radius: 999px;
+  color: #526077;
+  font: 800 12px/1 Inter, "Instrument Sans", system-ui, sans-serif;
+  text-decoration: none;
+}
+
+.language-control a.active {
+  background: #e8673a;
+  color: #fff;
+}
+
+.language-control a:focus-visible {
+  outline: 3px solid rgba(232, 103, 58, .24);
+  outline-offset: 2px;
+}
+
+.topbar .language-control {
+  border-color: rgba(255, 255, 255, .35);
+}
+
+@media (max-width: 1180px) {
+  .site-header .nav-links {
+    gap: 14px;
+    font-size: 13px;
+  }
+
+}
