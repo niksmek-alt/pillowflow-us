@@ -99,7 +99,7 @@
       const values = this.form ? Object.fromEntries(new FormData(this.form)) : {};
       const t = (text) => this.translate(text);
       this.shadowRoot.innerHTML = `<style>${styles}</style><form class="card" novalidate>
-        <h3>PillowFlow Founding Drivers</h3>
+        <h3>PillowFlow™ Founding Drivers</h3>
         <p class="intro">${t("One program for driver, fleet, and creator referrals.")}</p>
         <div class="path-label" id="path-label">${t("Who do you want to refer?")}</div>
         <div class="path-options" role="radiogroup" aria-labelledby="path-label">
