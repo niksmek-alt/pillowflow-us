@@ -733,6 +733,79 @@ section{padding:86px 0}
 .pilot-form-actions .btn{cursor:pointer}
 .pilot-form-status{color:var(--muted);font-size:12px}
 
+.video-showcase{
+  position:relative;
+  overflow:hidden;
+  background:var(--surface-2);
+  padding:88px 0 96px;
+  border-bottom:1px solid var(--border);
+}
+.video-showcase::before{
+  content:"";
+  position:absolute;
+  width:420px;
+  height:420px;
+  top:-230px;
+  right:-90px;
+  border:1px solid rgba(232,103,58,.18);
+  border-radius:50%;
+  box-shadow:0 0 0 62px rgba(232,103,58,.035),0 0 0 124px rgba(232,103,58,.025);
+  pointer-events:none;
+}
+.video-showcase-head{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(280px,.65fr);
+  gap:48px;
+  align-items:end;
+  margin-bottom:32px;
+}
+.video-showcase-head .eyebrow{font-size:15px;letter-spacing:.09em}
+.video-showcase-head h2{margin-top:10px;max-width:760px}
+.video-showcase-head>p{max-width:430px;justify-self:end;color:var(--muted);font-size:16px}
+.video-frame{
+  position:relative;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  border:1px solid rgba(15,23,42,.16);
+  border-radius:10px;
+  background:var(--navy);
+  box-shadow:0 28px 70px rgba(15,23,42,.18),0 3px 12px rgba(15,23,42,.1);
+}
+.video-frame video{display:block;width:100%;height:100%;border:0;object-fit:cover}
+.video-play-button{
+  position:absolute;
+  z-index:2;
+  inset:50% auto auto 50%;
+  width:70px;
+  height:70px;
+  display:grid;
+  place-items:center;
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:50%;
+  background:rgba(232,103,58,.94);
+  color:#fff;
+  box-shadow:0 12px 34px rgba(15,23,42,.28);
+  cursor:pointer;
+  transition:opacity .2s ease,transform .2s var(--ease),background .2s ease;
+}
+.video-play-button:hover{background:var(--accent-deep);transform:translate(-50%,-50%) scale(1.06)}
+.video-play-button svg{width:25px;height:25px;margin-left:4px;fill:currentColor}
+.video-frame.is-playing .video-play-button{opacity:0;pointer-events:none}
+.video-caption{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  margin-top:16px;
+  color:var(--muted);
+  font-size:12px;
+}
+.video-caption strong{color:var(--navy);font-weight:700}
+.video-caption a{color:var(--accent-deep);font-weight:700}
+.video-caption a:hover{text-decoration:underline}
+
 .footer{
   background:#f8fafc;
   border-top:1px solid var(--border);
@@ -821,6 +894,13 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   .pilot-form-grid{grid-template-columns:1fr}
   .pilot-field.full{grid-column:auto}
   .pilot-form-actions{align-items:stretch;flex-direction:column}
+  .video-showcase{padding:62px 0 66px}
+  .video-showcase-head{grid-template-columns:1fr;gap:16px;margin-bottom:24px}
+  .video-showcase-head>p{justify-self:start}
+  .video-frame{border-radius:7px}
+  .video-play-button{width:58px;height:58px}
+  .video-play-button svg{width:21px;height:21px}
+  .video-caption{align-items:flex-start;flex-direction:column;gap:4px}
   .footer-grid{grid-template-columns:1fr 1fr}
   .sources ol{grid-template-columns:1fr}
   .footer-bottom{display:block}
@@ -1493,6 +1573,31 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       </form>
     </div>
   </section>
+
+  <section class="video-showcase" aria-labelledby="installation-video-title">
+    <div class="wrap">
+      <div class="video-showcase-head reveal">
+        <div>
+          <p class="eyebrow">Meet PillowFlow</p>
+          <h2 id="installation-video-title">Support where long drives need it most.</h2>
+        </div>
+        <p>A compact, driver-developed thigh support designed for everyday routes.</p>
+      </div>
+      <div class="video-frame reveal">
+        <video id="installation-video" controls playsinline preload="metadata" poster="assets/pillowflow-installation-guide.jpg" aria-label="PillowFlow installation guide">
+          <source src="assets/pillowflow-installation-guide.mp4" type="video/mp4">
+          Your browser does not support embedded video. <a href="https://youtu.be/bvrLel-l_iI">Watch the installation guide on YouTube</a>.
+        </video>
+        <button class="video-play-button" id="installation-video-play" type="button" aria-label="Play PillowFlow installation guide">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="video-caption reveal">
+        <span><strong>PF-X01 installation guide</strong> · PillowFlow</span>
+        <a href="https://youtu.be/bvrLel-l_iI" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
@@ -1663,6 +1768,23 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       var body = fields.filter(function(item){ return item[1]; }).map(function(item){ return item[0] + ": " + item[1]; }).join("\n");
       if (pilotStatus) pilotStatus.textContent = "Opening your email application…";
       window.location.href = "mailto:connect@pillowflow.com?subject=" + encodeURIComponent("Fleet Pilot Application — " + company) + "&body=" + encodeURIComponent(body);
+    });
+  }
+
+  var installationVideo = document.getElementById("installation-video");
+  var installationPlay = document.getElementById("installation-video-play");
+  if (installationVideo && installationPlay) {
+    var installationFrame = installationVideo.closest(".video-frame");
+    installationPlay.addEventListener("click",function(){
+      installationVideo.play().catch(function(){
+        if (installationFrame) installationFrame.classList.remove("is-playing");
+      });
+    });
+    installationVideo.addEventListener("play",function(){
+      if (installationFrame) installationFrame.classList.add("is-playing");
+    });
+    installationVideo.addEventListener("pause",function(){
+      if (installationFrame) installationFrame.classList.remove("is-playing");
     });
   }
 
