@@ -56,6 +56,9 @@
     "I confirm this submission is genuine and I will not use self-referrals, spam, false information, or medical claims.": "Confirmo que esta solicitud es auténtica y que no usaré autorreferidos, spam, información falsa ni afirmaciones médicas.",
     "This program is manually reviewed. Rewards are paid only after referrals are verified and qualifying actions are completed.": "Este programa se revisa manualmente. Las recompensas se pagan únicamente después de verificar los referidos y completar las acciones requeridas.",
     "Submit Referral": "Enviar referido",
+    "Submit Driver Referral": "Enviar referido de conductor",
+    "Submit Fleet Referral": "Enviar referido de flota",
+    "Submit Creator Application": "Enviar solicitud de creador",
     "Creator name": "Nombre del creador",
     "Referrer name": "Nombre de quien refiere",
     "Choose who you want to refer.": "Elija a quién desea referir.",
@@ -66,15 +69,15 @@
   };
 
   const styles = `
-    :host{display:block;color:#182033;font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    *{box-sizing:border-box}.card{padding:30px;border-radius:18px;background:#fff;box-shadow:0 18px 55px rgba(23,36,63,.12)}
-    h3{margin:0 0 6px;color:#182033;font-size:23px;letter-spacing:-.025em}.intro{margin:0 0 24px;color:#657086;font-size:14px}
-    .field{display:grid;gap:6px}.field label,.path-label{color:#182033;font-size:13px;font-weight:750}.grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}.full{grid-column:1/-1}
-    input,select,textarea{width:100%;padding:12px 13px;border:1px solid #cfd5de;border-radius:9px;background:#fff;color:#182033;font:inherit}
-    textarea{min-height:108px;resize:vertical}input:focus,select:focus,textarea:focus{outline:3px solid rgba(199,81,35,.16);border-color:#c75123}
-    .path-options{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:7px 0 21px}.path{position:relative}.path input{position:absolute;opacity:0;pointer-events:none}.path span{display:flex;align-items:center;justify-content:center;height:100%;min-height:54px;padding:9px;border:1px solid #cfd5de;border-radius:10px;text-align:center;color:#4f5c71;font-size:13px;font-weight:700;cursor:pointer}.path input:checked+span{border-color:#c75123;background:#fbede6;color:#9e3815;box-shadow:0 0 0 2px rgba(199,81,35,.12)}
-    .dynamic{display:contents}.hp{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}.terms{display:flex;align-items:flex-start;gap:9px;color:#657086;font-size:12px}.terms input{width:auto;margin-top:4px}.review{margin:19px 0 0;padding:13px 15px;border-radius:9px;background:#f5f2ec;color:#596579;font-size:12px}
-    .actions{display:flex;align-items:center;gap:14px;margin-top:19px}button{min-height:49px;padding:12px 20px;border:0;border-radius:999px;background:#c75123;color:#fff;font:inherit;font-weight:800;cursor:pointer}button:hover{background:#9e3815}button:disabled{opacity:.65;cursor:wait}.status{margin:0;color:#657086;font-size:12px}.status.error{color:#a32727}.status.success{color:#176b52;font-weight:700}
+    :host{display:block;color:#111;font:16px/1.5 var(--pf-font,"Instrument Sans",Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif)}
+    *{box-sizing:border-box}.card{padding:30px;border:1px solid #e5e7eb;border-radius:var(--pf-radius,8px);background:#fff;box-shadow:var(--pf-shadow,0 18px 44px rgba(15,23,42,.09))}
+    h3{margin:0 0 6px;color:var(--pf-navy,#0f172a);font-size:23px;letter-spacing:0}.intro{margin:0 0 24px;color:#6f6a62;font-size:14px}
+    .field{display:grid;gap:6px}.field label,.path-label{color:var(--pf-navy,#0f172a);font-size:13px;font-weight:700}.grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}.full{grid-column:1/-1}
+    input,select,textarea{width:100%;padding:12px 13px;border:1px solid #cfd5de;border-radius:6px;background:#fff;color:#111;font:inherit}
+    textarea{min-height:108px;resize:vertical}input:focus,select:focus,textarea:focus{outline:3px solid rgba(232,103,58,.18);border-color:var(--pf-accent,#e8673a)}
+    .path-options{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:7px 0 21px}.path{position:relative}.path input{position:absolute;opacity:0;pointer-events:none}.path span{display:flex;align-items:center;justify-content:center;height:100%;min-height:54px;padding:9px;border:1px solid #cfd5de;border-radius:6px;text-align:center;color:#4b5563;font-size:13px;font-weight:700;cursor:pointer}.path input:checked+span{border-color:var(--pf-accent,#e8673a);background:#fff1e9;color:var(--pf-accent-deep,#b3441d);box-shadow:0 0 0 2px rgba(232,103,58,.12)}
+    .dynamic{display:contents}.hp{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}.terms{display:flex;align-items:flex-start;gap:9px;color:#6f6a62;font-size:12px}.terms input{width:auto;margin-top:4px}.review{margin:19px 0 0;padding:13px 15px;border-radius:6px;background:#f0ede6;color:#596579;font-size:12px}
+    .actions{display:flex;align-items:center;gap:14px;margin-top:19px}button{min-height:46px;padding:12px 18px;border:0;border-radius:6px;background:var(--pf-accent,#e8673a);color:#fff;font:inherit;font-weight:700;cursor:pointer;box-shadow:0 10px 22px rgba(232,103,58,.22)}button:hover{background:var(--pf-accent-deep,#b3441d)}button:disabled{opacity:.65;cursor:wait}.status{margin:0;color:#6f6a62;font-size:12px}.status.error{color:#a32727}.status.success{color:#2f8f5b;font-weight:700}
     @media(max-width:620px){.card{padding:21px}.grid,.path-options{grid-template-columns:1fr}.full{grid-column:auto}.path span{min-height:46px}.actions{align-items:stretch;flex-direction:column}button{width:100%}}
   `;
 
@@ -138,6 +141,8 @@
 
     renderFields(type) {
       this.shadowRoot.querySelector('label[for="referrer-name"]').textContent = this.translate(type === "creator_referral" ? "Creator name" : "Referrer name");
+      const submitLabels = { driver_referral: "Submit Driver Referral", fleet_referral: "Submit Fleet Referral", creator_referral: "Submit Creator Application" };
+      this.form.querySelector('button[type="submit"]').textContent = this.translate(submitLabels[type] || "Submit Referral");
       this.dynamic.innerHTML = PATHS[type].fields.map(([name, label, inputType, required]) => {
         const id = `pf-${name}`;
         const control = inputType === "textarea"
@@ -178,6 +183,11 @@
         if (!response.ok) throw new Error(result.error || this.translate("Submission failed."));
         this.form.reset();
         this.dynamic.innerHTML = "";
+        const initial = this.getAttribute("default-type");
+        if (PATHS[initial]) {
+          this.form.elements.referral_type.value = initial;
+          this.renderFields(initial);
+        }
         this.status.textContent = this.translate("Referral submitted for review. Thank you.");
         this.status.classList.add("success");
         this.dispatchEvent(new CustomEvent("referral-submitted", { detail: result }));
