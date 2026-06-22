@@ -63,6 +63,8 @@
     "Referrer name": "Nombre de quien refiere",
     "Choose who you want to refer.": "Elija a quién desea referir.",
     "Submitting…": "Enviando…",
+    "Opening your email app…": "Abriendo su aplicación de correo…",
+    "Review and send the prepared email to complete your referral.": "Revise y envíe el correo preparado para completar su referido.",
     "Submission failed.": "No se pudo enviar.",
     "Referral submitted for review. Thank you.": "El referido fue enviado para revisión. Gracias.",
     "Could not submit. Please try again.": "No se pudo enviar. Inténtelo de nuevo."
@@ -169,6 +171,9 @@
         delete data.referred_contact;
       }
       data.source_site = this.getAttribute("source-site") || window.location.hostname;
+      if (this.getAttribute("delivery-mode") === "email") {
+        return this.submitByEmail(data);
+      }
       const button = this.form.querySelector("button");
       button.disabled = true;
       this.status.textContent = this.translate("Submitting…");
@@ -197,6 +202,31 @@
       } finally {
         button.disabled = false;
       }
+    }
+
+    submitByEmail(data) {
+      if (data.website) {
+        this.status.textContent = this.translate("Referral submitted for review. Thank you.");
+        this.status.classList.add("success");
+        return;
+      }
+      const labels = {
+        referral_type: "Referral type", referrer_name: "Referrer name", referrer_email: "Referrer email",
+        referrer_phone: "Referrer phone", referred_name: "Referred driver name", referred_email: "Referred driver email",
+        referred_phone: "Referred driver phone", company_name: "Company name", company_website: "Company website",
+        fleet_size: "Fleet size", decision_maker_name: "Decision-maker name", decision_maker_contact: "Decision-maker contact",
+        creator_social_link: "Creator social link", creator_audience_type: "Creator audience type",
+        creator_audience_size: "Creator audience size", reason: "Reason", source_site: "Source site"
+      };
+      const lines = ["PillowFlow Founding Drivers", ""];
+      Object.entries(data).forEach(([key, value]) => {
+        if (!value || key === "website" || key === "terms_confirmed") return;
+        lines.push(`${labels[key] || key}: ${value}`);
+      });
+      const recipient = this.getAttribute("email-to") || "connect@pillowflow.com";
+      this.status.textContent = this.translate("Opening your email app…");
+      window.location.href = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent("REFERRAL")}&body=${encodeURIComponent(lines.join("\n"))}`;
+      this.status.textContent = this.translate("Review and send the prepared email to complete your referral.");
     }
   }
 

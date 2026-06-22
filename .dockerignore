@@ -1,0 +1,8 @@
+.git
+.vercel
+__pycache__
+*.pyc
+*.xlsx
+referrals.db
+*.log
+PillowFlow page backups
