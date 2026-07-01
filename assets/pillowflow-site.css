@@ -271,17 +271,17 @@
   }
 
   .hero-proof-metrics .proof-tile strong {
-    font-family: var(--font-mono, "SF Mono", monospace);
-    font-size: clamp(38px, 4.8vw, 58px);
+    font-family: var(--font-display, "Instrument Sans", system-ui, sans-serif);
+    font-size: clamp(24px, 2.8vw, 34px);
     font-weight: 800;
     letter-spacing: 0;
-    line-height: .95;
+    line-height: 1.04;
     color: #0b1024;
   }
 
   .hero-proof-metrics .proof-tile span {
     max-width: 300px;
-    margin-top: 11px;
+    margin-top: 9px;
     color: rgba(17, 17, 17, .62);
     font-size: 18px;
     line-height: 1.28;
@@ -574,8 +574,8 @@
   }
 
   .hero-proof-metrics .proof-tile strong {
-    font-size: clamp(42px, 11vw, 54px);
-    line-height: .95;
+    font-size: clamp(25px, 6.8vw, 34px);
+    line-height: 1.06;
   }
 
   .hero-proof-metrics .proof-tile span {
