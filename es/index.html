@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/language-switcher.css">
+<script src="../assets/language-guard.js"></script>
 <link rel="canonical" href="https://pillowflow.us/es/">
 <link rel="alternate" hreflang="en" href="https://pillowflow.us/">
 <link rel="alternate" hreflang="es" href="https://pillowflow.us/es/">
@@ -1007,6 +1008,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   .object-track .object-stage{position:relative;height:auto;min-height:100svh}
 }
 </style>
+<link rel="stylesheet" href="../assets/pillowflow-site.css">
 </head>
 <body>
 <div class="loader" id="loader" aria-hidden="true">
@@ -1025,19 +1027,13 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       <img class="brand-logo" src="https://pillowflow.com/cdn/shop/files/PILLOWFLOW_LOGO_VECTOR_TM_noBackPlate_PNG.png?v=1763487661" width="133" height="85" alt="" decoding="async" fetchpriority="high">
       <span class="sr-only">PillowFlow</span>
     </a>
-    <nav class="nav-links" aria-label="Secciones de página">
-      <a href="#product">Producto</a>
-      <a href="#value">Caso de negocio</a>
-      <a href="#pilots">Pasos piloto</a>
-      <a href="#apply">Solicitar</a>
-      <a href="#scope">Evaluación</a>
-      <a href="#company">Quienes somos</a>
-      <a href="referral.html">Referir una flota</a>
+    <nav class="nav-links" aria-label="Secciones de página" data-nav-desktop>
     </nav>
     <nav class="language-control" aria-label="Selector de idioma">
       <a href="/" lang="en" hreflang="en">EN</a>
       <a class="active" href="/es/" lang="es" hreflang="es" aria-current="page">ES</a>
     </nav>
+    <button class="mobile-menu-toggle" type="button" aria-label="Abrir navegación del sitio" aria-expanded="false" data-mobile-menu-toggle><span></span></button>
   </div>
 </header>
 
@@ -1244,17 +1240,17 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         <article class="value-card reveal">
           <div class="icon" aria-hidden="true">↑</div>
           <h3>La retención es su mayor costo no rastreado</h3>
-          <p>La incomodidad física se cita constantemente entre las razones por las que los conductores comerciales se van. Los conductores no siempre presentan informes de salida culpando al asiento; simplemente no renuevan.</p>
+          <p>La incomodidad física se cita constantemente entre las razones por las que los conductores comerciales se van. Los conductores no siempre presentan informes de salida culpando al asiento; simplemente no renuevan. <a class="claim-source" href="#sources" aria-label="Ver fuentes de investigación para la afirmación de retención">Fuentes</a></p>
         </article>
         <article class="value-card reveal">
           <div class="icon" aria-hidden="true">↑</div>
           <h3>Las molestias en la parte inferior del cuerpo son un problema silencioso</h3>
-          <p>La investigación sobre conducción ocupacional documenta la carga en la zona lumbar, la cadera y el muslo. Un piloto le brinda a su equipo una forma estructurada de observar un factor que contribuye al malestar.</p>
+          <p>La investigación sobre conducción ocupacional documenta la carga en la zona lumbar, la cadera y el muslo. Un piloto le brinda a su equipo una forma estructurada de observar un factor que contribuye al malestar. <a class="claim-source" href="#sources" aria-label="Ver fuentes de investigación para la carga de conducción ocupacional">Fuentes</a></p>
         </article>
         <article class="value-card reveal">
           <div class="icon" aria-hidden="true">↓</div>
           <h3>Los conductores fatigados entregan menos</h3>
-          <p>La investigación sobre la fatiga del conductor vincula el malestar corporal acumulativo con la presión del rendimiento, no sólo con la somnolencia. Los conductores experimentados no son inmunes al malestar acumulado.</p>
+          <p>La investigación sobre la fatiga del conductor vincula el malestar corporal acumulativo con la presión del rendimiento, no sólo con la somnolencia. Los conductores experimentados no son inmunes al malestar acumulado. <a class="claim-source" href="#sources" aria-label="Ver fuentes de investigación para la afirmación de fatiga del conductor">Fuentes</a></p>
         </article>
       </div>
     </div>
@@ -1457,6 +1453,30 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       </form>
     </div>
   </section>
+  <section class="video-showcase" aria-labelledby="installation-video-title">
+    <div class="wrap">
+      <div class="video-showcase-head reveal">
+        <div>
+          <p class="eyebrow">Conozca PillowFlow</p>
+          <h2 id="installation-video-title">Soporte donde los viajes largos más lo necesitan.</h2>
+        </div>
+        <p>Un soporte compacto para muslos, desarrollado por conductores, para rutas cotidianas.</p>
+      </div>
+      <div class="video-frame reveal">
+        <video id="installation-video" controls playsinline preload="metadata" poster="../assets/pillowflow-installation-guide.jpg" aria-label="Guía de instalación de PillowFlow">
+          <source src="../assets/pillowflow-installation-guide.mp4" type="video/mp4">
+          Su navegador no admite video integrado. <a href="https://youtu.be/bvrLel-l_iI">Vea la guía de instalación en YouTube</a>.
+        </video>
+        <button class="video-play-button" id="installation-video-play" type="button" aria-label="Reproducir la guía de instalación de PillowFlow">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="video-caption reveal">
+        <span><strong>Guía de instalación PF-X01</strong> · PillowFlow</span>
+        <a href="https://youtu.be/bvrLel-l_iI" target="_blank" rel="noopener">Ver en YouTube <span aria-hidden="true">-></span></a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
@@ -1491,7 +1511,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         </ul>
       </div>
     </div>
-    <div class="sources">
+    <div class="sources" id="sources">
       <h3>Fuentes: la investigación citada documenta el problema; las citas no constituyen validación del producto</h3>
       <ol>
         <li><a href="https://doi.org/10.1007/s004200050387" target="_blank" rel="noopener">Bovenzi &amp; Hulshof</a> — Revisión de vibraciones de todo el cuerpo y dolor lumbar.</li>
@@ -1511,6 +1531,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   </div>
 </footer>
 
+<script src="../assets/pillowflow-site.js"></script>
 <script>
 (function(){
   "use strict";
@@ -1589,11 +1610,17 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       entries.forEach(function(entry){
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
         }
       });
     }, { threshold:.18, rootMargin:"0px 0px -8% 0px" });
     revealItems.forEach(function(el){ observer.observe(el); });
+    window.addEventListener("pageshow",function(event){
+      if (!event.persisted) return;
+      revealItems.forEach(function(el){ el.classList.remove("is-visible"); });
+      requestAnimationFrame(function(){
+        revealItems.forEach(function(el){ observer.observe(el); });
+      });
+    });
   }
 
   var pilotForm = document.getElementById("pilot-apply-form");

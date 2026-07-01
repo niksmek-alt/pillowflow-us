@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://pillowflow.us/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pillowflow.us/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://pillowflow.us/es/" />
+  </url>
+  <url>
+    <loc>https://pillowflow.us/es/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pillowflow.us/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://pillowflow.us/es/" />
+  </url>
+  <url>
+    <loc>https://pillowflow.us/referral.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pillowflow.us/referral.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://pillowflow.us/es/referral.html" />
+  </url>
+  <url>
+    <loc>https://pillowflow.us/es/referral.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pillowflow.us/referral.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://pillowflow.us/es/referral.html" />
+  </url>
+</urlset>

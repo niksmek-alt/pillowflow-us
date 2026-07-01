@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/language-switcher.css">
+<script src="assets/language-guard.js"></script>
+<link rel="canonical" href="https://pillowflow.us/">
 <link rel="alternate" hreflang="en" href="https://pillowflow.us/">
 <link rel="alternate" hreflang="es" href="https://pillowflow.us/es/">
 <link rel="alternate" hreflang="x-default" href="https://pillowflow.us/">
@@ -1086,6 +1088,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   .object-track .object-stage{position:relative;height:auto;min-height:100svh}
 }
 </style>
+<link rel="stylesheet" href="assets/pillowflow-site.css">
 </head>
 <body>
 <div class="loader" id="loader" aria-hidden="true">
@@ -1104,18 +1107,12 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       <img class="brand-logo" src="https://pillowflow.com/cdn/shop/files/PILLOWFLOW_LOGO_VECTOR_TM_noBackPlate_PNG.png?v=1763487661" width="133" height="85" alt="" decoding="async" fetchpriority="high">
       <span class="sr-only">PillowFlow</span>
     </a>
-    <nav class="nav-links" aria-label="Page sections">
-      <a href="#product">Product</a>
-      <a href="#value">Business case</a>
-      <a href="#pilots">Pilot steps</a>
-      <a href="#apply">Apply</a>
-      <a href="#scope">Evaluation</a>
-      <a href="#company">Who we are</a>
-    </nav>
+    <nav class="nav-links" aria-label="Page sections" data-nav-desktop></nav>
     <nav class="language-control" aria-label="Language selector">
       <a class="active" href="/" lang="en" hreflang="en" aria-current="page">EN</a>
       <a href="/es/" lang="es" hreflang="es">ES</a>
     </nav>
+    <button class="mobile-menu-toggle" type="button" aria-label="Open site navigation" aria-expanded="false" data-mobile-menu-toggle><span></span></button>
   </div>
 </header>
 
@@ -1323,17 +1320,17 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         <article class="value-card reveal">
           <div class="icon" aria-hidden="true">↑</div>
           <h3>Retention is your largest untracked cost</h3>
-          <p>Physical discomfort is consistently cited among the reasons commercial drivers leave. Drivers do not always file exit reports blaming the seat; they just do not renew.</p>
+          <p>Physical discomfort is consistently cited among the reasons commercial drivers leave. Drivers do not always file exit reports blaming the seat; they just do not renew. <a class="claim-source" href="#sources" aria-label="View research sources for retention claim">Sources</a></p>
         </article>
         <article class="value-card reveal">
           <div class="icon" aria-hidden="true">↑</div>
           <h3>Lower-body discomfort is a quiet liability</h3>
-          <p>Occupational driving research documents load across the lower back, hip, and thigh. A pilot gives your team a structured way to observe one contributor to discomfort.</p>
+          <p>Occupational driving research documents load across the lower back, hip, and thigh. A pilot gives your team a structured way to observe one contributor to discomfort. <a class="claim-source" href="#sources" aria-label="View research sources for occupational driving load claim">Sources</a></p>
         </article>
         <article class="value-card reveal">
           <div class="icon" aria-hidden="true">↓</div>
           <h3>Fatigued drivers deliver less</h3>
-          <p>Research on driver fatigue links cumulative bodily discomfort with performance pressure, not just drowsiness. Experienced drivers are not immune to accumulated discomfort.</p>
+          <p>Research on driver fatigue links cumulative bodily discomfort with performance pressure, not just drowsiness. Experienced drivers are not immune to accumulated discomfort. <a class="claim-source" href="#sources" aria-label="View research sources for driver fatigue claim">Sources</a></p>
         </article>
       </div>
     </div>
@@ -1584,6 +1581,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         <h3>Company</h3>
         <ul>
           <li><a href="#company">Who we are</a></li>
+          <li><a href="referral.html">PillowFlow Founding Drivers</a></li>
           <li><a href="https://pillowflow.com" target="_blank" rel="noopener">Shop PillowFlow</a></li>
         </ul>
       </div>
@@ -1594,7 +1592,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         </ul>
       </div>
     </div>
-    <div class="sources">
+    <div class="sources" id="sources">
       <h3>Sources — cited research documents the problem; citations do not constitute product validation</h3>
       <ol>
         <li><a href="https://doi.org/10.1007/s004200050387" target="_blank" rel="noopener">Bovenzi &amp; Hulshof</a> — whole-body vibration and low-back pain review.</li>
@@ -1614,6 +1612,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   </div>
 </footer>
 
+<script src="assets/pillowflow-site.js"></script>
 <script>
 (function(){
   "use strict";
@@ -1692,11 +1691,17 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       entries.forEach(function(entry){
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
         }
       });
     }, { threshold:.18, rootMargin:"0px 0px -8% 0px" });
     revealItems.forEach(function(el){ observer.observe(el); });
+    window.addEventListener("pageshow",function(event){
+      if (!event.persisted) return;
+      revealItems.forEach(function(el){ el.classList.remove("is-visible"); });
+      requestAnimationFrame(function(){
+        revealItems.forEach(function(el){ observer.observe(el); });
+      });
+    });
   }
 
   var pilotForm = document.getElementById("pilot-apply-form");
