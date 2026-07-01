@@ -979,11 +979,24 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
 .spec-mobile .s1{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
 .spec-mobile .s2{color:var(--dim);font-size:13px;margin-top:2px}
 @media (max-width:820px){
-  .object-track{height:300vh}
-  .object-track .object-stage{padding:82px 18px 24px}
+  .object-track{height:auto;min-height:0}
+  .object-track .object-stage{
+    position:relative;
+    top:auto;
+    height:auto;
+    min-height:min(760px,78svh);
+    padding:72px 18px 24px;
+    overflow:visible;
+  }
   .stage-corners{font-size:9px;letter-spacing:.16em}
+  .stage-canvas{min-height:300px}
+  .stage-glow{opacity:1}
+  .object-svg .doutline,.object-svg .drim,.object-svg .dbore{stroke-dashoffset:0}
+  #bodyFill{opacity:1}
+  .object-svg #dimGroup,.object-svg #ringGroup{opacity:1}
   .object-svg #specGroup{display:none}
   .object-svg .dimlabel{font-size:16px}
+  .stage-designation{opacity:1;transform:none}
   .stage-designation .spec{display:none}
   .spec-mobile{display:block}
 }
@@ -1606,6 +1619,14 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   if (reduced || !("IntersectionObserver" in window)) {
     revealItems.forEach(function(el){ el.classList.add("is-visible"); });
   } else {
+    function refreshVisibleReveals(){
+      revealItems.forEach(function(el){
+        var rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * .94 && rect.bottom > window.innerHeight * .02) {
+          el.classList.add("is-visible");
+        }
+      });
+    }
     var observer = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if (entry.isIntersecting) {
@@ -1614,12 +1635,19 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       });
     }, { threshold:.18, rootMargin:"0px 0px -8% 0px" });
     revealItems.forEach(function(el){ observer.observe(el); });
+    requestAnimationFrame(refreshVisibleReveals);
     window.addEventListener("pageshow",function(event){
-      if (!event.persisted) return;
-      revealItems.forEach(function(el){ el.classList.remove("is-visible"); });
       requestAnimationFrame(function(){
-        revealItems.forEach(function(el){ observer.observe(el); });
+        revealItems.forEach(function(el){
+          if (event.persisted) el.classList.remove("is-visible");
+          observer.unobserve(el);
+          observer.observe(el);
+        });
+        refreshVisibleReveals();
       });
+    });
+    document.addEventListener("visibilitychange",function(){
+      if (!document.hidden) requestAnimationFrame(refreshVisibleReveals);
     });
   }
 
@@ -1666,7 +1694,9 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   var ringGroup = document.getElementById("ringGroup");
   var siteHeader = document.querySelector(".site-header");
   var hero = document.querySelector(".hero");
+  var compactObject = window.matchMedia("(max-width: 820px)");
   var headerCompact = false;
+  var objectIsStatic = false;
   var objP = 0;
   var objPT = 0;
 
@@ -1686,6 +1716,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       designation.style.opacity = "1";
       designation.style.transform = "translateY(0)";
     }
+    objectIsStatic = true;
   }
 
   function updateObject(progress){
@@ -1722,11 +1753,14 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       siteHeader.classList.toggle("scrolled",shouldCompact);
       headerCompact = shouldCompact;
     }
-    if (track) {
+    if (track && compactObject.matches) {
+      if (!objectIsStatic) setObjectStatic();
+    } else if (track) {
       var rect = track.getBoundingClientRect();
       var total = rect.height - vh;
       objPT = total > 0 ? clamp(-rect.top / total, 0, 1) : 1;
       objP = lerp(objP, objPT, 0.16);
+      objectIsStatic = false;
       updateObject(objP);
     }
     requestAnimationFrame(frame);
