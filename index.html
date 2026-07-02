@@ -1064,12 +1064,12 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
     position:relative;
     top:auto;
     height:auto;
-    min-height:min(760px,78svh);
-    padding:72px 18px 24px;
+    min-height:0;
+    padding:42px 18px 14px;
     overflow:visible;
   }
   .stage-corners{font-size:9px;letter-spacing:.16em}
-  .stage-canvas{min-height:300px}
+  .stage-canvas{flex:0 0 auto;min-height:250px;margin:24px 0 18px}
   .stage-glow{opacity:1}
   .object-svg .doutline,.object-svg .drim,.object-svg .dbore{stroke-dashoffset:0}
   #bodyFill{opacity:1}
@@ -1078,7 +1078,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   .object-svg .dimlabel{font-size:16px}
   .stage-designation{opacity:1;transform:none}
   .stage-designation .spec{display:none}
-  .spec-mobile{display:block}
+  .spec-mobile{display:block;padding-top:22px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -1101,7 +1101,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   .object-track .object-stage{position:relative;height:auto;min-height:100svh}
 }
 </style>
-<link rel="stylesheet" href="assets/pillowflow-site.css?v=20260701-5">
+<link rel="stylesheet" href="assets/pillowflow-site.css?v=20260701-6">
 </head>
 <body>
 <div class="loader" id="loader" aria-hidden="true">
@@ -1625,7 +1625,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   </div>
 </footer>
 
-<script src="assets/pillowflow-site.js?v=20260701-5"></script>
+<script src="assets/pillowflow-site.js?v=20260701-6"></script>
 <script>
 (function(){
   "use strict";
@@ -1633,6 +1633,8 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var docEl = document.documentElement;
   if (reduced) docEl.classList.add("rm");
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (!window.location.hash) window.scrollTo(0, 0);
 
   var vh = window.innerHeight;
   window.addEventListener("resize", function(){ vh = window.innerHeight; }, { passive:true });

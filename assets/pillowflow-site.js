@@ -101,6 +101,17 @@
     return !url.hash || url.hash === window.location.hash || document.querySelector(url.hash + ".active-section");
   }
 
+  function markNewTab(link) {
+    var href = (link.getAttribute("href") || "").trim();
+    if (!href || href.charAt(0) === "?") return;
+    if (link.closest(".language-control")) return;
+    if (/^(mailto|tel|sms|javascript):/i.test(href)) return;
+    link.target = "_blank";
+    var rel = (link.getAttribute("rel") || "").split(/\s+/).filter(Boolean);
+    if (rel.indexOf("noopener") === -1) rel.push("noopener");
+    link.setAttribute("rel", rel.join(" "));
+  }
+
   function renderDesktopNav() {
     var nav = document.querySelector("[data-nav-desktop]");
     if (!nav) return;
@@ -111,6 +122,7 @@
         var a = document.createElement("a");
         a.href = hrefFor(item);
         a.textContent = labelFor(item);
+        markNewTab(a);
         if (activeFor(a.href)) a.classList.add("is-current");
         nav.appendChild(a);
       });
@@ -163,10 +175,18 @@
       (isSpanish() ? "Navegación del sitio" : "Site navigation") +
       '"><div class="mobile-menu-head"><div class="mobile-menu-title">PillowFlow</div><button class="mobile-menu-close" type="button" aria-label="' +
       (isSpanish() ? "Cerrar menú" : "Close menu") +
-      '">&times;</button></div><div class="mobile-menu-groups"></div><div class="mobile-menu-cta"></div></aside>';
+      '">&times;</button></div><nav class="mobile-menu-language language-control" aria-label="' +
+      (isSpanish() ? "Selector de idioma" : "Language selector") +
+      '"></nav><div class="mobile-menu-groups"></div><div class="mobile-menu-cta"></div></aside>';
 
     var groupsWrap = menu.querySelector(".mobile-menu-groups");
     var ctaWrap = menu.querySelector(".mobile-menu-cta");
+    var languageWrap = menu.querySelector(".mobile-menu-language");
+    var sourceLanguage = document.querySelector(".nav > .language-control");
+
+    if (sourceLanguage && languageWrap) {
+      languageWrap.innerHTML = sourceLanguage.innerHTML;
+    }
 
     NAV.forEach(function (group) {
       var groupEl = document.createElement("section");
@@ -179,6 +199,7 @@
           var cta = document.createElement("a");
           cta.href = hrefFor(item);
           cta.textContent = labelFor(item);
+          markNewTab(cta);
           ctaWrap.appendChild(cta);
           return;
         }
@@ -190,6 +211,7 @@
           a.target = "_blank";
           a.rel = "noopener";
         }
+        markNewTab(a);
         if (activeFor(a.href)) {
           a.classList.add("is-current");
           a.setAttribute("aria-current", "page");
@@ -219,6 +241,7 @@
       if (!link) return;
       var url = new URL(link.getAttribute("href"), window.location.href);
       closeMenu(menu, false);
+      if (link.target === "_blank") return;
       if (isSamePageHash(url)) {
         event.preventDefault();
         var target = document.querySelector(url.hash);
@@ -277,6 +300,12 @@
     });
   }
 
+  function preferNewTabs() {
+    Array.prototype.slice.call(document.querySelectorAll("a[href]")).forEach(function (link) {
+      markNewTab(link);
+    });
+  }
+
   function initActiveSections() {
     var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id], footer [id]"));
     if (!sections.length || !("IntersectionObserver" in window)) return;
@@ -314,9 +343,10 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    bindLanguage();
     renderDesktopNav();
     renderMobileMenu();
+    bindLanguage();
+    preferNewTabs();
     initActiveSections();
     bindVideo();
   });
