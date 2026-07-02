@@ -1,0 +1,239 @@
+{
+  "total_records": 36460,
+  "unique_origin_locations": 1449,
+  "top_origins": [
+    [
+      "LAX",
+      3662
+    ],
+    [
+      "SFO",
+      2114
+    ],
+    [
+      "JFK",
+      1872
+    ],
+    [
+      "MIA",
+      1357
+    ],
+    [
+      "ORD",
+      1289
+    ],
+    [
+      "ATL",
+      1111
+    ],
+    [
+      "DFW",
+      1090
+    ],
+    [
+      "IAH",
+      1082
+    ],
+    [
+      "IAD",
+      1002
+    ],
+    [
+      "EWR",
+      944
+    ],
+    [
+      "MCO",
+      813
+    ],
+    [
+      "BOS",
+      765
+    ],
+    [
+      "SYD",
+      743
+    ],
+    [
+      "SEA",
+      705
+    ],
+    [
+      "NYC",
+      657
+    ],
+    [
+      "PHX",
+      640
+    ],
+    [
+      "TPA",
+      568
+    ],
+    [
+      "DEN",
+      524
+    ],
+    [
+      "MEL",
+      459
+    ],
+    [
+      "SAN",
+      458
+    ]
+  ],
+  "statuses": [
+    [
+      "Lost",
+      9955
+    ],
+    [
+      "Follow up",
+      6069
+    ],
+    [
+      "Reached",
+      4457
+    ],
+    [
+      "Blank",
+      3519
+    ],
+    [
+      "Bad number",
+      3199
+    ],
+    [
+      "Domestic/Caribbean",
+      2081
+    ],
+    [
+      "Economy",
+      1654
+    ],
+    [
+      "Not ready",
+      1144
+    ],
+    [
+      "Sold",
+      636
+    ],
+    [
+      "Not Ready",
+      569
+    ],
+    [
+      "Future client",
+      463
+    ],
+    [
+      "bad number",
+      372
+    ],
+    [
+      "Not Interested",
+      363
+    ],
+    [
+      "Fake lead",
+      325
+    ],
+    [
+      "future client",
+      244
+    ],
+    [
+      "SMS",
+      203
+    ],
+    [
+      "Reached through email",
+      186
+    ],
+    [
+      "Unreached",
+      179
+    ],
+    [
+      "low budget",
+      162
+    ],
+    [
+      "not response",
+      131
+    ]
+  ],
+  "operator_sheets": [
+    {
+      "sheet": "Paul",
+      "records": 4307
+    },
+    {
+      "sheet": "Jordan",
+      "records": 3648
+    },
+    {
+      "sheet": "Luke",
+      "records": 330
+    },
+    {
+      "sheet": "Richard",
+      "records": 3425
+    },
+    {
+      "sheet": "Kate",
+      "records": 4053
+    },
+    {
+      "sheet": "Steve",
+      "records": 3145
+    },
+    {
+      "sheet": "Greg",
+      "records": 5712
+    },
+    {
+      "sheet": "Lisa",
+      "records": 3004
+    },
+    {
+      "sheet": "Vienna",
+      "records": 2190
+    },
+    {
+      "sheet": "Jeff Supervisor",
+      "records": 7
+    },
+    {
+      "sheet": "Tom",
+      "records": 117
+    },
+    {
+      "sheet": "Amir",
+      "records": 67
+    },
+    {
+      "sheet": "Dustin",
+      "records": 42
+    },
+    {
+      "sheet": "Nelson",
+      "records": 44
+    },
+    {
+      "sheet": "Gary",
+      "records": 376
+    },
+    {
+      "sheet": "Stan",
+      "records": 3956
+    },
+    {
+      "sheet": "Adam",
+      "records": 2037
+    }
+  ],
+  "output": "lead_handling_by_location.xlsx"
+}

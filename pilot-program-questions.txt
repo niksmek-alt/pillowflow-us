@@ -1,0 +1,28 @@
+PillowFlow Fleet Pilot Program Questions
+
+1. What is your company name?
+
+2. What is your contact name?
+
+3. What is your business email address?
+
+4. What is your phone number? (Optional)
+
+5. What type of fleet do you operate? (Optional)
+   - Rideshare / taxi
+   - Delivery / courier
+   - Trucking / logistics
+   - Home health / field service
+   - Municipal / government fleet
+   - Other
+
+6. How many total drivers do you have? (Optional)
+   - 1-10
+   - 11-50
+   - 51-250
+   - 251-1,000
+   - 1,000+
+
+7. What is your target start date? (Optional)
+
+8. Is there anything else we should know about your fleet or evaluation goals? (Optional)

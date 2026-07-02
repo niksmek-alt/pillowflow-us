@@ -10,7 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/language-switcher.css">
-  <script src="assets/language-guard.js"></script>
   <link rel="canonical" href="https://pillowflow.us/referral.html">
   <link rel="alternate" hreflang="en" href="https://pillowflow.us/referral.html">
   <link rel="alternate" hreflang="es" href="https://pillowflow.us/es/referral.html">
@@ -53,7 +52,6 @@
     @media(max-width:900px){.hero-grid,.reward-layout,.form-grid{grid-template-columns:1fr}.criteria{grid-template-columns:1fr 1fr}.hero-card{max-width:650px}.reward-note{max-width:none}.nav-links a:not(.nav-cta){display:none}}
     @media(max-width:620px){.wrap{width:min(100% - 28px,var(--max))}.hero{padding:66px 0 55px}.section,.form-section{padding:60px 0}.criteria,.rules,.footer-grid{grid-template-columns:1fr}.nav-links,.language-control{display:none}.hero-copy>p:not(.eyebrow){font-size:18px}.hero-card{padding:22px}.hero-card-head{flex-wrap:wrap}.review-steps li{grid-template-columns:32px minmax(0,1fr)}.hero-actions,.final-cta,.footer-links{align-items:stretch;flex-direction:column}.btn{width:100%}.final-cta{padding:24px}.footer-links{justify-content:flex-start;gap:8px}.table-wrap{overflow:visible;border:0;background:transparent;box-shadow:none}table,tbody,tr,td{display:block;width:100%;min-width:0}thead{display:none}tbody{display:grid;gap:12px}tbody tr{overflow:hidden;border:1px solid var(--border);border-radius:var(--radius);background:#fff;box-shadow:var(--soft-shadow)}td{padding:15px 17px;border-bottom:1px solid var(--border);white-space:normal}td:last-child{border-bottom:0}td::before{content:attr(data-label);display:block;margin-bottom:4px;color:var(--muted);font:600 10px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase}.amount{white-space:normal}}
   </style>
-  <link rel="stylesheet" href="assets/pillowflow-site.css?v=20260701-6">
 </head>
 <body>
   <header class="site-header">
@@ -63,8 +61,7 @@
         <span class="sr-only">PillowFlow</span>
       </a>
       <nav class="nav-links" aria-label="Referral page"><a href="#qualified">Qualified lead</a><a href="#rewards">Rewards</a><a href="#rules">Rules</a><a class="nav-cta" href="#referral-form">Submit referral</a></nav>
-      <nav class="language-control" aria-label="Language selector"><a class="active" href="/referral.html" lang="en" hreflang="en" aria-current="page">EN</a><a href="/es/referral.html" lang="es" hreflang="es">ES</a></nav>
-      <button class="mobile-menu-toggle" type="button" aria-label="Open site navigation" aria-expanded="false" data-mobile-menu-toggle><span></span></button>
+      <nav class="language-control" aria-label="Language selector"><a class="active" href="/" lang="en" hreflang="en" aria-current="page">EN</a><a href="/es/referral.html" lang="es" hreflang="es">ES</a></nav>
     </div>
   </header>
 
@@ -156,7 +153,6 @@
     </div>
   </footer>
   <script src="assets/referral-form.js"></script>
-  <script src="assets/pillowflow-site.js?v=20260701-6"></script>
   <script>
     (function(){var root=document.documentElement;function update(){var max=document.documentElement.scrollHeight-innerHeight;root.style.setProperty('--scroll-progress',max>0?scrollY/max:0)}addEventListener('scroll',update,{passive:true});addEventListener('resize',update);update()})();
   </script>

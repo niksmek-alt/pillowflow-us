@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16223c">
+  <title>PillowFlow Fleet Pilot Questions</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: #f5f2ec;
+      color: #16223c;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: max(24px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+      background: #f5f2ec;
+      font-size: 17px;
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    main {
+      width: min(100%, 560px);
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 22px;
+      padding: 24px 20px;
+      border-radius: 18px;
+      background: #16223c;
+      color: #fff;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #f2a06f;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -.025em;
+    }
+
+    ol {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: question;
+    }
+
+    li {
+      counter-increment: question;
+      padding: 19px 18px;
+      border: 1px solid #ddd7ce;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 3px 12px rgba(22, 34, 60, .06);
+    }
+
+    .question {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      margin: 0;
+      font-weight: 750;
+    }
+
+    .question::before {
+      content: counter(question);
+      display: grid;
+      flex: 0 0 29px;
+      height: 29px;
+      place-items: center;
+      border-radius: 50%;
+      background: #f2a06f;
+      color: #16223c;
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .optional {
+      color: #687083;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .choices {
+      display: grid;
+      gap: 8px;
+      margin: 14px 0 0 40px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .choices span {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #f5f2ec;
+      color: #394359;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">PillowFlow</p>
+      <h1>Fleet Pilot Program Questions</h1>
+    </header>
+
+    <ol>
+      <li><p class="question">What is your company name?</p></li>
+      <li><p class="question">What is your contact name?</p></li>
+      <li><p class="question">What is your business email address?</p></li>
+      <li><p class="question">What is your phone number? <span class="optional">Optional</span></p></li>
+      <li>
+        <p class="question">What type of fleet do you operate? <span class="optional">Optional</span></p>
+        <div class="choices">
+          <span>Rideshare / taxi</span>
+          <span>Delivery / courier</span>
+          <span>Trucking / logistics</span>
+          <span>Home health / field service</span>
+          <span>Municipal / government fleet</span>
+          <span>Other</span>
+        </div>
+      </li>
+      <li>
+        <p class="question">How many total drivers do you have? <span class="optional">Optional</span></p>
+        <div class="choices">
+          <span>1–10</span>
+          <span>11–50</span>
+          <span>51–250</span>
+          <span>251–1,000</span>
+          <span>1,000+</span>
+        </div>
+      </li>
+      <li><p class="question">What is your target start date? <span class="optional">Optional</span></p></li>
+      <li><p class="question">Is there anything else we should know about your fleet or evaluation goals? <span class="optional">Optional</span></p></li>
+    </ol>
+  </main>
+</body>
+</html>
