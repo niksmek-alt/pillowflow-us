@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>PillowFlow - Comfort is Performance</title>
+  <meta name="description" content="PillowFlow helps fleet managers evaluate PF-X01 with a focused 21-day driver comfort pilot." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#f7f5f1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" href="./assets/models/PF_Hero_Orange.optimized.glb" as="fetch" crossorigin />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./v4/tokens.css" />
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.178.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <a class="pf-skip-link" href="#hero">Skip to content</a>
+
+  <header class="pf-nav" aria-label="PillowFlow navigation">
+    <a class="pf-brand" href="#hero" aria-label="PillowFlow home">
+      <svg class="pf-brand-mark" viewBox="0 0 44 24" aria-hidden="true">
+        <path d="M3 15c4-8 9-8 14 0s10 8 14 0 7-8 10-1" />
+        <path d="M3 9c4-8 9-8 14 0s10 8 14 0 7-8 10-1" />
+      </svg>
+      <span>Pillow<span>Flow</span></span>
+    </a>
+    <nav class="pf-nav-links" aria-label="Page sections">
+      <a href="#problem">Product</a>
+      <a href="#business">Business case</a>
+      <a href="#pilot">Pilot program</a>
+      <a href="#dashboard">Evaluation</a>
+      <a href="#trust">Who we are</a>
+    </nav>
+    <a class="pf-nav-cta" href="#final-cta">Start 21-Day Pilot</a>
+  </header>
+
+  <div
+    id="pf-product"
+    class="pf-product"
+    role="img"
+    aria-label="Orange PillowFlow ergonomic driver support floating in the hero"
+    data-product-model="./assets/models/PF_Hero_Orange.optimized.glb"
+  >
+    <div class="pf-product-fallback" aria-hidden="true"></div>
+  </div>
+
+  <main id="top" class="pf-story">
+    <section id="hero" class="pf-section pf-section--light pf-hero" aria-label="Hero">
+      <svg class="pf-hero-flow" viewBox="0 0 1440 760" preserveAspectRatio="none" aria-hidden="true">
+        <path class="pf-flow-line pf-flow-line--one" pathLength="1" d="M-40 520 C 190 430, 310 610, 540 500 S 930 260, 1500 370" />
+        <path class="pf-flow-line pf-flow-line--two" pathLength="1" d="M-20 600 C 230 470, 360 650, 610 560 S 950 330, 1480 455" />
+        <path class="pf-flow-line pf-flow-line--three" pathLength="1" d="M150 735 C 360 535, 490 635, 720 480 S 1040 250, 1490 270" />
+      </svg>
+
+      <div class="pf-container pf-hero-grid">
+        <div class="pf-hero-copy">
+          <p class="pf-eyebrow" data-reveal>PF-X01 / fleet driver support</p>
+          <h1 class="pf-h1" data-reveal>Comfort is <span class="pf-accent">Performance.</span></h1>
+          <p class="pf-hero-subcopy" data-reveal>Small support.<br />Big operational impact.</p>
+          <div class="pf-hero-actions" data-reveal>
+            <a class="pf-btn pf-btn--primary" href="#pilot">Start Your 21-Day Pilot</a>
+            <a class="pf-btn pf-btn--ghost" href="#problem">See How It Works</a>
+          </div>
+        </div>
+
+        <div class="pf-hero-visual" aria-hidden="true">
+          <div id="hero-product-anchor" class="pf-product-anchor"></div>
+          <div class="pf-product-shadow"></div>
+          <div class="pf-hero-spec pf-hero-spec--top">EVA foam / fleet-ready density</div>
+          <div class="pf-hero-spec pf-hero-spec--bottom">Patent pending / designed in USA</div>
+        </div>
+      </div>
+
+      <a class="pf-scroll-indicator" href="#problem" aria-label="Scroll to next section">
+        <span>Scroll</span>
+        <i aria-hidden="true"><b></b></i>
+      </a>
+    </section>
+
+    <section id="transition-hero-problem" class="pf-section pf-section--light pf-transition-shell" aria-label="Hero to problem transition">
+      <div id="seat-landing-anchor" class="pf-transition-anchor" aria-hidden="true"></div>
+    </section>
+
+    <section id="problem" class="pf-section pf-section--dark pf-placeholder" aria-labelledby="problem-title">
+      <div class="pf-container pf-placeholder-grid">
+        <div>
+          <p class="pf-eyebrow">02 / the problem</p>
+          <h2 id="problem-title" class="pf-h2">Your fleet tracks fuel.<br /><span class="pf-accent">It misses pain.</span></h2>
+        </div>
+        <p class="pf-body">Task 04 will replace this placeholder with the pinned seat scene and four animated callouts. The persistent product element is already available for the landing handoff.</p>
+      </div>
+    </section>
+
+    <section id="transition-problem-business" class="pf-section pf-section--dark pf-transition-shell" aria-label="Problem to business transition"></section>
+
+    <section id="business" class="pf-section pf-section--dark pf-placeholder" aria-labelledby="business-title">
+      <div class="pf-container pf-placeholder-grid">
+        <div>
+          <p class="pf-eyebrow">03 / business impact</p>
+          <h2 id="business-title" class="pf-h2">Better comfort.<br /><span class="pf-accent">Better operations.</span></h2>
+        </div>
+        <p class="pf-body">Task 06 plugs impact cards into this slot after the problem-to-business camera push is built.</p>
+      </div>
+    </section>
+
+    <section id="dashboard" class="pf-section pf-section--light pf-placeholder" aria-labelledby="dashboard-title">
+      <div class="pf-container pf-placeholder-grid">
+        <div>
+          <p class="pf-eyebrow">04 / fleet dashboard</p>
+          <h2 id="dashboard-title" class="pf-h2">Manager-ready insights.</h2>
+        </div>
+        <p class="pf-body">Task 07 owns the participation, trends, feedback, heatmap, recommendations, and report modules.</p>
+      </div>
+    </section>
+
+    <section id="pilot" class="pf-section pf-section--light pf-placeholder" aria-labelledby="pilot-title">
+      <div class="pf-container pf-placeholder-grid">
+        <div>
+          <p class="pf-eyebrow">05 / pilot process</p>
+          <h2 id="pilot-title" class="pf-h2">Test it before you standardize it.</h2>
+        </div>
+        <p class="pf-body">Task 08 turns this section into the five-step scroll-progress timeline.</p>
+      </div>
+    </section>
+
+    <section id="roi" class="pf-section pf-section--dark pf-placeholder" aria-labelledby="roi-title">
+      <div class="pf-container pf-placeholder-grid">
+        <div>
+          <p class="pf-eyebrow">06 / ROI</p>
+          <h2 id="roi-title" class="pf-h2">One avoided missed shift can justify the pilot.</h2>
+        </div>
+        <p class="pf-body">Task 09 will keep this clean and visual: pilot, operational improvement, potential ROI.</p>
+      </div>
+    </section>
+
+    <section id="trust" class="pf-section pf-section--light pf-placeholder" aria-labelledby="trust-title">
+      <div class="pf-container pf-placeholder-grid">
+        <div>
+          <p class="pf-eyebrow">07 / trust</p>
+          <h2 id="trust-title" class="pf-h2">Research. Pilot program. Manufacturing scale.</h2>
+        </div>
+        <p class="pf-body">Task 10 replaces this with three compact trust cards.</p>
+      </div>
+    </section>
+
+    <section id="final-cta" class="pf-section pf-section--light pf-placeholder" aria-labelledby="final-title">
+      <div class="pf-container pf-placeholder-grid">
+        <div>
+          <p class="pf-eyebrow">08 / final CTA</p>
+          <h2 id="final-title" class="pf-h2">Comfort is <span class="pf-accent">Performance.</span></h2>
+        </div>
+        <p class="pf-body">Task 11 returns the persistent product to the exact hero float here.</p>
+      </div>
+      <div id="final-product-anchor" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { gatedReveal, initLazyAssets } from "./v4/asset-loader.js";
+    import { initProductRenderer } from "./v4/product-renderer.js";
+    import { initOrchestrator } from "./v4/scroll-orchestrator.js";
+    import "./v4/sections/hero.js";
+
+    initLazyAssets();
+    initProductRenderer();
+    await gatedReveal();
+    await initOrchestrator();
+  </script>
+</body>
+</html>
