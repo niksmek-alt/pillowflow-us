@@ -86,7 +86,7 @@ export async function initOrchestrator() {
         pin: mobilePin,
         scrub: mobileScrub ? 0.55 : false,
         animation: timeline,
-        toggleActions: mobileScrub ? undefined : "play none none none",
+        toggleActions: mobileScrub ? undefined : (def.toggleActions ?? "play none none reverse"),
         anticipatePin: mobilePin ? 1 : 0,
         invalidateOnRefresh: true,
       });

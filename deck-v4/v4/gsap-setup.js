@@ -24,6 +24,10 @@ export const gsapReady = (async () => {
 
   const { gsap } = window;
   gsap.registerPlugin(window.ScrollTrigger);
+  window.ScrollTrigger.config({
+    ignoreMobileResize: true,
+    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+  });
   gsap.defaults({ ease: EASE.out, duration: 0.8 });
 
   const mm = gsap.matchMedia();

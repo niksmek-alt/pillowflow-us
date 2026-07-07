@@ -21,9 +21,9 @@ export const STAGGER = {
 };
 
 export const PIN = {
-  heroToProblem: 2.2,
-  problemCallouts: 1.6,
-  problemToBusiness: 1.4,
+  heroToProblem: 1.55,
+  problemCallouts: 1.15,
+  problemToBusiness: 0.8,
   dashboard: 1.2,
 };
 

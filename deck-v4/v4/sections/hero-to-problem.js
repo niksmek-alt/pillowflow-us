@@ -15,10 +15,9 @@ registerSection({
   id: "transition-hero-problem",
   order: 2,
   pin: true,
-  pinMobile: true,
+  pinMobile: false,
   pinLength: PIN.heroToProblem,
-  mobilePinLength: 1.65,
-  scrubMobile: true,
+  scrubMobile: false,
   build(gsap, ctx, { mobile }) {
     const section = document.getElementById("transition-hero-problem");
     const anchor = document.getElementById("seat-landing-anchor");
@@ -36,7 +35,7 @@ registerSection({
     gsap.set(section.querySelector(".pf-seat-contact-glow"), { opacity: 0, scale: 0.3 });
 
     tl
-      .fromTo(".pf-nav", { y: 0 }, { y: mobile ? -18 : -78, opacity: mobile ? 0.75 : 0, duration: 0.28, ease: "none" }, 0)
+      .fromTo(".pf-nav", { y: 0, opacity: 1 }, { y: mobile ? 0 : -78, opacity: mobile ? 1 : 0, duration: 0.28, ease: "none" }, 0)
       .fromTo(section.querySelector(".pf-transition-wave-fill"), { yPercent: 22 }, { yPercent: -8, duration: 1, ease: "none" }, 0)
       .to(lines, { strokeDashoffset: 0, duration: 0.72, stagger: 0.06, ease: EASE.draw }, 0.05)
       .to(ctx.product, {
@@ -46,7 +45,6 @@ registerSection({
         yPercent: -50,
         rotation: mobile ? -10 : -13,
         scale: mobile ? 0.62 : 0.66,
-        opacity: 1,
         duration: 0.78,
         ease: EASE.cinematic,
       }, 0.06)
