@@ -64,7 +64,14 @@ export function initLazyAssets() {
   return io;
 }
 
-export async function gatedReveal(bodyClass = "v4-ready") {
+export async function gatedReveal(bodyClass = "v4-ready", { minimumMs = 680 } = {}) {
+  const startedAt = performance.now();
   await preloadPriority();
+  const elapsed = performance.now() - startedAt;
+  if (elapsed < minimumMs) {
+    await new Promise((resolve) => {
+      window.setTimeout(resolve, minimumMs - elapsed);
+    });
+  }
   document.documentElement.classList.add(bodyClass);
 }
