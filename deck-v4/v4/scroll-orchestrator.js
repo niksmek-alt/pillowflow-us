@@ -77,11 +77,18 @@ export async function initOrchestrator() {
       const timeline = def.build(gsap, ctx, { mobile: true });
       if (!timeline) return undefined;
 
+      const mobilePin = Boolean(def.pinMobile ?? def.pin);
+      const mobileScrub = Boolean(def.scrubMobile ?? mobilePin);
       const trigger = ScrollTrigger.create({
         trigger: el,
-        start: "top 75%",
+        start: mobilePin ? "top top" : "top 75%",
+        end: mobilePin ? `+=${(def.mobilePinLength ?? def.pinLength ?? 1) * 100}%` : undefined,
+        pin: mobilePin,
+        scrub: mobileScrub ? 0.55 : false,
         animation: timeline,
-        toggleActions: "play none none none",
+        toggleActions: mobileScrub ? undefined : "play none none none",
+        anticipatePin: mobilePin ? 1 : 0,
+        invalidateOnRefresh: true,
       });
 
       return () => trigger.kill();

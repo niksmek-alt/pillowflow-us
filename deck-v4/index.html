@@ -10,7 +10,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="preload" href="./assets/models/PF_Hero_Orange.optimized.glb" as="fetch" crossorigin />
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./v4/tokens.css" />
@@ -99,17 +99,63 @@
       </a>
     </section>
 
-    <section id="transition-hero-problem" class="pf-section pf-section--light pf-transition-shell" aria-label="Hero to problem transition">
-      <div id="seat-landing-anchor" class="pf-transition-anchor" aria-hidden="true"></div>
+    <section id="transition-hero-problem" class="pf-section pf-section--light pf-cinema-transition" aria-label="Hero to problem transition">
+      <div class="pf-transition-frame" aria-hidden="true">
+        <svg class="pf-transition-wave" viewBox="0 0 1440 820" preserveAspectRatio="none">
+          <path class="pf-transition-wave-fill" d="M0 320 C 160 250, 270 392, 465 316 C 680 232, 808 108, 1034 158 C 1216 198, 1320 312, 1440 270 L1440 820 L0 820 Z" />
+          <path class="pf-transition-wave-line pf-transition-wave-line--one" pathLength="1" d="M-80 430 C 180 310, 318 478, 560 370 S 1020 114, 1530 285" />
+          <path class="pf-transition-wave-line pf-transition-wave-line--two" pathLength="1" d="M-70 506 C 220 368, 352 530, 620 425 S 1048 198, 1510 352" />
+          <path class="pf-transition-wave-line pf-transition-wave-line--three" pathLength="1" d="M-40 590 C 240 470, 410 604, 692 500 S 1124 284, 1510 430" />
+        </svg>
+        <div class="pf-transition-seat">
+          <div id="seat-landing-anchor" class="pf-seat-product-anchor"></div>
+          <div class="pf-seat-back"></div>
+          <div class="pf-seat-base">
+            <span class="pf-seat-stitch pf-seat-stitch--one"></span>
+            <span class="pf-seat-stitch pf-seat-stitch--two"></span>
+            <span class="pf-seat-stitch pf-seat-stitch--three"></span>
+            <span class="pf-seat-contact-glow"></span>
+          </div>
+        </div>
+        <p class="pf-transition-caption">PillowFlow moves with the scroll and lands where the seat misses support.</p>
+      </div>
     </section>
 
-    <section id="problem" class="pf-section pf-section--dark pf-placeholder" aria-labelledby="problem-title">
-      <div class="pf-container pf-placeholder-grid">
-        <div>
+    <section id="problem" class="pf-section pf-section--dark pf-problem" aria-labelledby="problem-title">
+      <div class="pf-container pf-problem-grid">
+        <div class="pf-problem-copy">
           <p class="pf-eyebrow">02 / the problem</p>
           <h2 id="problem-title" class="pf-h2">Your fleet tracks fuel.<br /><span class="pf-accent">It misses pain.</span></h2>
+          <p class="pf-body">Long hours create constant pressure on one unsupported area. Drivers adapt. Fatigue builds. Performance changes.</p>
         </div>
-        <p class="pf-body">Task 04 will replace this placeholder with the pinned seat scene and four animated callouts. The persistent product element is already available for the landing handoff.</p>
+        <div class="pf-problem-stage" aria-hidden="true">
+          <div class="pf-problem-seat">
+            <div id="problem-seat-anchor" class="pf-seat-product-anchor"></div>
+            <div class="pf-seat-back"></div>
+            <div class="pf-seat-base">
+              <span class="pf-seat-stitch pf-seat-stitch--one"></span>
+              <span class="pf-seat-stitch pf-seat-stitch--two"></span>
+              <span class="pf-seat-stitch pf-seat-stitch--three"></span>
+              <span class="pf-seat-contact-glow"></span>
+            </div>
+          </div>
+          <div class="pf-callout pf-callout--one">
+            <svg viewBox="0 0 220 80"><path pathLength="1" d="M5 54 C 62 54, 80 20, 132 20 L216 20" /></svg>
+            <b>01</b><span>THE LEG NEVER RESTS</span>
+          </div>
+          <div class="pf-callout pf-callout--two">
+            <svg viewBox="0 0 220 80"><path pathLength="1" d="M5 20 C 62 20, 80 54, 132 54 L216 54" /></svg>
+            <b>02</b><span>PRESSURE CONCENTRATES</span>
+          </div>
+          <div class="pf-callout pf-callout--three">
+            <svg viewBox="0 0 220 80"><path pathLength="1" d="M5 42 C 72 42, 98 42, 150 42 L216 42" /></svg>
+            <b>03</b><span>FOCUS FADES</span>
+          </div>
+          <div class="pf-callout pf-callout--four">
+            <svg viewBox="0 0 220 80"><path pathLength="1" d="M5 18 C 62 18, 88 62, 144 62 L216 62" /></svg>
+            <b>04</b><span>FATIGUE COMPOUNDS</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -182,6 +228,8 @@
     import { initProductRenderer } from "./v4/product-renderer.js";
     import { initOrchestrator } from "./v4/scroll-orchestrator.js";
     import "./v4/sections/hero.js";
+    import "./v4/sections/hero-to-problem.js";
+    import "./v4/sections/problem.js";
 
     initLazyAssets();
     initProductRenderer();

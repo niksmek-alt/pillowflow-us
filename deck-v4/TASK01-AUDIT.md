@@ -30,5 +30,5 @@ Branch: `pillowflow-cinematic-v4`
 ## Known follow-on work
 
 - Task 03 should reuse `#seat-landing-anchor` and `ctx.productFlightVars()` for the pinned hero-to-seat transition.
-- Task 04 should replace the problem placeholder with the seat scene and SVG callouts.
+- Task 04 now has the first seat scene and SVG callout pass in place.
 - Task 11 should reuse `#final-product-anchor` so the persistent product returns to the same opening float behavior.

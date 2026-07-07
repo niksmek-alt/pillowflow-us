@@ -28,17 +28,6 @@ registerSection({
     window.addEventListener("orientationchange", sync, { passive: true });
     window.addEventListener("load", sync, { once: true });
 
-    if (!mobile && ctx.product) {
-      gsap.to(ctx.product, {
-        y: "+=18",
-        rotation: "-=1.6",
-        duration: 3.2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }
-
     if (flowLines.length) {
       gsap.set(flowLines, { strokeDasharray: 1, strokeDashoffset: 1 });
       gsap.to(flowLines, {
