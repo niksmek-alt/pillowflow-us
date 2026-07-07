@@ -58,6 +58,7 @@ export async function initOrchestrator() {
     mm.add(MQ.desktop, () => {
       const timeline = def.build(gsap, ctx, { mobile: false });
       if (!timeline) return undefined;
+      const eventCtx = { mobile: false };
 
       const trigger = ScrollTrigger.create({
         trigger: el,
@@ -68,6 +69,10 @@ export async function initOrchestrator() {
         animation: timeline,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        onEnter: (self) => def.onEnter?.(gsap, ctx, eventCtx, self),
+        onLeave: (self) => def.onLeave?.(gsap, ctx, eventCtx, self),
+        onEnterBack: (self) => def.onEnterBack?.(gsap, ctx, eventCtx, self),
+        onLeaveBack: (self) => def.onLeaveBack?.(gsap, ctx, eventCtx, self),
       });
 
       return () => trigger.kill();
@@ -79,6 +84,7 @@ export async function initOrchestrator() {
 
       const mobilePin = Boolean(def.pinMobile ?? def.pin);
       const mobileScrub = Boolean(def.scrubMobile ?? mobilePin);
+      const eventCtx = { mobile: true };
       const trigger = ScrollTrigger.create({
         trigger: el,
         start: mobilePin ? "top top" : "top 75%",
@@ -89,6 +95,10 @@ export async function initOrchestrator() {
         toggleActions: mobileScrub ? undefined : (def.toggleActions ?? "play none none reverse"),
         anticipatePin: mobilePin ? 1 : 0,
         invalidateOnRefresh: true,
+        onEnter: (self) => def.onEnter?.(gsap, ctx, eventCtx, self),
+        onLeave: (self) => def.onLeave?.(gsap, ctx, eventCtx, self),
+        onEnterBack: (self) => def.onEnterBack?.(gsap, ctx, eventCtx, self),
+        onLeaveBack: (self) => def.onLeaveBack?.(gsap, ctx, eventCtx, self),
       });
 
       return () => trigger.kill();

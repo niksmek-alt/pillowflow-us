@@ -18,6 +18,15 @@ registerSection({
   pinMobile: false,
   pinLength: PIN.heroToProblem,
   scrubMobile: false,
+  onLeave(gsap, ctx) {
+    if (ctx.product) gsap.set(ctx.product, { autoAlpha: 0 });
+  },
+  onEnterBack(gsap, ctx) {
+    if (ctx.product) gsap.set(ctx.product, { autoAlpha: 1 });
+  },
+  onLeaveBack(gsap, ctx) {
+    if (ctx.product) gsap.set(ctx.product, { autoAlpha: 1 });
+  },
   build(gsap, ctx, { mobile }) {
     const section = document.getElementById("transition-hero-problem");
     const anchor = document.getElementById("seat-landing-anchor");

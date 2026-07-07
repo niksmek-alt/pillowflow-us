@@ -8,6 +8,12 @@ registerSection({
   pinMobile: false,
   pinLength: PIN.problemCallouts,
   scrubMobile: false,
+  onEnter(gsap, ctx) {
+    if (ctx.product) gsap.set(ctx.product, { autoAlpha: 0 });
+  },
+  onEnterBack(gsap, ctx) {
+    if (ctx.product) gsap.set(ctx.product, { autoAlpha: 0 });
+  },
   build(gsap, ctx, { mobile }) {
     const section = document.getElementById("problem");
     if (!section) return null;
@@ -23,6 +29,10 @@ registerSection({
     gsap.set(section.querySelector(".pf-seat-photo"), { scale: mobile ? 1.08 : 1.04 });
 
     const tl = gsap.timeline({ defaults: { ease: EASE.out } });
+
+    if (ctx.product) {
+      tl.to(ctx.product, { opacity: 0, overwrite: "auto", duration: 0.01, ease: "none" }, 0);
+    }
 
     tl
       .to(copyItems, { opacity: 1, y: 0, stagger: 0.06, duration: 0.38 }, 0.05)
