@@ -22,6 +22,7 @@ registerSection({
     gsap.set(calloutPaths, { strokeDasharray: 1, strokeDashoffset: 1 });
     gsap.set(copyItems, { opacity: 0, y: 28 });
     gsap.set(section.querySelector(".pf-problem-seat"), { opacity: 0.65, scale: mobile ? 0.92 : 0.94, y: mobile ? 36 : 52 });
+    gsap.set(section.querySelector(".pf-seat-photo"), { scale: mobile ? 1.08 : 1.04 });
 
     const tl = gsap.timeline({ defaults: { ease: EASE.out } });
 
@@ -33,18 +34,27 @@ registerSection({
         yPercent: -50,
         rotation: mobile ? -7 : -11,
         scale: mobile ? 0.62 : 0.66,
-        opacity: 1,
+        opacity: 0,
+        overwrite: "auto",
         duration: 0.2,
         ease: "none",
-      }, 0);
+      }, 0)
+        .to(ctx.product, { opacity: 0, overwrite: "auto", duration: 0.9, ease: "none" }, 0.2);
     }
 
     tl
       .to(copyItems, { opacity: 1, y: 0, stagger: 0.06, duration: 0.38 }, 0.05)
       .to(section.querySelector(".pf-problem-seat"), { opacity: 1, y: 0, scale: 1, duration: 0.44 }, 0.08)
+      .to(section.querySelector(".pf-seat-photo"), { scale: 1.012, duration: 0.54, ease: "power2.out" }, 0.08)
       .to(callouts, { opacity: 1, y: 0, stagger: STAGGER.callouts, duration: 0.3 }, 0.38)
       .to(calloutPaths, { strokeDashoffset: 0, stagger: STAGGER.callouts, duration: 0.38, ease: EASE.draw }, 0.38)
       .to(section.querySelector(".pf-seat-contact-glow"), { opacity: 0.85, scale: 1.1, duration: 0.22, yoyo: true, repeat: 1 }, 0.95);
+
+    if (ctx.product) {
+      tl.eventCallback("onUpdate", () => {
+        if (tl.progress() > 0.02) gsap.set(ctx.product, { opacity: 0, visibility: "visible" });
+      });
+    }
 
     return tl;
   },

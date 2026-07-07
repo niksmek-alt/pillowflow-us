@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="preload" href="./assets/models/PF_Hero_Orange.optimized.glb" as="fetch" crossorigin />
+  <link rel="preload" href="./assets/pillowflow-seat-final.jpg" as="image" />
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./v4/tokens.css" />
 
@@ -107,15 +108,10 @@
           <path class="pf-transition-wave-line pf-transition-wave-line--two" pathLength="1" d="M-70 506 C 220 368, 352 530, 620 425 S 1048 198, 1510 352" />
           <path class="pf-transition-wave-line pf-transition-wave-line--three" pathLength="1" d="M-40 590 C 240 470, 410 604, 692 500 S 1124 284, 1510 430" />
         </svg>
-        <div class="pf-transition-seat">
+        <div class="pf-transition-seat pf-seat-photo-scene">
+          <img class="pf-seat-photo" src="./assets/pillowflow-seat-final.jpg" alt="" decoding="async" fetchpriority="high" />
           <div id="seat-landing-anchor" class="pf-seat-product-anchor"></div>
-          <div class="pf-seat-back"></div>
-          <div class="pf-seat-base">
-            <span class="pf-seat-stitch pf-seat-stitch--one"></span>
-            <span class="pf-seat-stitch pf-seat-stitch--two"></span>
-            <span class="pf-seat-stitch pf-seat-stitch--three"></span>
-            <span class="pf-seat-contact-glow"></span>
-          </div>
+          <span class="pf-seat-contact-glow"></span>
         </div>
         <p class="pf-transition-caption">PillowFlow moves with the scroll and lands where the seat misses support.</p>
       </div>
@@ -129,15 +125,10 @@
           <p class="pf-body">Long hours create constant pressure on one unsupported area. Drivers adapt. Fatigue builds. Performance changes.</p>
         </div>
         <div class="pf-problem-stage" aria-hidden="true">
-          <div class="pf-problem-seat">
+          <div class="pf-problem-seat pf-seat-photo-scene pf-seat-photo-scene--problem">
+            <img class="pf-seat-photo" src="./assets/pillowflow-seat-final.jpg" alt="" loading="lazy" decoding="async" />
             <div id="problem-seat-anchor" class="pf-seat-product-anchor"></div>
-            <div class="pf-seat-back"></div>
-            <div class="pf-seat-base">
-              <span class="pf-seat-stitch pf-seat-stitch--one"></span>
-              <span class="pf-seat-stitch pf-seat-stitch--two"></span>
-              <span class="pf-seat-stitch pf-seat-stitch--three"></span>
-              <span class="pf-seat-contact-glow"></span>
-            </div>
+            <span class="pf-seat-contact-glow"></span>
           </div>
           <div class="pf-callout pf-callout--one">
             <svg viewBox="0 0 220 80"><path pathLength="1" d="M5 54 C 62 54, 80 20, 132 20 L216 20" /></svg>
