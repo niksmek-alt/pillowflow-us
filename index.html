@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/language-switcher.css">
-<link rel="preload" href="assets/pillowflow-seat-cutout.webp" as="image" type="image/webp">
+<link rel="preload" href="assets/pillowflow-seat-hero.webp" as="image" type="image/webp">
 <link rel="canonical" href="https://pillowflow.us/">
 <link rel="alternate" hreflang="en" href="https://pillowflow.us/">
 <link rel="alternate" hreflang="es" href="https://pillowflow.us/es/">
@@ -340,7 +340,7 @@ p{color:var(--secondary)}
 
 .hero-stage{
   position:relative;
-  min-height:620px;
+  min-height:660px;
   overflow:visible;
 }
 .hero-stage::before{
@@ -366,12 +366,12 @@ p{color:var(--secondary)}
 .hero-seat-image{
   position:absolute;
   z-index:2;
-  right:-15%;
-  top:-5%;
-  width:min(72vw,860px);
+  right:-86%;
+  top:-12%;
+  width:min(96vw,1140px);
   max-width:none;
   height:auto;
-  filter:drop-shadow(0 34px 42px rgba(15,23,42,.18));
+  filter:drop-shadow(0 34px 44px rgba(15,23,42,.2));
   transform:translate3d(0,0,0);
 }
 .hero-callout{
@@ -402,11 +402,11 @@ p{color:var(--secondary)}
 }
 .hero-callout.one{left:4%;bottom:26%}
 .hero-callout.one::before{left:100%;top:16px}
-.hero-callout.two{right:4%;top:14%}
+.hero-callout.two{right:-8%;top:14%}
 .hero-callout.two::before{right:100%;top:17px}
-.hero-callout.three{right:0;bottom:24%}
+.hero-callout.three{right:-12%;bottom:24%}
 .hero-callout.three::before{right:100%;top:17px}
-.hero-callout.four{left:36%;bottom:10%}
+.hero-callout.four{left:50%;bottom:8%}
 .hero-callout.four::before{left:100%;top:17px;width:92px}
 
 .hero-panel{
@@ -1225,7 +1225,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       </div>
 
       <aside class="hero-stage reveal" aria-label="PF-X01 support shown on a vehicle seat">
-        <img class="hero-seat-image" src="assets/pillowflow-seat-cutout.webp" alt="Orange PF-X01 PillowFlow support resting on a dark vehicle seat" width="768" height="591" fetchpriority="high">
+        <img class="hero-seat-image" src="assets/pillowflow-seat-hero.webp" alt="Orange PF-X01 PillowFlow support resting on a dark vehicle seat" width="1271" height="898" fetchpriority="high">
         <div class="hero-callout one">
           <strong>01</strong>
           <span>The leg never rests</span>
