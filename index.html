@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/language-switcher.css">
+<link rel="preload" href="assets/pillowflow-seat-cutout.webp" as="image" type="image/webp">
 <link rel="canonical" href="https://pillowflow.us/">
 <link rel="alternate" hreflang="en" href="https://pillowflow.us/">
 <link rel="alternate" hreflang="es" href="https://pillowflow.us/es/">
@@ -275,25 +276,22 @@ p{color:var(--secondary)}
   min-height:calc(100dvh - 68px);
   padding:74px 0 58px;
   background:
-    radial-gradient(ellipse at 78% 13%,rgba(232,103,58,.26),transparent 35%),
-    radial-gradient(ellipse at 12% 88%,rgba(15,23,42,.08),transparent 36%),
-    linear-gradient(155deg,#ffffff 0%,#fff7ed 48%,#f7f5ef 100%);
+    linear-gradient(90deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.9) 44%,rgba(255,247,237,.68) 100%),
+    linear-gradient(155deg,#ffffff 0%,#fffaf5 55%,#f7f5ef 100%);
   overflow:hidden;
 }
 .hero::before{
   content:"";
   position:absolute;
-  inset:3% -18% auto auto;
-  width:76%;
-  height:92%;
-  border-radius:48%;
+  inset:0 0 auto auto;
+  width:58%;
+  height:100%;
   background:
-    radial-gradient(ellipse at 44% 47%,rgba(232,103,58,.18),rgba(232,103,58,.05) 54%,transparent 72%),
-    conic-gradient(from 180deg at 50% 50%,transparent,rgba(232,103,58,.12),transparent 38%,rgba(15,23,42,.08),transparent 68%);
-  transform:translate3d(0,var(--hero-shift),0) rotate(-9deg) scale(1.02);
+    linear-gradient(90deg,transparent,rgba(255,255,255,.82) 38%,rgba(255,255,255,.14)),
+    repeating-linear-gradient(0deg,rgba(15,23,42,.045) 0 1px,transparent 1px 86px);
+  transform:translate3d(0,var(--hero-shift),0);
   transition:transform .12s linear;
   z-index:-1;
-  animation:heroFlow 14s var(--ease) infinite alternate;
 }
 .hero::after{
   content:"";
@@ -306,16 +304,12 @@ p{color:var(--secondary)}
   opacity:.44;
   mix-blend-mode:multiply;
 }
-@keyframes heroFlow{
-  from{transform:translate3d(0,var(--hero-shift),0) rotate(-9deg) scale(1.02)}
-  to{transform:translate3d(-2.6%,calc(var(--hero-shift) + 18px),0) rotate(-2deg) scale(1.08)}
-}
 .hero-grid{
   position:relative;
   z-index:1;
   display:grid;
-  grid-template-columns:minmax(0,.94fr) minmax(420px,1.06fr);
-  gap:42px;
+  grid-template-columns:minmax(0,.88fr) minmax(480px,1.12fr);
+  gap:34px;
   align-items:center;
 }
 .hero-copy p{
@@ -346,118 +340,74 @@ p{color:var(--secondary)}
 
 .hero-stage{
   position:relative;
-  min-height:560px;
-  display:grid;
-  place-items:center;
-  border-radius:10px;
-  overflow:hidden;
+  min-height:620px;
+  overflow:visible;
 }
 .hero-stage::before{
   content:"";
   position:absolute;
-  inset:12% 2% 8%;
-  border-radius:50%;
-  background:
-    radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,247,237,.52) 55%,transparent 74%),
-    radial-gradient(closest-side,rgba(232,103,58,.2),transparent 72%);
-  filter:blur(2px);
-  transform:rotate(-13deg);
+  right:-11%;
+  bottom:9%;
+  width:92%;
+  height:20%;
+  border-radius:999px;
+  background:radial-gradient(closest-side,rgba(15,23,42,.18),rgba(15,23,42,.08) 45%,transparent 72%);
+  filter:blur(22px);
+  opacity:.7;
+  transform:rotate(-8deg);
 }
 .hero-stage::after{
   content:"";
   position:absolute;
-  width:82%;
-  height:20%;
-  left:10%;
-  bottom:11%;
-  border-radius:50%;
-  background:radial-gradient(closest-side,rgba(15,23,42,.18),rgba(232,103,58,.08) 48%,transparent 72%);
-  filter:blur(18px);
-  opacity:.65;
-  transform:rotate(-9deg);
+  inset:8% -4% auto 22%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(15,23,42,.16),transparent);
 }
-.hero-flowline{
+.hero-seat-image{
   position:absolute;
-  inset:7% -12% auto auto;
-  width:98%;
-  height:68%;
-  border:1px solid rgba(232,103,58,.22);
-  border-left-color:transparent;
-  border-bottom-color:transparent;
-  border-radius:52%;
-  transform:rotate(-16deg);
-  opacity:.8;
-  animation:heroOrbit 11s linear infinite;
-}
-.hero-flowline:nth-child(2){
-  inset:auto -7% 10% auto;
-  width:74%;
-  height:48%;
-  border-color:rgba(15,23,42,.12);
-  border-right-color:transparent;
-  transform:rotate(12deg);
-  animation-duration:15s;
-  animation-direction:reverse;
-}
-@keyframes heroOrbit{
-  to{transform:rotate(344deg)}
-}
-.hero-canvas-wrap{
-  position:relative;
   z-index:2;
-  width:min(100%,720px);
-  height:clamp(360px,54vw,620px);
-  animation:pillowFloat 5.8s var(--ease) infinite alternate;
+  right:-15%;
+  top:-5%;
+  width:min(72vw,860px);
+  max-width:none;
+  height:auto;
+  filter:drop-shadow(0 34px 42px rgba(15,23,42,.18));
+  transform:translate3d(0,0,0);
 }
-@keyframes pillowFloat{
-  from{transform:translate3d(0,-8px,0) rotate(-.6deg)}
-  to{transform:translate3d(0,12px,0) rotate(.8deg)}
-}
-.hero-canvas-wrap canvas{
-  width:100%;
-  height:100%;
-  display:block;
-}
-.hero-model-fallback{
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  padding:28px;
-  color:var(--muted);
-  font-size:14px;
-  text-align:center;
-}
-.hero-stage.is-loaded .hero-model-fallback{display:none}
-.hero-stat{
+.hero-callout{
   position:absolute;
   z-index:3;
-  max-width:214px;
-  padding:12px 13px;
-  border:1px solid rgba(255,255,255,.78);
-  border-radius:8px;
-  background:rgba(255,255,255,.72);
   color:var(--navy);
-  box-shadow:0 18px 48px rgba(15,23,42,.1);
-  backdrop-filter:blur(18px);
-}
-.hero-stat strong{
-  display:block;
-  font-size:12px;
+  font-size:11px;
+  font-weight:850;
   line-height:1.2;
   letter-spacing:.06em;
   text-transform:uppercase;
 }
-.hero-stat span{
-  display:block;
-  margin-top:5px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.35;
+.hero-callout::before{
+  content:"";
+  position:absolute;
+  width:76px;
+  border-top:1px dashed rgba(15,23,42,.34);
 }
-.hero-stat.one{left:2%;top:17%}
-.hero-stat.two{right:3%;top:25%}
-.hero-stat.three{left:9%;bottom:16%}
+.hero-callout strong{
+  display:block;
+  margin-bottom:4px;
+  color:var(--accent);
+  font-size:13px;
+}
+.hero-callout span{
+  display:block;
+  max-width:112px;
+}
+.hero-callout.one{left:4%;bottom:26%}
+.hero-callout.one::before{left:100%;top:16px}
+.hero-callout.two{right:4%;top:14%}
+.hero-callout.two::before{right:100%;top:17px}
+.hero-callout.three{right:0;bottom:24%}
+.hero-callout.three::before{right:100%;top:17px}
+.hero-callout.four{left:36%;bottom:10%}
+.hero-callout.four::before{left:100%;top:17px;width:92px}
 
 .hero-panel{
   background:white;
@@ -1002,6 +952,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
 @media (max-width:1020px){
   .hero-grid,.product-grid,.scope-grid,.story-grid,.pilot-apply-grid{grid-template-columns:1fr}
   .hero-panel,.hero-stage{max-width:760px;width:100%;margin-inline:auto}
+  .hero-seat-image{right:-5%;width:min(100%,760px)}
   .pilot-apply-copy{position:static}
   .value-grid,.case-grid,.operator-grid,.steps-grid,.roi-grid{grid-template-columns:repeat(2,1fr)}
 }
@@ -1014,14 +965,14 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   .hero-grid{gap:34px}
   .hero-copy p{font-size:17px}
   .hero-proof{grid-template-columns:1fr}
-  .hero-stage{min-height:440px}
-  .hero-canvas-wrap{height:390px}
-  .hero-stat{max-width:178px;padding:10px}
-  .hero-stat strong{font-size:10px}
-  .hero-stat span{font-size:11px}
-  .hero-stat.one{left:0;top:8%}
-  .hero-stat.two{right:0;top:12%}
-  .hero-stat.three{left:5%;bottom:8%}
+  .hero-stage{min-height:430px}
+  .hero-seat-image{right:-34%;top:0;width:138%;max-width:none}
+  .hero-callout{font-size:9px}
+  .hero-callout::before{width:44px}
+  .hero-callout.one{left:0;bottom:24%}
+  .hero-callout.two{right:0;top:13%}
+  .hero-callout.three{right:2%;bottom:24%}
+  .hero-callout.four{left:28%;bottom:8%}
   .section-head{display:block}
   .section-head p{margin-top:14px}
   section{padding:62px 0}
@@ -1211,7 +1162,6 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   }
   .reveal{opacity:1;filter:none;transform:none}
   .metric-track i{width:var(--w)}
-  .hero::before,.hero-flowline,.hero-canvas-wrap{animation:none}
   .object-stage{animation:none;transform:none !important}
   .loader{display:none}
   .object-svg .doutline,.object-svg .drim,.object-svg .dbore{stroke-dashoffset:0}
@@ -1274,23 +1224,23 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         </div>
       </div>
 
-      <aside class="hero-stage reveal" aria-label="Interactive PF-X01 product view">
-        <span class="hero-flowline" aria-hidden="true"></span>
-        <span class="hero-flowline" aria-hidden="true"></span>
-        <div class="hero-canvas-wrap" id="heroModel" data-model="assets/models/PF_Hero_Orange.optimized.glb">
-          <div class="hero-model-fallback">Loading PF-X01 product model</div>
+      <aside class="hero-stage reveal" aria-label="PF-X01 support shown on a vehicle seat">
+        <img class="hero-seat-image" src="assets/pillowflow-seat-cutout.webp" alt="Orange PF-X01 PillowFlow support resting on a dark vehicle seat" width="768" height="591" fetchpriority="high">
+        <div class="hero-callout one">
+          <strong>01</strong>
+          <span>The leg never rests</span>
         </div>
-        <div class="hero-stat one">
-          <strong>Driver comfort survey</strong>
-          <span>5 min field feedback loop</span>
+        <div class="hero-callout two">
+          <strong>02</strong>
+          <span>Pressure concentrates</span>
         </div>
-        <div class="hero-stat two">
-          <strong>Typical pilot batch</strong>
-          <span>10-40 units for active routes</span>
+        <div class="hero-callout three">
+          <strong>03</strong>
+          <span>Focus fades</span>
         </div>
-        <div class="hero-stat three">
-          <strong>In-vehicle trial</strong>
-          <span>21 days, observational only</span>
+        <div class="hero-callout four">
+          <strong>04</strong>
+          <span>Fatigue compounds</span>
         </div>
       </aside>
     </div>
@@ -2011,140 +1961,6 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
 
   if (reduced) setObjectStatic();
   else requestAnimationFrame(frame);
-})();
-</script>
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.178.0/examples/jsm/"
-  }
-}
-</script>
-<script type="module">
-import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
-
-(function(){
-  "use strict";
-
-  var mount = document.getElementById("heroModel");
-  if (!mount || !window.WebGLRenderingContext) return;
-
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var stage = mount.closest(".hero-stage");
-  var modelUrl = mount.getAttribute("data-model");
-  var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(32,1,0.01,100);
-  camera.position.set(0.02,0.02,3.05);
-
-  var renderer = new THREE.WebGLRenderer({
-    alpha:true,
-    antialias:true,
-    powerPreference:"high-performance"
-  });
-  renderer.setClearColor(0x000000,0);
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.18;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1,1.75));
-  mount.appendChild(renderer.domElement);
-
-  var key = new THREE.DirectionalLight(0xffffff,3.2);
-  key.position.set(2.6,3.4,3.8);
-  scene.add(key);
-
-  var fill = new THREE.DirectionalLight(0xffc7a8,1.35);
-  fill.position.set(-2.2,1.4,1.9);
-  scene.add(fill);
-
-  var rim = new THREE.DirectionalLight(0xffffff,2.1);
-  rim.position.set(-1.8,2.6,-2.4);
-  scene.add(rim);
-
-  var ambient = new THREE.HemisphereLight(0xffffff,0xf3ded0,1.75);
-  scene.add(ambient);
-
-  var group = new THREE.Group();
-  scene.add(group);
-
-  var loader = new GLTFLoader();
-  loader.setMeshoptDecoder(MeshoptDecoder);
-  loader.load(modelUrl,function(gltf){
-    var object = gltf.scene;
-    var box = new THREE.Box3().setFromObject(object);
-    var size = box.getSize(new THREE.Vector3());
-    var center = box.getCenter(new THREE.Vector3());
-    object.position.sub(center);
-
-    var maxAxis = Math.max(size.x,size.y,size.z);
-    var scale = maxAxis > 0 ? 1.18 / maxAxis : 1;
-    object.scale.setScalar(scale);
-    object.rotation.set(0.34,-1.48,-0.18);
-
-    object.traverse(function(child){
-      if (!child.isMesh) return;
-      child.castShadow = false;
-      child.receiveShadow = false;
-      if (child.material) {
-        child.material.color = new THREE.Color(0xe8673a);
-        child.material.roughness = 0.56;
-        child.material.metalness = 0.0;
-        child.material.envMapIntensity = 0.85;
-        child.material.needsUpdate = true;
-      }
-    });
-
-    group.add(object);
-    group.position.set(0,-0.02,0);
-    if (stage) stage.classList.add("is-loaded");
-  },undefined,function(){
-    var fallback = mount.querySelector(".hero-model-fallback");
-    if (fallback) fallback.textContent = "PF-X01 model could not load.";
-  });
-
-  function resize(){
-    var rect = mount.getBoundingClientRect();
-    var width = Math.max(1,rect.width);
-    var height = Math.max(1,rect.height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width,height,false);
-  }
-
-  if ("ResizeObserver" in window) {
-    var ro = new ResizeObserver(resize);
-    ro.observe(mount);
-  } else {
-    window.addEventListener("resize",resize,{ passive:true });
-  }
-  resize();
-
-  var start = performance.now();
-  function tick(now){
-    var time = (now - start) / 1000;
-    var hero = document.querySelector(".hero");
-    var scrollP = 0;
-    if (hero) {
-      var rect = hero.getBoundingClientRect();
-      scrollP = Math.max(0,Math.min(1,-rect.top / Math.max(1,rect.height)));
-    }
-
-    if (!reduced) {
-      group.rotation.y = -0.18 + Math.sin(time * .38) * .08 + scrollP * .55;
-      group.rotation.x = Math.sin(time * .31) * .035 - scrollP * .08;
-      group.rotation.z = Math.sin(time * .27) * .025 + scrollP * .14;
-      group.position.y = Math.sin(time * .72) * .035 - scrollP * .06;
-      group.position.x = scrollP * .08;
-      camera.position.z = 3.05 - scrollP * .34;
-      camera.lookAt(0,0,0);
-    }
-
-    renderer.render(scene,camera);
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
 })();
 </script>
 </body>
