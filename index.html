@@ -208,8 +208,10 @@ p{color:var(--secondary)}
   border-bottom:1px solid rgba(229,231,235,.84);
   backdrop-filter:blur(16px);
   transition:background .3s ease,box-shadow .3s ease;
+  will-change:transform;
 }
 .site-header.scrolled{background:rgba(255,255,255,.95);box-shadow:0 10px 30px rgba(15,23,42,.06)}
+.site-header.is-gsap-hidden{pointer-events:none}
 .site-header::after{
   content:"";
   position:absolute;
@@ -270,23 +272,28 @@ p{color:var(--secondary)}
 .hero{
   position:relative;
   isolation:isolate;
-  padding:86px 0 64px;
+  min-height:calc(100dvh - 68px);
+  padding:74px 0 58px;
   background:
-    radial-gradient(ellipse at 76% 8%,rgba(232,103,58,.2),transparent 34%),
-    linear-gradient(160deg,#ffffff 0%,#fffaf5 54%,#f8fafc 100%);
+    radial-gradient(ellipse at 78% 13%,rgba(232,103,58,.26),transparent 35%),
+    radial-gradient(ellipse at 12% 88%,rgba(15,23,42,.08),transparent 36%),
+    linear-gradient(155deg,#ffffff 0%,#fff7ed 48%,#f7f5ef 100%);
   overflow:hidden;
 }
 .hero::before{
   content:"";
   position:absolute;
-  inset:8% -10% auto auto;
-  width:58%;
-  height:78%;
-  border-radius:50%;
-  background:radial-gradient(ellipse at 42% 48%,rgba(232,103,58,.14),rgba(232,103,58,.045) 54%,transparent 73%);
-  transform:translate3d(0,var(--hero-shift),0) rotate(-6deg);
+  inset:3% -18% auto auto;
+  width:76%;
+  height:92%;
+  border-radius:48%;
+  background:
+    radial-gradient(ellipse at 44% 47%,rgba(232,103,58,.18),rgba(232,103,58,.05) 54%,transparent 72%),
+    conic-gradient(from 180deg at 50% 50%,transparent,rgba(232,103,58,.12),transparent 38%,rgba(15,23,42,.08),transparent 68%);
+  transform:translate3d(0,var(--hero-shift),0) rotate(-9deg) scale(1.02);
   transition:transform .12s linear;
   z-index:-1;
+  animation:heroFlow 14s var(--ease) infinite alternate;
 }
 .hero::after{
   content:"";
@@ -294,17 +301,21 @@ p{color:var(--secondary)}
   inset:0;
   pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(15,23,42,.04),transparent 18%,transparent 82%,rgba(15,23,42,.04)),
-    repeating-linear-gradient(0deg,rgba(15,23,42,.025) 0 1px,transparent 1px 7px);
-  opacity:.34;
+    linear-gradient(90deg,rgba(15,23,42,.035),transparent 18%,transparent 82%,rgba(15,23,42,.035)),
+    repeating-linear-gradient(90deg,rgba(15,23,42,.028) 0 1px,transparent 1px 10vw);
+  opacity:.44;
   mix-blend-mode:multiply;
+}
+@keyframes heroFlow{
+  from{transform:translate3d(0,var(--hero-shift),0) rotate(-9deg) scale(1.02)}
+  to{transform:translate3d(-2.6%,calc(var(--hero-shift) + 18px),0) rotate(-2deg) scale(1.08)}
 }
 .hero-grid{
   position:relative;
   z-index:1;
   display:grid;
-  grid-template-columns:minmax(0,1.05fr) minmax(340px,.72fr);
-  gap:56px;
+  grid-template-columns:minmax(0,.94fr) minmax(420px,1.06fr);
+  gap:42px;
   align-items:center;
 }
 .hero-copy p{
@@ -332,6 +343,121 @@ p{color:var(--secondary)}
 .proof-tile span{display:block;margin-top:8px;color:var(--muted);font-size:13px;line-height:1.4}
 .proof-tile span b{color:var(--navy);font-size:15px;line-height:1.3}
 .proof-tile.copy-only strong{font-size:14px;line-height:1.4}
+
+.hero-stage{
+  position:relative;
+  min-height:560px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  overflow:hidden;
+}
+.hero-stage::before{
+  content:"";
+  position:absolute;
+  inset:12% 2% 8%;
+  border-radius:50%;
+  background:
+    radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,247,237,.52) 55%,transparent 74%),
+    radial-gradient(closest-side,rgba(232,103,58,.2),transparent 72%);
+  filter:blur(2px);
+  transform:rotate(-13deg);
+}
+.hero-stage::after{
+  content:"";
+  position:absolute;
+  width:82%;
+  height:20%;
+  left:10%;
+  bottom:11%;
+  border-radius:50%;
+  background:radial-gradient(closest-side,rgba(15,23,42,.18),rgba(232,103,58,.08) 48%,transparent 72%);
+  filter:blur(18px);
+  opacity:.65;
+  transform:rotate(-9deg);
+}
+.hero-flowline{
+  position:absolute;
+  inset:7% -12% auto auto;
+  width:98%;
+  height:68%;
+  border:1px solid rgba(232,103,58,.22);
+  border-left-color:transparent;
+  border-bottom-color:transparent;
+  border-radius:52%;
+  transform:rotate(-16deg);
+  opacity:.8;
+  animation:heroOrbit 11s linear infinite;
+}
+.hero-flowline:nth-child(2){
+  inset:auto -7% 10% auto;
+  width:74%;
+  height:48%;
+  border-color:rgba(15,23,42,.12);
+  border-right-color:transparent;
+  transform:rotate(12deg);
+  animation-duration:15s;
+  animation-direction:reverse;
+}
+@keyframes heroOrbit{
+  to{transform:rotate(344deg)}
+}
+.hero-canvas-wrap{
+  position:relative;
+  z-index:2;
+  width:min(100%,720px);
+  height:clamp(360px,54vw,620px);
+  animation:pillowFloat 5.8s var(--ease) infinite alternate;
+}
+@keyframes pillowFloat{
+  from{transform:translate3d(0,-8px,0) rotate(-.6deg)}
+  to{transform:translate3d(0,12px,0) rotate(.8deg)}
+}
+.hero-canvas-wrap canvas{
+  width:100%;
+  height:100%;
+  display:block;
+}
+.hero-model-fallback{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  padding:28px;
+  color:var(--muted);
+  font-size:14px;
+  text-align:center;
+}
+.hero-stage.is-loaded .hero-model-fallback{display:none}
+.hero-stat{
+  position:absolute;
+  z-index:3;
+  max-width:214px;
+  padding:12px 13px;
+  border:1px solid rgba(255,255,255,.78);
+  border-radius:8px;
+  background:rgba(255,255,255,.72);
+  color:var(--navy);
+  box-shadow:0 18px 48px rgba(15,23,42,.1);
+  backdrop-filter:blur(18px);
+}
+.hero-stat strong{
+  display:block;
+  font-size:12px;
+  line-height:1.2;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.hero-stat span{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+}
+.hero-stat.one{left:2%;top:17%}
+.hero-stat.two{right:3%;top:25%}
+.hero-stat.three{left:9%;bottom:16%}
 
 .hero-panel{
   background:white;
@@ -875,7 +1001,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
 @keyframes drawLine{to{stroke-dashoffset:0}}
 @media (max-width:1020px){
   .hero-grid,.product-grid,.scope-grid,.story-grid,.pilot-apply-grid{grid-template-columns:1fr}
-  .hero-panel{max-width:640px}
+  .hero-panel,.hero-stage{max-width:760px;width:100%;margin-inline:auto}
   .pilot-apply-copy{position:static}
   .value-grid,.case-grid,.operator-grid,.steps-grid,.roi-grid{grid-template-columns:repeat(2,1fr)}
 }
@@ -884,10 +1010,18 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   .nav{height:auto;padding:14px 0;align-items:flex-start}
   .brand-logo{width:74px}
   .nav-links{display:none}
-  .hero{padding:56px 0 46px}
+  .hero{min-height:auto;padding:46px 0 42px}
   .hero-grid{gap:34px}
   .hero-copy p{font-size:17px}
   .hero-proof{grid-template-columns:1fr}
+  .hero-stage{min-height:440px}
+  .hero-canvas-wrap{height:390px}
+  .hero-stat{max-width:178px;padding:10px}
+  .hero-stat strong{font-size:10px}
+  .hero-stat span{font-size:11px}
+  .hero-stat.one{left:0;top:8%}
+  .hero-stat.two{right:0;top:12%}
+  .hero-stat.three{left:5%;bottom:8%}
   .section-head{display:block}
   .section-head p{margin-top:14px}
   section{padding:62px 0}
@@ -1077,6 +1211,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   }
   .reveal{opacity:1;filter:none;transform:none}
   .metric-track i{width:var(--w)}
+  .hero::before,.hero-flowline,.hero-canvas-wrap{animation:none}
   .object-stage{animation:none;transform:none !important}
   .loader{display:none}
   .object-svg .doutline,.object-svg .drim,.object-svg .dbore{stroke-dashoffset:0}
@@ -1133,31 +1268,29 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
           <a class="btn btn-secondary" href="/referral.html">Refer a Fleet</a>
         </div>
         <div class="hero-proof" aria-label="Pilot structure highlights">
-          <div class="proof-tile"><strong>01</strong><span><b>Miss One Driver</b><br>A single missed shift can trigger overtime, route changes, delayed service, and idle equipment.</span></div>
+          <div class="proof-tile"><strong>01</strong><span><b>One Driver Calls Out</b><br>An unexpected day off can trigger overtime, route changes, delayed service, and idle equipment.</span></div>
           <div class="proof-tile"><strong>02</strong><span><b>Lose $800–$1,300</b><br>The operational cost of replacing one absent driver often exceeds the driver’s daily wage.</span></div>
           <div class="proof-tile"><strong>03</strong><span><b>Preventable Risk</b><br>Musculoskeletal strain is one of the most common transportation-related injury categories and can build over thousands of seated driving hours.</span></div>
         </div>
       </div>
 
-      <aside class="hero-panel reveal" aria-label="Sample field pilot log">
-        <div class="panel-top">
-          <span class="panel-title">Fleet pilot snapshot</span>
-          <span class="status"><i aria-hidden="true"></i>Sample</span>
+      <aside class="hero-stage reveal" aria-label="Interactive PF-X01 product view">
+        <span class="hero-flowline" aria-hidden="true"></span>
+        <span class="hero-flowline" aria-hidden="true"></span>
+        <div class="hero-canvas-wrap" id="heroModel" data-model="assets/models/PF_Hero_Orange.optimized.glb">
+          <div class="hero-model-fallback">Loading PF-X01 product model</div>
         </div>
-        <div class="pilot-card">
-          <div class="metric">
-            <div class="metric-label"><span>Driver comfort survey</span><b>5 min</b></div>
-            <div class="metric-track"><i style="--w:86%"></i></div>
-          </div>
-          <div class="metric">
-            <div class="metric-label"><span>Typical pilot batch</span><b>10-40 units</b></div>
-            <div class="metric-track"><i style="--w:74%"></i></div>
-          </div>
-          <div class="metric">
-            <div class="metric-label"><span>In-vehicle trial window</span><b>21 days</b></div>
-            <div class="metric-track"><i style="--w:68%"></i></div>
-          </div>
-          <p class="panel-note"><b>Observational data only — not causal.</b><br>Sample metrics are illustrative. PillowFlow is a comfort aid, not a medical device or safety system.</p>
+        <div class="hero-stat one">
+          <strong>Driver comfort survey</strong>
+          <span>5 min field feedback loop</span>
+        </div>
+        <div class="hero-stat two">
+          <strong>Typical pilot batch</strong>
+          <span>10-40 units for active routes</span>
+        </div>
+        <div class="hero-stat three">
+          <strong>In-vehicle trial</strong>
+          <span>21 days, observational only</span>
         </div>
       </aside>
     </div>
@@ -1616,6 +1749,8 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script>
 (function(){
   "use strict";
@@ -1623,6 +1758,8 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var docEl = document.documentElement;
   if (reduced) docEl.classList.add("rm");
+  var hasGSAP = Boolean(window.gsap && window.ScrollTrigger);
+  if (hasGSAP) window.gsap.registerPlugin(window.ScrollTrigger);
 
   var vh = window.innerHeight;
   window.addEventListener("resize", function(){ vh = window.innerHeight; }, { passive:true });
@@ -1761,9 +1898,59 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   var ringGroup = document.getElementById("ringGroup");
   var siteHeader = document.querySelector(".site-header");
   var hero = document.querySelector(".hero");
-  var headerCompact = false;
   var objP = 0;
   var objPT = 0;
+
+  function setHeaderHidden(hidden){
+    if (!siteHeader || !hasGSAP) return;
+    siteHeader.classList.toggle("is-gsap-hidden",hidden);
+  }
+
+  function initHeaderScroll(){
+    if (!siteHeader || !hero || !hasGSAP) return;
+    window.gsap.set(siteHeader,{ y:0, opacity:1, filter:"blur(0px)", scale:1, clearProps:"visibility" });
+    if (reduced) {
+      window.ScrollTrigger.create({
+        trigger:hero,
+        start:"bottom top+=84",
+        onEnter:function(){ setHeaderHidden(true); window.gsap.set(siteHeader,{ opacity:0, y:-92 }); },
+        onLeaveBack:function(){ setHeaderHidden(false); window.gsap.set(siteHeader,{ opacity:1, y:0 }); },
+        invalidateOnRefresh:true
+      });
+      return;
+    }
+    var headerFloat = window.gsap.timeline({
+      defaults:{ ease:"none" },
+      scrollTrigger:{
+        trigger:hero,
+        start:"top top",
+        end:"+=560",
+        scrub:.65,
+        invalidateOnRefresh:true,
+        onUpdate:function(self){ setHeaderHidden(self.progress > .96); },
+        onLeaveBack:function(){
+          setHeaderHidden(false);
+          window.gsap.set(siteHeader,{ opacity:1, y:0, filter:"blur(0px)", scale:1 });
+        }
+      }
+    });
+    headerFloat
+      .to(siteHeader,{ y:-8, opacity:.68, scale:.995, duration:.28 },0)
+      .to(siteHeader,{ y:-30, opacity:.24, filter:"blur(.45px)", scale:.985, duration:.42 },.28)
+      .to(siteHeader,{ y:-82, opacity:0, filter:"blur(1.8px)", scale:.97, duration:.30 },.70);
+    window.ScrollTrigger.create({
+      trigger:hero,
+      start:"top top",
+      end:"+=560",
+      onUpdate:function(self){
+        siteHeader.classList.toggle("scrolled",self.progress > .04 && self.progress < .96);
+      },
+      onLeave:function(){ siteHeader.classList.remove("scrolled"); },
+      onLeaveBack:function(){ siteHeader.classList.remove("scrolled"); }
+    });
+  }
+
+  initHeaderScroll();
 
   function setObjectStatic(){
     drawSeq.forEach(function(item){
@@ -1812,11 +1999,6 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
     var pageProgress = clamp(window.scrollY / pageMax,0,1);
     docEl.style.setProperty("--scroll-progress",pageProgress.toFixed(4));
     if (hero) hero.style.setProperty("--hero-shift",Math.min(window.scrollY * .055,26).toFixed(2) + "px");
-    var shouldCompact = window.scrollY > 24;
-    if (siteHeader && shouldCompact !== headerCompact) {
-      siteHeader.classList.toggle("scrolled",shouldCompact);
-      headerCompact = shouldCompact;
-    }
     if (track) {
       var rect = track.getBoundingClientRect();
       var total = rect.height - vh;
@@ -1829,6 +2011,140 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
 
   if (reduced) setObjectStatic();
   else requestAnimationFrame(frame);
+})();
+</script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.178.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
+
+(function(){
+  "use strict";
+
+  var mount = document.getElementById("heroModel");
+  if (!mount || !window.WebGLRenderingContext) return;
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var stage = mount.closest(".hero-stage");
+  var modelUrl = mount.getAttribute("data-model");
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(32,1,0.01,100);
+  camera.position.set(0.02,0.02,3.05);
+
+  var renderer = new THREE.WebGLRenderer({
+    alpha:true,
+    antialias:true,
+    powerPreference:"high-performance"
+  });
+  renderer.setClearColor(0x000000,0);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.18;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1,1.75));
+  mount.appendChild(renderer.domElement);
+
+  var key = new THREE.DirectionalLight(0xffffff,3.2);
+  key.position.set(2.6,3.4,3.8);
+  scene.add(key);
+
+  var fill = new THREE.DirectionalLight(0xffc7a8,1.35);
+  fill.position.set(-2.2,1.4,1.9);
+  scene.add(fill);
+
+  var rim = new THREE.DirectionalLight(0xffffff,2.1);
+  rim.position.set(-1.8,2.6,-2.4);
+  scene.add(rim);
+
+  var ambient = new THREE.HemisphereLight(0xffffff,0xf3ded0,1.75);
+  scene.add(ambient);
+
+  var group = new THREE.Group();
+  scene.add(group);
+
+  var loader = new GLTFLoader();
+  loader.setMeshoptDecoder(MeshoptDecoder);
+  loader.load(modelUrl,function(gltf){
+    var object = gltf.scene;
+    var box = new THREE.Box3().setFromObject(object);
+    var size = box.getSize(new THREE.Vector3());
+    var center = box.getCenter(new THREE.Vector3());
+    object.position.sub(center);
+
+    var maxAxis = Math.max(size.x,size.y,size.z);
+    var scale = maxAxis > 0 ? 1.18 / maxAxis : 1;
+    object.scale.setScalar(scale);
+    object.rotation.set(0.34,-1.48,-0.18);
+
+    object.traverse(function(child){
+      if (!child.isMesh) return;
+      child.castShadow = false;
+      child.receiveShadow = false;
+      if (child.material) {
+        child.material.color = new THREE.Color(0xe8673a);
+        child.material.roughness = 0.56;
+        child.material.metalness = 0.0;
+        child.material.envMapIntensity = 0.85;
+        child.material.needsUpdate = true;
+      }
+    });
+
+    group.add(object);
+    group.position.set(0,-0.02,0);
+    if (stage) stage.classList.add("is-loaded");
+  },undefined,function(){
+    var fallback = mount.querySelector(".hero-model-fallback");
+    if (fallback) fallback.textContent = "PF-X01 model could not load.";
+  });
+
+  function resize(){
+    var rect = mount.getBoundingClientRect();
+    var width = Math.max(1,rect.width);
+    var height = Math.max(1,rect.height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width,height,false);
+  }
+
+  if ("ResizeObserver" in window) {
+    var ro = new ResizeObserver(resize);
+    ro.observe(mount);
+  } else {
+    window.addEventListener("resize",resize,{ passive:true });
+  }
+  resize();
+
+  var start = performance.now();
+  function tick(now){
+    var time = (now - start) / 1000;
+    var hero = document.querySelector(".hero");
+    var scrollP = 0;
+    if (hero) {
+      var rect = hero.getBoundingClientRect();
+      scrollP = Math.max(0,Math.min(1,-rect.top / Math.max(1,rect.height)));
+    }
+
+    if (!reduced) {
+      group.rotation.y = -0.18 + Math.sin(time * .38) * .08 + scrollP * .55;
+      group.rotation.x = Math.sin(time * .31) * .035 - scrollP * .08;
+      group.rotation.z = Math.sin(time * .27) * .025 + scrollP * .14;
+      group.position.y = Math.sin(time * .72) * .035 - scrollP * .06;
+      group.position.x = scrollP * .08;
+      camera.position.z = 3.05 - scrollP * .34;
+      camera.lookAt(0,0,0);
+    }
+
+    renderer.render(scene,camera);
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 })();
 </script>
 </body>
