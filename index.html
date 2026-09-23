@@ -1573,10 +1573,10 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         <p class="eyebrow" style="color:#fbbf24">Fleet pilot application</p>
         <h2 id="pilot-apply-title">Apply for a PillowFlow™ fleet pilot.</h2>
         <p>Share the essentials about your operation. We will use them to size the evaluation and follow up with practical next steps.</p>
-        <p class="pilot-apply-note">Submitting prepares an email to <a href="mailto:connect@pillowflow.com">connect@pillowflow.com</a>, so your team keeps a copy of the request.</p>
+        <p class="pilot-apply-note">Submitting sends your application directly to PillowFlow. No email app is required.</p>
       </div>
-      <form class="pilot-form reveal" id="pilot-apply-form" action="mailto:connect@pillowflow.com" method="post" enctype="text/plain">
-        <div class="pilot-form-grid">
+      <form class="pilot-form reveal" id="pilot-apply-form">
+        <div class="pilot-form-grid">\n          <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label for="pilot-website">Website</label><input id="pilot-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
           <div class="pilot-field"><label for="pilot-company">Company name</label><input id="pilot-company" name="company_name" type="text" autocomplete="organization" required></div>
           <div class="pilot-field"><label for="pilot-contact">Contact name</label><input id="pilot-contact" name="contact_name" type="text" autocomplete="name" required></div>
           <div class="pilot-field"><label for="pilot-email">Business email</label><input id="pilot-email" name="business_email" type="email" autocomplete="email" required></div>
@@ -1598,7 +1598,7 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         </div>
         <div class="pilot-form-actions">
           <button class="btn btn-primary" type="submit">Apply for a Fleet Pilot <span class="arrow" aria-hidden="true">-></span></button>
-          <p class="pilot-form-status" id="pilot-form-status" aria-live="polite">Your email application will open for review.</p>
+          <p class="pilot-form-status" id="pilot-form-status" aria-live="polite">Your application will be submitted directly to PillowFlow.</p>
         </div>
       </form>
     </div>
@@ -1773,28 +1773,85 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
 
   var pilotForm = document.getElementById("pilot-apply-form");
   var pilotStatus = document.getElementById("pilot-form-status");
+  var pilotEndpoint = "https://oxocvwgfxqryuajndiqa.supabase.co/functions/v1/fleet-pilot-apply";
+
   if (pilotForm) {
-    pilotForm.addEventListener("submit",function(event){
+    pilotForm.addEventListener("submit", async function(event){
       event.preventDefault();
+
       if (!pilotForm.checkValidity()) {
         pilotForm.reportValidity();
         return;
       }
-      var data = new FormData(pilotForm);
-      var company = data.get("company_name") || "Fleet";
-      var fields = [
-        ["Company",data.get("company_name")],
-        ["Contact",data.get("contact_name")],
-        ["Business email",data.get("business_email")],
-        ["Phone",data.get("phone")],
-        ["Fleet type",data.get("fleet_type")],
-        ["Total drivers",data.get("total_drivers_range")],
-        ["Target start date",data.get("target_start_date")],
-        ["Additional notes",data.get("message")]
-      ];
-      var body = fields.filter(function(item){ return item[1]; }).map(function(item){ return item[0] + ": " + item[1]; }).join("\n");
-      if (pilotStatus) pilotStatus.textContent = "Opening your email application…";
-      window.location.href = "mailto:connect@pillowflow.com?subject=" + encodeURIComponent("Fleet Pilot Application — " + company) + "&body=" + encodeURIComponent(body);
+
+      var submitButton = pilotForm.querySelector('button[type="submit"]');
+      var originalButtonHtml = submitButton ? submitButton.innerHTML : "";
+
+      try {
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Submitting…";
+        }
+        if (pilotStatus) pilotStatus.textContent = "Submitting your application…";
+
+        var data = new FormData(pilotForm);
+        var params = new URLSearchParams(window.location.search);
+        var clientSubmissionId =
+          window.crypto && typeof window.crypto.randomUUID === "function"
+            ? window.crypto.randomUUID()
+            : null;
+
+        var payload = {
+          client_submission_id: clientSubmissionId,
+          company_name: data.get("company_name"),
+          contact_name: data.get("contact_name"),
+          business_email: data.get("business_email"),
+          phone: data.get("phone"),
+          fleet_type: data.get("fleet_type"),
+          total_drivers_range: data.get("total_drivers_range"),
+          target_start_date: data.get("target_start_date"),
+          message: data.get("message"),
+          website: data.get("website"),
+          source_url: window.location.href,
+          referrer: document.referrer || null,
+          utm_source: params.get("utm_source"),
+          utm_medium: params.get("utm_medium"),
+          utm_campaign: params.get("utm_campaign"),
+          utm_term: params.get("utm_term"),
+          utm_content: params.get("utm_content"),
+          locale: navigator.language || null
+        };
+
+        var response = await fetch(pilotEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        var result = {};
+        try { result = await response.json(); } catch (_error) {}
+
+        if (!response.ok || !result.ok) {
+          throw new Error(result.error || "Submission failed.");
+        }
+
+        pilotForm.reset();
+        if (pilotStatus) pilotStatus.textContent = "Application submitted. Thank you.";
+        if (submitButton) submitButton.textContent = "Submitted";
+
+        setTimeout(function(){
+          window.location.reload();
+        }, 1200);
+      } catch (error) {
+        if (pilotStatus) {
+          pilotStatus.textContent = "We could not submit your application. Please try again.";
+        }
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonHtml;
+        }
+        console.error("Fleet pilot form submission failed", error);
+      }
     });
   }
 
