@@ -373,6 +373,16 @@ p{color:var(--secondary)}
   object-position:right bottom;
   filter:drop-shadow(0 28px 26px rgba(15,23,42,.14));
 }
+/* Desktop: keep the whole hero (headline, tiles, seat) inside one screen */
+@media (min-width:1021px){
+  .hero{padding:clamp(20px,4.4vh,64px) 0 clamp(20px,3.6vh,48px)}
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(400px,.92fr)}
+  .hero h1{font-size:clamp(36px,min(4.4vw,7vh),68px)}
+  .hero-copy p{margin-top:clamp(12px,2vh,22px);font-size:clamp(15px,2.1vh,19px);line-height:1.55}
+  .hero-actions{margin-top:clamp(16px,3vh,30px)}
+  .hero-proof{margin-top:clamp(14px,3vh,40px)}
+  .hero-stage{min-height:min(620px,calc(100dvh - 68px - 96px))}
+}
 .hero-callout{
   position:absolute;
   z-index:3;
@@ -663,7 +673,10 @@ section{padding:86px 0}
 }
 .roi-math .roi-footnote b{color:var(--navy)}
 .roi-math .roi-v2{display:flex;flex-direction:column;padding:26px}
-.roi-math .roi-v2 h3{font-size:22px;line-height:1.25}
+.roi-math .roi-v2 h3{font-size:20px;line-height:1.25}
+.roi-math .roi-v2 h3 + .roi-body{font-size:15px;line-height:1.45}
+.roi-math .roi-v2 .roi-sources{gap:10px;margin-top:14px}
+.roi-math .roi-v2 .roi-source{padding-top:10px}
 .roi-math .roi-v2 .roi-stat{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin:22px 0 20px}
 .roi-math .roi-v2 .quote-number{margin:0;font-size:clamp(46px,4.2vw,56px);line-height:1;letter-spacing:-.02em}
 .roi-math .roi-v2 .roi-unit{color:var(--secondary);font-size:17px;font-weight:600}
@@ -674,13 +687,6 @@ section{padding:86px 0}
 .roi-math .roi-v2 .roi-rows dt{color:var(--muted)}
 .roi-math .roi-v2 .roi-rows dd{color:var(--navy);font-weight:700;text-align:right}
 .roi-math .roi-v2 .roi-note{margin-top:auto;padding-top:18px;color:var(--muted);font-size:13px;line-height:1.5}
-.roi-math .roi-v2 .roi-bench{padding:11px 0;border-bottom:1px solid var(--hair-soft)}
-.roi-math .roi-v2 h3 + .roi-bench{margin-top:6px}
-.roi-math .roi-v2 .roi-bench:last-child{border-bottom:0;padding-bottom:0}
-.roi-math .roi-v2 .roi-bench b{display:block;color:var(--navy);font-size:28px;line-height:1.1;letter-spacing:-.01em}
-.roi-math .roi-v2 .roi-bench b small{color:var(--secondary);font-size:15px;font-weight:600;letter-spacing:0}
-.roi-math .roi-v2 .roi-bench p{margin-top:4px;color:var(--secondary);font-size:15px;line-height:1.4}
-.roi-math .roi-v2 .roi-bench a{display:inline-block;margin-top:3px;color:var(--muted);font-size:12.5px;font-weight:700;text-decoration:underline;text-decoration-color:var(--hair);text-underline-offset:3px}
 .roi-math .roi-cta{margin:-8px 0 30px;font-size:17px;font-weight:800}
 .roi-math .roi-cta a{color:var(--navy);text-decoration:none}
 .roi-math .roi-cta a span{color:var(--accent)}
@@ -1531,21 +1537,21 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
             <p class="roi-note">Simple cost comparison only. Actual fleet costs and outcomes vary.</p>
           </article>
           <article class="table-card roi-v2">
-            <h3>Why fleet downtime gets expensive</h3>
-            <div class="roi-bench">
-              <b>$1.60 <small>/ mile</small></b>
-              <p>National average dry-van spot rate reported in April 2025.</p>
-              <a href="https://www.reuters.com/business/trump-trade-war-is-wrecking-hope-2025-us-trucking-rebound-2025-04-24/" target="_blank" rel="noopener">Reuters</a>
-            </div>
-            <div class="roi-bench">
-              <b>$2.43 <small>/ mile</small></b>
-              <p>National average dry-van spot rate reported in January 2026.</p>
-              <a href="https://www.dat.com/industry-trends/spot-market-conditions" target="_blank" rel="noopener">DAT Freight &amp; Analytics</a>
-            </div>
-            <div class="roi-bench">
-              <b>$1.70–$2.10 <small>/ mile</small></b>
-              <p>Typical Class 8 total operating-cost range, including driver, fixed, variable, and ownership costs.</p>
-              <a href="https://www.trucking.org/wp-content/uploads/2024/10/An-Analysis-of-the-Operational-Costs-of-Trucking-2024-Update.pdf" target="_blank" rel="noopener">ATA / Trucking.org</a>
+            <h3>Independent sources on fleet downtime economics</h3>
+            <p class="roi-body">Spot rates show what a loaded mile can earn; operating costs show what it takes to run the truck. An idle vehicle still carries its fixed and ownership costs.</p>
+            <div class="roi-sources">
+              <div class="roi-source">
+                <a href="https://www.reuters.com/business/trump-trade-war-is-wrecking-hope-2025-us-trucking-rebound-2025-04-24/" target="_blank" rel="noopener">Reuters</a>
+                <p>National average dry van spot rates around $1.60/mile reported in April 2025.</p>
+              </div>
+              <div class="roi-source">
+                <a href="https://www.dat.com/industry-trends/spot-market-conditions" target="_blank" rel="noopener">DAT Freight &amp; Analytics</a>
+                <p>National average dry van spot rates reached $2.43/mile in January 2026.</p>
+              </div>
+              <div class="roi-source">
+                <a href="https://www.trucking.org/wp-content/uploads/2024/10/An-Analysis-of-the-Operational-Costs-of-Trucking-2024-Update.pdf" target="_blank" rel="noopener">ATA – Trucking.org</a>
+                <p>Typical total operating cost of a Class 8 truck is $1.70–$2.10 per mile, including driver, fixed, variable, and ownership costs.</p>
+              </div>
             </div>
           </article>
         </div>
