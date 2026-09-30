@@ -587,13 +587,30 @@ section{padding:86px 0}
   font-size:11.5px;
 }
 .roi-math .roi-footnote b{color:var(--navy)}
-.roi-math .roi-stat-card{display:flex;flex-direction:column;padding:28px}
-.roi-math .roi-stat-card .quote-number{margin:22px 0 10px;font-size:clamp(44px,5vw,56px);letter-spacing:-.02em}
-.roi-math .roi-stat-card .roi-card-copy{flex:1 0 auto;margin-top:0}
-.roi-math .roi-stat-card .roi-model{margin-top:22px}
-.roi-math .roi-stat-card .roi-model dl{gap:12px;margin-top:0;font-size:14px}
-.roi-math .roi-stat-card .roi-footnote{font-size:12px;line-height:1.5}
-@media (max-width:460px){.roi-math .roi-stat-card{padding:22px}}
+.roi-math .roi-v2{display:flex;flex-direction:column;padding:26px}
+.roi-math .roi-v2 h3{font-size:22px;line-height:1.25}
+.roi-math .roi-v2 .roi-stat{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin:22px 0 20px}
+.roi-math .roi-v2 .quote-number{margin:0;font-size:clamp(46px,4.2vw,56px);line-height:1;letter-spacing:-.02em}
+.roi-math .roi-v2 .roi-unit{color:var(--secondary);font-size:17px;font-weight:600}
+.roi-math .roi-v2 .roi-lead{color:var(--navy);font-size:17px;font-weight:700}
+.roi-math .roi-v2 .roi-body{margin-top:8px;color:var(--secondary);font-size:16px;line-height:1.5}
+.roi-math .roi-v2 .roi-rows{display:grid;gap:6px;margin-top:12px;padding:12px 0;border-top:1px solid var(--hair-soft);border-bottom:1px solid var(--hair-soft);font-size:16px}
+.roi-math .roi-v2 .roi-rows div{display:flex;justify-content:space-between;gap:16px}
+.roi-math .roi-v2 .roi-rows dt{color:var(--muted)}
+.roi-math .roi-v2 .roi-rows dd{color:var(--navy);font-weight:700;text-align:right}
+.roi-math .roi-v2 .roi-note{margin-top:auto;padding-top:18px;color:var(--muted);font-size:13px;line-height:1.5}
+.roi-math .roi-v2 .roi-bench{padding:11px 0;border-bottom:1px solid var(--hair-soft)}
+.roi-math .roi-v2 h3 + .roi-bench{margin-top:6px}
+.roi-math .roi-v2 .roi-bench:last-child{border-bottom:0;padding-bottom:0}
+.roi-math .roi-v2 .roi-bench b{display:block;color:var(--navy);font-size:28px;line-height:1.1;letter-spacing:-.01em}
+.roi-math .roi-v2 .roi-bench b small{color:var(--secondary);font-size:15px;font-weight:600;letter-spacing:0}
+.roi-math .roi-v2 .roi-bench p{margin-top:4px;color:var(--secondary);font-size:15px;line-height:1.4}
+.roi-math .roi-v2 .roi-bench a{display:inline-block;margin-top:3px;color:var(--muted);font-size:12.5px;font-weight:700;text-decoration:underline;text-decoration-color:var(--hair);text-underline-offset:3px}
+.roi-math .roi-cta{margin:-8px 0 30px;font-size:17px;font-weight:800}
+.roi-math .roi-cta a{color:var(--navy);text-decoration:none}
+.roi-math .roi-cta a span{color:var(--accent)}
+.roi-math .roi-cta a:hover{text-decoration:underline}
+@media (max-width:460px){.roi-math .roi-v2{padding:22px}}
 .roi-math .roi-sources{
   display:grid;
   gap:14px;
@@ -1346,48 +1363,47 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
           <p>Pruebe PF-X01 con sus propios conductores, recopile comentarios estructurados y luego decida si tiene sentido escalar.</p>
         </div>
         <div class="roi-grid reveal">
-          <article class="table-card roi-stat-card">
+          <article class="table-card roi-v2">
             <h3>PillowFlow™</h3>
-            <span class="quote-number">$68.99</span>
-            <p class="roi-card-copy">por conductor</p>
-            <div class="roi-model">
-              <dl>
-                <div><dt>Piloto típico</dt><dd>4–8 conductores</dd></div>
-                <div><dt>Duración del piloto</dt><dd>21 días</dd></div>
-              </dl>
-            </div>
-            <p class="roi-footnote">Si decide escalar, cotizamos precios de flota después del piloto.</p>
+            <div class="roi-stat"><span class="quote-number">$68.99</span><span class="roi-unit">por conductor</span></div>
+            <p class="roi-lead">Comience con un piloto de flota pequeño</p>
+            <dl class="roi-rows">
+              <div><dt>Piloto típico</dt><dd>4–8 conductores</dd></div>
+              <div><dt>Periodo del piloto</dt><dd>21 días</dd></div>
+            </dl>
+            <p class="roi-body">Instale PillowFlow en vehículos reales, recopile comentarios de los conductores y decida si tiene sentido escalar.</p>
+            <p class="roi-note">Precios de flota disponibles después del piloto.</p>
           </article>
-          <article class="quote-card roi-stat-card">
-            <h3>Comparación de costos</h3>
-            <span class="quote-number roi-number-reveal reveal">15x</span>
-            <p class="roi-card-copy">Un turno perdido de ~$1,050 equivale aproximadamente al costo de 15 unidades de PillowFlow.</p>
-            <div class="roi-model">
-              <dl>
-                <div><dt>Turno perdido (ilustrativo)</dt><dd>~$1,050</dd></div>
-                <div><dt>PillowFlow</dt><dd>$68.99 por conductor</dd></div>
-              </dl>
-            </div>
-            <p class="roi-footnote">Comparación de costos únicamente ilustrativa. El impacto real en cada flota varía.</p>
+          <article class="quote-card roi-v2">
+            <h3>Una prueba pequeña. Un problema de costos mucho mayor.</h3>
+            <div class="roi-stat"><span class="quote-number roi-number-reveal reveal">15×</span></div>
+            <p class="roi-body" style="margin-top:0">Un evento de inactividad o turno perdido de $1,050 equivale aproximadamente al costo de compra de 15 unidades de PillowFlow.</p>
+            <dl class="roi-rows">
+              <div><dt>Costo ilustrativo del evento</dt><dd>~$1,050</dd></div>
+              <div><dt>15 unidades de PillowFlow</dt><dd>$1,034.85</dd></div>
+            </dl>
+            <p class="roi-note">Comparación de costos simple. Los costos y resultados reales de cada flota varían.</p>
           </article>
-          <article class="table-card">
-            <h3>Fuentes independientes sobre la economía del tiempo de inactividad de la flota</h3>
-            <div class="roi-sources">
-              <div class="roi-source">
-                <a href="https://www.reuters.com/business/trump-trade-war-is-wrecking-hope-2025-us-trucking-rebound-2025-04-24/" target="_blank" rel="noopener">Reuters</a>
-                <p>Las tarifas spot promedio nacional de dry van rondaron los $1.60/milla, reportadas en abril de 2025.</p>
-              </div>
-              <div class="roi-source">
-                <a href="https://www.dat.com/industry-trends/spot-market-conditions" target="_blank" rel="noopener">DAT Freight &amp; Analytics</a>
-                <p>Las tarifas spot promedio nacional de dry van alcanzaron los $2.43/milla en enero de 2026.</p>
-              </div>
-              <div class="roi-source">
-                <a href="https://www.trucking.org/wp-content/uploads/2024/10/An-Analysis-of-the-Operational-Costs-of-Trucking-2024-Update.pdf" target="_blank" rel="noopener">ATA – Trucking.org</a>
-                <p>El costo operativo total típico de un camión Clase 8 es de $1.70 a $2.10 por milla, incluidos los costos del conductor, fijos, variables y de propiedad.</p>
-              </div>
+          <article class="table-card roi-v2">
+            <h3>Por qué la inactividad de la flota sale cara</h3>
+            <div class="roi-bench">
+              <b>$1.60 <small>/ milla</small></b>
+              <p>Tarifa spot promedio nacional de dry van reportada en abril de 2025.</p>
+              <a href="https://www.reuters.com/business/trump-trade-war-is-wrecking-hope-2025-us-trucking-rebound-2025-04-24/" target="_blank" rel="noopener">Reuters</a>
+            </div>
+            <div class="roi-bench">
+              <b>$2.43 <small>/ milla</small></b>
+              <p>Tarifa spot promedio nacional de dry van reportada en enero de 2026.</p>
+              <a href="https://www.dat.com/industry-trends/spot-market-conditions" target="_blank" rel="noopener">DAT Freight &amp; Analytics</a>
+            </div>
+            <div class="roi-bench">
+              <b>$1.70–$2.10 <small>/ milla</small></b>
+              <p>Rango típico del costo operativo total de un camión Clase 8, incluidos los costos del conductor, fijos, variables y de propiedad.</p>
+              <a href="https://www.trucking.org/wp-content/uploads/2024/10/An-Analysis-of-the-Operational-Costs-of-Trucking-2024-Update.pdf" target="_blank" rel="noopener">ATA / Trucking.org</a>
             </div>
           </article>
         </div>
+        <p class="roi-cta reveal"><a href="#apply">Inicie su piloto de flota ahora <span aria-hidden="true">→</span></a></p>
         <aside class="roi-callout reveal">
           <h3>Los costos del tiempo de inactividad son reales.</h3>
           <p>La pregunta es si vale la pena evaluar las pequeñas intervenciones de confort antes de que se produzcan esos costos.</p>
