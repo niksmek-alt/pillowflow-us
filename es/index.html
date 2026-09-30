@@ -208,8 +208,10 @@ p{color:var(--secondary)}
   border-bottom:1px solid rgba(229,231,235,.84);
   backdrop-filter:blur(16px);
   transition:background .3s ease,box-shadow .3s ease;
+  will-change:transform;
 }
 .site-header.scrolled{background:rgba(255,255,255,.95);box-shadow:0 10px 30px rgba(15,23,42,.06)}
+.site-header.is-gsap-hidden{pointer-events:none}
 .site-header::after{
   content:"";
   position:absolute;
@@ -270,21 +272,23 @@ p{color:var(--secondary)}
 .hero{
   position:relative;
   isolation:isolate;
-  padding:86px 0 64px;
+  min-height:calc(100dvh - 68px);
+  padding:74px 0 58px;
   background:
-    radial-gradient(ellipse at 76% 8%,rgba(232,103,58,.2),transparent 34%),
-    linear-gradient(160deg,#ffffff 0%,#fffaf5 54%,#f8fafc 100%);
+    linear-gradient(90deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.9) 44%,rgba(255,247,237,.68) 100%),
+    linear-gradient(155deg,#ffffff 0%,#fffaf5 55%,#f7f5ef 100%);
   overflow:hidden;
 }
 .hero::before{
   content:"";
   position:absolute;
-  inset:8% -10% auto auto;
+  inset:0 0 auto auto;
   width:58%;
-  height:78%;
-  border-radius:50%;
-  background:radial-gradient(ellipse at 42% 48%,rgba(232,103,58,.14),rgba(232,103,58,.045) 54%,transparent 73%);
-  transform:translate3d(0,var(--hero-shift),0) rotate(-6deg);
+  height:100%;
+  background:
+    linear-gradient(90deg,transparent,rgba(255,255,255,.82) 38%,rgba(255,255,255,.14)),
+    repeating-linear-gradient(0deg,rgba(15,23,42,.045) 0 1px,transparent 1px 86px);
+  transform:translate3d(0,var(--hero-shift),0);
   transition:transform .12s linear;
   z-index:-1;
 }
@@ -294,17 +298,17 @@ p{color:var(--secondary)}
   inset:0;
   pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(15,23,42,.04),transparent 18%,transparent 82%,rgba(15,23,42,.04)),
-    repeating-linear-gradient(0deg,rgba(15,23,42,.025) 0 1px,transparent 1px 7px);
-  opacity:.34;
+    linear-gradient(90deg,rgba(15,23,42,.035),transparent 18%,transparent 82%,rgba(15,23,42,.035)),
+    repeating-linear-gradient(90deg,rgba(15,23,42,.028) 0 1px,transparent 1px 10vw);
+  opacity:.44;
   mix-blend-mode:multiply;
 }
 .hero-grid{
   position:relative;
   z-index:1;
   display:grid;
-  grid-template-columns:minmax(0,1.05fr) minmax(340px,.72fr);
-  gap:56px;
+  grid-template-columns:minmax(0,.88fr) minmax(480px,1.12fr);
+  gap:34px;
   align-items:center;
 }
 .hero-copy p{
@@ -333,22 +337,100 @@ p{color:var(--secondary)}
 .proof-tile span b{color:var(--navy);font-size:15px;line-height:1.3}
 .proof-tile.copy-only strong{font-size:14px;line-height:1.4}
 
+.hero-stage{
+  position:relative;
+  min-height:620px;
+  overflow:visible;
+}
+.hero-stage::before{
+  content:"";
+  position:absolute;
+  right:2%;
+  bottom:0;
+  width:76%;
+  height:13%;
+  border-radius:999px;
+  background:radial-gradient(closest-side,rgba(15,23,42,.16),rgba(15,23,42,.06) 52%,transparent 74%);
+  filter:blur(18px);
+  opacity:.62;
+}
+.hero-stage::after{
+  content:"";
+  position:absolute;
+  inset:9% -2% auto 30%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(15,23,42,.16),transparent);
+}
+.hero-seat-art{
+  position:absolute;
+  z-index:2;
+  right:-2%;
+  bottom:-3%;
+  height:calc(100% + 34px);
+  max-width:100%;
+  width:auto;
+  object-fit:contain;
+  object-position:right bottom;
+  filter:drop-shadow(0 28px 26px rgba(15,23,42,.14));
+}
+/* Desktop: keep the whole hero (headline, tiles, seat) inside one screen */
+@media (min-width:1021px){
+  .hero{padding:clamp(20px,4.4vh,64px) 0 clamp(20px,3.6vh,48px)}
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(400px,.92fr)}
+  .hero h1{font-size:clamp(36px,min(4.4vw,7vh),68px)}
+  .hero-copy p{margin-top:clamp(12px,2vh,22px);font-size:clamp(15px,2.1vh,19px);line-height:1.55}
+  .hero-actions{margin-top:clamp(16px,3vh,30px)}
+  .hero-proof{margin-top:clamp(14px,3vh,40px)}
+  .hero-stage{min-height:min(620px,calc(100dvh - 68px - 96px))}
+}
+/* Spanish copy runs longer than English: slightly smaller hero type so it still fits one screen */
+@media (min-width:1021px){
+  .hero-grid{grid-template-columns:minmax(0,1.2fr) minmax(380px,.8fr)}
+  .hero h1{font-size:clamp(34px,min(3.9vw,6.2vh),60px)}
+  .hero-copy p{font-size:clamp(15px,2vh,18px)}
+  .proof-tile span{font-size:12.5px}
+}
+.hero-callout{
+  position:absolute;
+  z-index:3;
+  color:var(--navy);
+  font-size:11px;
+  font-weight:850;
+  line-height:1.2;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.hero-callout::before{
+  content:"";
+  position:absolute;
+  width:76px;
+  border-top:1px dashed rgba(15,23,42,.34);
+}
+.hero-callout strong{
+  display:block;
+  margin-bottom:4px;
+  color:var(--accent);
+  font-size:13px;
+}
+.hero-callout span{
+  display:block;
+  max-width:112px;
+}
+.hero-callout.one{left:4%;bottom:26%}
+.hero-callout.one::before{left:100%;top:16px}
+.hero-callout.two{right:-8%;top:14%}
+.hero-callout.two::before{right:100%;top:17px}
+.hero-callout.three{right:-12%;bottom:24%}
+.hero-callout.three::before{right:100%;top:17px}
+.hero-callout.four{left:50%;bottom:8%}
+.hero-callout.four::before{left:100%;top:17px;width:92px}
+
 .hero-panel{
   background:white;
   border:1px solid var(--border);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
   overflow:hidden;
-}
-/* Desktop: keep the whole hero inside one screen */
-@media (min-width:1021px){
-  .hero{padding:clamp(20px,4.4vh,64px) 0 clamp(20px,3.6vh,48px)}
-  .hero-grid{grid-template-columns:minmax(0,1.4fr) minmax(320px,.6fr);gap:40px}
-  .hero-proof{max-width:none}
-  .hero h1{font-size:clamp(36px,min(4.2vw,6.6vh),64px)}
-  .hero-copy p{margin-top:clamp(12px,2vh,22px);font-size:clamp(15px,2.1vh,19px);line-height:1.55}
-  .hero-actions{margin-top:clamp(16px,3vh,30px)}
-  .hero-proof{margin-top:clamp(14px,3vh,40px)}
 }
 .panel-top{
   display:flex;
@@ -765,6 +847,79 @@ section{padding:86px 0}
 .pilot-form-actions .btn{cursor:pointer}
 .pilot-form-status{color:var(--muted);font-size:12px}
 
+.video-showcase{
+  position:relative;
+  overflow:hidden;
+  background:var(--surface-2);
+  padding:88px 0 96px;
+  border-bottom:1px solid var(--border);
+}
+.video-showcase::before{
+  content:"";
+  position:absolute;
+  width:420px;
+  height:420px;
+  top:-230px;
+  right:-90px;
+  border:1px solid rgba(232,103,58,.18);
+  border-radius:50%;
+  box-shadow:0 0 0 62px rgba(232,103,58,.035),0 0 0 124px rgba(232,103,58,.025);
+  pointer-events:none;
+}
+.video-showcase-head{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(280px,.65fr);
+  gap:48px;
+  align-items:end;
+  margin-bottom:32px;
+}
+.video-showcase-head .eyebrow{font-size:15px;letter-spacing:.09em}
+.video-showcase-head h2{margin-top:10px;max-width:760px}
+.video-showcase-head>p{max-width:430px;justify-self:end;color:var(--muted);font-size:16px}
+.video-frame{
+  position:relative;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  border:1px solid rgba(15,23,42,.16);
+  border-radius:10px;
+  background:var(--navy);
+  box-shadow:0 28px 70px rgba(15,23,42,.18),0 3px 12px rgba(15,23,42,.1);
+}
+.video-frame video{display:block;width:100%;height:100%;border:0;object-fit:cover}
+.video-play-button{
+  position:absolute;
+  z-index:2;
+  inset:50% auto auto 50%;
+  width:70px;
+  height:70px;
+  display:grid;
+  place-items:center;
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:50%;
+  background:rgba(232,103,58,.94);
+  color:#fff;
+  box-shadow:0 12px 34px rgba(15,23,42,.28);
+  cursor:pointer;
+  transition:opacity .2s ease,transform .2s var(--ease),background .2s ease;
+}
+.video-play-button:hover{background:var(--accent-deep);transform:translate(-50%,-50%) scale(1.06)}
+.video-play-button svg{width:25px;height:25px;margin-left:4px;fill:currentColor}
+.video-frame.is-playing .video-play-button{opacity:0;pointer-events:none}
+.video-caption{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  margin-top:16px;
+  color:var(--muted);
+  font-size:12px;
+}
+.video-caption strong{color:var(--navy);font-weight:700}
+.video-caption a{color:var(--accent-deep);font-weight:700}
+.video-caption a:hover{text-decoration:underline}
+
 .footer{
   background:#f8fafc;
   border-top:1px solid var(--border);
@@ -832,7 +987,9 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
 @keyframes drawLine{to{stroke-dashoffset:0}}
 @media (max-width:1020px){
   .hero-grid,.product-grid,.scope-grid,.story-grid,.pilot-apply-grid{grid-template-columns:1fr}
-  .hero-panel{max-width:640px}
+  .hero-panel,.hero-stage{max-width:760px;width:100%;margin-inline:auto}
+  .hero-stage{min-height:620px}
+  .hero-seat-art{right:50%;bottom:-2%;height:100%;max-width:none;transform:translateX(50%)}
   .pilot-apply-copy{position:static}
   .value-grid,.case-grid,.operator-grid,.steps-grid,.roi-grid{grid-template-columns:repeat(2,1fr)}
 }
@@ -841,10 +998,18 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   .nav{height:auto;padding:14px 0;align-items:flex-start}
   .brand-logo{width:74px}
   .nav-links{display:none}
-  .hero{padding:56px 0 46px}
+  .hero{min-height:auto;padding:46px 0 42px}
   .hero-grid{gap:34px}
   .hero-copy p{font-size:17px}
   .hero-proof{grid-template-columns:1fr}
+  .hero-stage{min-height:500px}
+  .hero-seat-art{height:100%;max-width:100%}
+  .hero-callout{font-size:9px}
+  .hero-callout::before{width:44px}
+  .hero-callout.one{left:0;bottom:24%}
+  .hero-callout.two{right:0;top:13%}
+  .hero-callout.three{right:2%;bottom:24%}
+  .hero-callout.four{left:28%;bottom:8%}
   .section-head{display:block}
   .section-head p{margin-top:14px}
   section{padding:62px 0}
@@ -853,6 +1018,13 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   .pilot-form-grid{grid-template-columns:1fr}
   .pilot-field.full{grid-column:auto}
   .pilot-form-actions{align-items:stretch;flex-direction:column}
+  .video-showcase{padding:62px 0 66px}
+  .video-showcase-head{grid-template-columns:1fr;gap:16px;margin-bottom:24px}
+  .video-showcase-head>p{justify-self:start}
+  .video-frame{border-radius:7px}
+  .video-play-button{width:58px;height:58px}
+  .video-play-button svg{width:21px;height:21px}
+  .video-caption{align-items:flex-start;flex-direction:column;gap:4px}
   .footer-grid{grid-template-columns:1fr 1fr}
   .sources ol{grid-template-columns:1fr}
   .footer-bottom{display:block}
@@ -1062,7 +1234,6 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       <a href="#apply">Solicitar</a>
       <a href="#scope">Evaluación</a>
       <a href="#company">Quienes somos</a>
-      <a href="referral.html">Referir una flota</a>
     </nav>
     <nav class="language-control" aria-label="Selector de idioma">
       <a href="/" lang="en" hreflang="en">EN</a>
@@ -1081,7 +1252,6 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         <div class="hero-actions">
           <a class="btn btn-primary" href="#apply">Iniciar un piloto sin riesgos <span class="arrow" aria-hidden="true">-></span></a>
           <a class="btn btn-secondary" href="#product">Vea por qué sucede</a>
-          <a class="btn btn-secondary" href="/es/referral.html">Referir una flota</a>
         </div>
         <div class="hero-proof" aria-label="Aspectos destacados de la estructura piloto">
           <div class="proof-tile"><strong>01</strong><span><b>Un conductor avisa que faltará</b><br>Un día libre inesperado puede generar horas extra, cambios de ruta, retrasos en el servicio y equipos inactivos.</span></div>
@@ -1090,26 +1260,8 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         </div>
       </div>
 
-      <aside class="hero-panel reveal" aria-label="Registro piloto de campo de muestra">
-        <div class="panel-top">
-          <span class="panel-title">Instantánea del piloto de flota</span>
-          <span class="status"><i aria-hidden="true"></i>Muestra</span>
-        </div>
-        <div class="pilot-card">
-          <div class="metric">
-            <div class="metric-label"><span>Encuesta de comodidad del conductor</span><b>5 minutos</b></div>
-            <div class="metric-track"><i style="--w:86%"></i></div>
-          </div>
-          <div class="metric">
-            <div class="metric-label"><span>Lote piloto típico</span><b>10-40 unidades</b></div>
-            <div class="metric-track"><i style="--w:74%"></i></div>
-          </div>
-          <div class="metric">
-            <div class="metric-label"><span>Ventana de prueba en el vehículo</span><b>21 días</b></div>
-            <div class="metric-track"><i style="--w:68%"></i></div>
-          </div>
-          <p class="panel-note"><b>Sólo datos observacionales, no causales.</b><br>Las métricas de muestra son ilustrativas. PillowFlow es una ayuda para la comodidad, no un dispositivo médico ni un sistema de seguridad.</p>
-        </div>
+      <aside class="hero-stage reveal" aria-label="Almohada de soporte PillowFlow sobre un asiento de vehículo">
+        <img class="hero-seat-art" src="../assets/seat-pillow-hero-v3.png" alt="Almohada de soporte PillowFlow naranja colocada sobre un asiento de vehículo de cuero negro" width="800" height="941" decoding="async" fetchpriority="high">
       </aside>
     </div>
   </section>
@@ -1452,13 +1604,14 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         <p class="eyebrow" style="color:#fbbf24">Solicitud de piloto de flota</p>
         <h2 id="pilot-apply-title">Solicite un piloto de flota PillowFlow™.</h2>
         <p>Comparta lo esencial sobre su operación. Los usaremos para dimensionar la evaluación y realizar un seguimiento con los próximos pasos prácticos.</p>
-        <p class="pilot-apply-note">Al enviar se prepara un correo electrónico para <a href="mailto:connect@pillowflow.com">connect@pillowflow.com</a>, para que su equipo conserve una copia de la solicitud.</p>
+        <p class="pilot-apply-note">Al enviar, su solicitud llega directamente a PillowFlow. No necesita una aplicación de correo.</p>
       </div>
-      <form class="pilot-form reveal" id="pilot-apply-form" action="mailto:connect@pillowflow.com" method="post" enctype="text/plain">
+      <form class="pilot-form reveal" id="pilot-apply-form">
         <div class="pilot-form-grid">
+          <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label for="pilot-website">Sitio web</label><input id="pilot-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
           <div class="pilot-field"><label for="pilot-company">Nombre de empresa</label><input id="pilot-company" name="company_name" type="text" autocomplete="organization" required></div>
           <div class="pilot-field"><label for="pilot-contact">Nombre de contacto</label><input id="pilot-contact" name="contact_name" type="text" autocomplete="name" required></div>
-          <div class="pilot-field"><label for="pilot-email">correo electrónico empresarial</label><input id="pilot-email" name="business_email" type="email" autocomplete="email" required></div>
+          <div class="pilot-field"><label for="pilot-email">Correo electrónico empresarial</label><input id="pilot-email" name="business_email" type="email" autocomplete="email" required></div>
           <div class="pilot-field"><label for="pilot-phone">Teléfono <span>opcional</span></label><input id="pilot-phone" name="phone" type="tel" autocomplete="tel"></div>
           <div class="pilot-field">
             <label for="pilot-fleet-type">Tipo de flota <span>opcional</span></label>
@@ -1477,9 +1630,33 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
         </div>
         <div class="pilot-form-actions">
           <button class="btn btn-primary" type="submit">Solicite un piloto de flota <span class="arrow" aria-hidden="true">-></span></button>
-          <p class="pilot-form-status" id="pilot-form-status" aria-live="polite">Su solicitud de correo electrónico se abrirá para su revisión.</p>
+          <p class="pilot-form-status" id="pilot-form-status" aria-live="polite">Su solicitud se enviará directamente a PillowFlow.</p>
         </div>
       </form>
+    </div>
+  </section>
+  <section class="video-showcase" aria-labelledby="installation-video-title">
+    <div class="wrap">
+      <div class="video-showcase-head reveal">
+        <div>
+          <p class="eyebrow">Conozca PillowFlow</p>
+          <h2 id="installation-video-title">Soporte donde más lo necesitan los trayectos largos.</h2>
+        </div>
+        <p>Un soporte compacto para el muslo, desarrollado con conductores y diseñado para las rutas de todos los días.</p>
+      </div>
+      <div class="video-frame reveal">
+        <video id="installation-video" controls playsinline preload="metadata" poster="../assets/pillowflow-installation-guide.jpg" aria-label="Guía de instalación de PillowFlow">
+          <source src="../assets/pillowflow-installation-guide.mp4" type="video/mp4">
+          Su navegador no admite video integrado. <a href="https://youtu.be/bvrLel-l_iI">Vea la guía de instalación en YouTube</a>.
+        </video>
+        <button class="video-play-button" id="installation-video-play" type="button" aria-label="Reproducir la guía de instalación de PillowFlow">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="video-caption reveal">
+        <span><strong>Guía de instalación de PF-X01</strong> · PillowFlow</span>
+        <a href="https://youtu.be/bvrLel-l_iI" target="_blank" rel="noopener">Ver en YouTube <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
   </section>
 </main>
@@ -1536,6 +1713,8 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script>
 (function(){
   "use strict";
@@ -1543,6 +1722,8 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var docEl = document.documentElement;
   if (reduced) docEl.classList.add("rm");
+  var hasGSAP = Boolean(window.gsap && window.ScrollTrigger);
+  if (hasGSAP) window.gsap.registerPlugin(window.ScrollTrigger);
 
   var vh = window.innerHeight;
   window.addEventListener("resize", function(){ vh = window.innerHeight; }, { passive:true });
@@ -1623,28 +1804,102 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
 
   var pilotForm = document.getElementById("pilot-apply-form");
   var pilotStatus = document.getElementById("pilot-form-status");
+  var pilotEndpoint = "https://oxocvwgfxqryuajndiqa.supabase.co/functions/v1/fleet-pilot-apply";
+
   if (pilotForm) {
-    pilotForm.addEventListener("submit",function(event){
+    pilotForm.addEventListener("submit", async function(event){
       event.preventDefault();
+
       if (!pilotForm.checkValidity()) {
         pilotForm.reportValidity();
         return;
       }
-      var data = new FormData(pilotForm);
-      var company = data.get("company_name") || "Fleet";
-      var fields = [
-        ["Company",data.get("company_name")],
-        ["Contact",data.get("contact_name")],
-        ["Business email",data.get("business_email")],
-        ["Phone",data.get("phone")],
-        ["Fleet type",data.get("fleet_type")],
-        ["Total drivers",data.get("total_drivers_range")],
-        ["Target start date",data.get("target_start_date")],
-        ["Additional notes",data.get("message")]
-      ];
-      var body = fields.filter(function(item){ return item[1]; }).map(function(item){ return item[0] + ": " + item[1]; }).join("\n");
-      if (pilotStatus) pilotStatus.textContent = "Opening your email application…";
-      window.location.href = "mailto:connect@pillowflow.com?subject=" + encodeURIComponent("Fleet Pilot Application — " + company) + "&body=" + encodeURIComponent(body);
+
+      var submitButton = pilotForm.querySelector('button[type="submit"]');
+      var originalButtonHtml = submitButton ? submitButton.innerHTML : "";
+
+      try {
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Enviando…";
+        }
+        if (pilotStatus) pilotStatus.textContent = "Enviando su solicitud…";
+
+        var data = new FormData(pilotForm);
+        var params = new URLSearchParams(window.location.search);
+        var clientSubmissionId =
+          window.crypto && typeof window.crypto.randomUUID === "function"
+            ? window.crypto.randomUUID()
+            : null;
+
+        var payload = {
+          client_submission_id: clientSubmissionId,
+          company_name: data.get("company_name"),
+          contact_name: data.get("contact_name"),
+          business_email: data.get("business_email"),
+          phone: data.get("phone"),
+          fleet_type: data.get("fleet_type"),
+          total_drivers_range: data.get("total_drivers_range"),
+          target_start_date: data.get("target_start_date"),
+          message: data.get("message"),
+          website: data.get("website"),
+          source_url: window.location.href,
+          referrer: document.referrer || null,
+          utm_source: params.get("utm_source"),
+          utm_medium: params.get("utm_medium"),
+          utm_campaign: params.get("utm_campaign"),
+          utm_term: params.get("utm_term"),
+          utm_content: params.get("utm_content"),
+          locale: navigator.language || null
+        };
+
+        var response = await fetch(pilotEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        var result = {};
+        try { result = await response.json(); } catch (_error) {}
+
+        if (!response.ok || !result.ok) {
+          throw new Error(result.error || "Submission failed.");
+        }
+
+        pilotForm.reset();
+        if (pilotStatus) pilotStatus.textContent = "Solicitud enviada. Gracias.";
+        if (submitButton) submitButton.textContent = "Enviado";
+
+        setTimeout(function(){
+          window.location.reload();
+        }, 1200);
+      } catch (error) {
+        if (pilotStatus) {
+          pilotStatus.textContent = "No pudimos enviar su solicitud. Inténtelo de nuevo.";
+        }
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonHtml;
+        }
+        console.error("Fleet pilot form submission failed", error);
+      }
+    });
+  }
+
+  var installationVideo = document.getElementById("installation-video");
+  var installationPlay = document.getElementById("installation-video-play");
+  if (installationVideo && installationPlay) {
+    var installationFrame = installationVideo.closest(".video-frame");
+    installationPlay.addEventListener("click",function(){
+      installationVideo.play().catch(function(){
+        if (installationFrame) installationFrame.classList.remove("is-playing");
+      });
+    });
+    installationVideo.addEventListener("play",function(){
+      if (installationFrame) installationFrame.classList.add("is-playing");
+    });
+    installationVideo.addEventListener("pause",function(){
+      if (installationFrame) installationFrame.classList.remove("is-playing");
     });
   }
 
@@ -1664,9 +1919,59 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
   var ringGroup = document.getElementById("ringGroup");
   var siteHeader = document.querySelector(".site-header");
   var hero = document.querySelector(".hero");
-  var headerCompact = false;
   var objP = 0;
   var objPT = 0;
+
+  function setHeaderHidden(hidden){
+    if (!siteHeader || !hasGSAP) return;
+    siteHeader.classList.toggle("is-gsap-hidden",hidden);
+  }
+
+  function initHeaderScroll(){
+    if (!siteHeader || !hero || !hasGSAP) return;
+    window.gsap.set(siteHeader,{ y:0, opacity:1, filter:"blur(0px)", scale:1, clearProps:"visibility" });
+    if (reduced) {
+      window.ScrollTrigger.create({
+        trigger:hero,
+        start:"bottom top+=84",
+        onEnter:function(){ setHeaderHidden(true); window.gsap.set(siteHeader,{ opacity:0, y:-92 }); },
+        onLeaveBack:function(){ setHeaderHidden(false); window.gsap.set(siteHeader,{ opacity:1, y:0 }); },
+        invalidateOnRefresh:true
+      });
+      return;
+    }
+    var headerFloat = window.gsap.timeline({
+      defaults:{ ease:"none" },
+      scrollTrigger:{
+        trigger:hero,
+        start:"top top",
+        end:"+=560",
+        scrub:.65,
+        invalidateOnRefresh:true,
+        onUpdate:function(self){ setHeaderHidden(self.progress > .96); },
+        onLeaveBack:function(){
+          setHeaderHidden(false);
+          window.gsap.set(siteHeader,{ opacity:1, y:0, filter:"blur(0px)", scale:1 });
+        }
+      }
+    });
+    headerFloat
+      .to(siteHeader,{ y:-8, opacity:.68, scale:.995, duration:.28 },0)
+      .to(siteHeader,{ y:-30, opacity:.24, filter:"blur(.45px)", scale:.985, duration:.42 },.28)
+      .to(siteHeader,{ y:-82, opacity:0, filter:"blur(1.8px)", scale:.97, duration:.30 },.70);
+    window.ScrollTrigger.create({
+      trigger:hero,
+      start:"top top",
+      end:"+=560",
+      onUpdate:function(self){
+        siteHeader.classList.toggle("scrolled",self.progress > .04 && self.progress < .96);
+      },
+      onLeave:function(){ siteHeader.classList.remove("scrolled"); },
+      onLeaveBack:function(){ siteHeader.classList.remove("scrolled"); }
+    });
+  }
+
+  initHeaderScroll();
 
   function setObjectStatic(){
     drawSeq.forEach(function(item){
@@ -1715,11 +2020,6 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
     var pageProgress = clamp(window.scrollY / pageMax,0,1);
     docEl.style.setProperty("--scroll-progress",pageProgress.toFixed(4));
     if (hero) hero.style.setProperty("--hero-shift",Math.min(window.scrollY * .055,26).toFixed(2) + "px");
-    var shouldCompact = window.scrollY > 24;
-    if (siteHeader && shouldCompact !== headerCompact) {
-      siteHeader.classList.toggle("scrolled",shouldCompact);
-      headerCompact = shouldCompact;
-    }
     if (track) {
       var rect = track.getBoundingClientRect();
       var total = rect.height - vh;
