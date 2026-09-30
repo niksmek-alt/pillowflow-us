@@ -662,6 +662,13 @@ section{padding:86px 0}
   font-size:11.5px;
 }
 .roi-math .roi-footnote b{color:var(--navy)}
+.roi-math .roi-stat-card{display:flex;flex-direction:column;padding:28px}
+.roi-math .roi-stat-card .quote-number{margin:22px 0 10px;font-size:clamp(44px,5vw,56px);letter-spacing:-.02em}
+.roi-math .roi-stat-card .roi-card-copy{flex:1 0 auto;margin-top:0}
+.roi-math .roi-stat-card .roi-model{margin-top:22px}
+.roi-math .roi-stat-card .roi-model dl{gap:12px;margin-top:0;font-size:14px}
+.roi-math .roi-stat-card .roi-footnote{font-size:12px;line-height:1.5}
+@media (max-width:460px){.roi-math .roi-stat-card{padding:22px}}
 .roi-math .roi-sources{
   display:grid;
   gap:14px;
@@ -1479,39 +1486,35 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       <div class="roi-math">
         <div class="section-head reveal">
           <div>
-            <p class="eyebrow">The math</p>
-            <h2>The cost of one missed driver shift.</h2>
+            <p class="eyebrow">The pilot</p>
+            <h2>Small pilot. Clear decision.</h2>
           </div>
-          <p>An order-of-magnitude comparison for evaluating a small fleet comfort pilot.</p>
+          <p>Test PF-X01 with your own drivers, collect structured feedback, then decide whether it makes sense to scale.</p>
         </div>
         <div class="roi-grid reveal">
-          <article class="table-card">
-            <h3>PillowFlow™ – cost per driver</h3>
-            <table class="mini-table">
-              <thead><tr><th>Item</th><th>Per driver</th></tr></thead>
-              <tbody>
-                <tr><td>PillowFlow unit</td><td>$59.99</td></tr>
-                <tr><td>Packaging &amp; preparation</td><td>$3.00</td></tr>
-                <tr><td>Domestic delivery</td><td>$6.00</td></tr>
-              </tbody>
-              <tfoot><tr><td>Total pilot cost</td><td>$68.99</td></tr></tfoot>
-            </table>
-          </article>
-          <article class="quote-card">
-            <h3>Order-of-magnitude case</h3>
-            <span class="quote-number roi-number-reveal reveal">15x</span>
-            <p class="roi-card-copy">One unexpected driver absence can place more revenue at risk than the cost of 15 PillowFlow pilot units.</p>
-            <p class="roi-supporting-copy">Based on an illustrative fleet-loss estimate of $800–$1,300 for a missed driver shift, including route revenue disruption, replacement coverage, overtime, and rescheduling impacts.</p>
+          <article class="table-card roi-stat-card">
+            <h3>PillowFlow™</h3>
+            <span class="quote-number">$68.99</span>
+            <p class="roi-card-copy">per driver</p>
             <div class="roi-model">
-              <h4>Fleet-loss model</h4>
               <dl>
-                <div><dt>Daily route / vehicle revenue</dt><dd>$450–$760</dd></div>
-                <div><dt>Replacement or overtime coverage</dt><dd>$150–$300</dd></div>
-                <div><dt>Dispatch delays / rerouting / missed stops</dt><dd>$100–$250</dd></div>
-                <div><dt>Estimated loss per missed driver shift</dt><dd>$800–$1,300</dd></div>
+                <div><dt>Typical pilot</dt><dd>4–8 drivers</dd></div>
+                <div><dt>Pilot length</dt><dd>21 days</dd></div>
               </dl>
             </div>
-            <p class="roi-footnote"><b>Average illustrative loss: $1,050 per missed shift.</b><br>Illustrative comparison only. Actual impact varies by fleet size, route value, labor availability, and dispatch flexibility. Not a claim of product performance.</p>
+            <p class="roi-footnote">Fleet pricing is quoted after the pilot if you decide to scale.</p>
+          </article>
+          <article class="quote-card roi-stat-card">
+            <h3>Cost comparison</h3>
+            <span class="quote-number roi-number-reveal reveal">15x</span>
+            <p class="roi-card-copy">A ~$1,050 missed shift is roughly equivalent to the cost of 15 PillowFlow units.</p>
+            <div class="roi-model">
+              <dl>
+                <div><dt>Illustrative missed-shift impact</dt><dd>~$1,050</dd></div>
+                <div><dt>PillowFlow</dt><dd>$68.99 per driver</dd></div>
+              </dl>
+            </div>
+            <p class="roi-footnote">Illustrative cost comparison only. Actual fleet impact varies.</p>
           </article>
           <article class="table-card">
             <h3>Independent sources on fleet downtime economics</h3>

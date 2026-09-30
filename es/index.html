@@ -587,6 +587,13 @@ section{padding:86px 0}
   font-size:11.5px;
 }
 .roi-math .roi-footnote b{color:var(--navy)}
+.roi-math .roi-stat-card{display:flex;flex-direction:column;padding:28px}
+.roi-math .roi-stat-card .quote-number{margin:22px 0 10px;font-size:clamp(44px,5vw,56px);letter-spacing:-.02em}
+.roi-math .roi-stat-card .roi-card-copy{flex:1 0 auto;margin-top:0}
+.roi-math .roi-stat-card .roi-model{margin-top:22px}
+.roi-math .roi-stat-card .roi-model dl{gap:12px;margin-top:0;font-size:14px}
+.roi-math .roi-stat-card .roi-footnote{font-size:12px;line-height:1.5}
+@media (max-width:460px){.roi-math .roi-stat-card{padding:22px}}
 .roi-math .roi-sources{
   display:grid;
   gap:14px;
@@ -1333,39 +1340,35 @@ body:not(.ready) .hero .reveal{opacity:0;filter:blur(2px);transform:translate3d(
       <div class="roi-math">
         <div class="section-head reveal">
           <div>
-            <p class="eyebrow">Los números</p>
-            <h2>El costo de un turno de conductor perdido.</h2>
+            <p class="eyebrow">El piloto</p>
+            <h2>Piloto pequeño. Decisión clara.</h2>
           </div>
-          <p>Una comparación de orden de magnitud para evaluar un piloto de confort para flotas pequeñas.</p>
+          <p>Pruebe PF-X01 con sus propios conductores, recopile comentarios estructurados y luego decida si tiene sentido escalar.</p>
         </div>
         <div class="roi-grid reveal">
-          <article class="table-card">
-            <h3>PillowFlow™ – costo por conductor</h3>
-            <table class="mini-table">
-              <thead><tr><th>Artículo</th><th>Por conductor</th></tr></thead>
-              <tbody>
-                <tr><td>PillowFlow unidad</td><td>$59.99</td></tr>
-                <tr><td>Embalaje &amp; preparación</td><td>$3.00</td></tr>
-                <tr><td>Entrega nacional</td><td>$6.00</td></tr>
-              </tbody>
-              <tfoot><tr><td>Costo total del piloto</td><td>$68.99</td></tr></tfoot>
-            </table>
-          </article>
-          <article class="quote-card">
-            <h3>Caso de orden de magnitud</h3>
-            <span class="quote-number roi-number-reveal reveal">15x</span>
-            <p class="roi-card-copy">La ausencia inesperada de un conductor puede poner en riesgo más ingresos que el costo de 15 PillowFlow unidades piloto.</p>
-            <p class="roi-supporting-copy">Basado en una estimación ilustrativa de pérdidas de flota de $800 a $1,300 por un turno de conductor perdido, incluida la interrupción de los ingresos de la ruta, la cobertura de reemplazo, las horas extras y los impactos de la reprogramación.</p>
+          <article class="table-card roi-stat-card">
+            <h3>PillowFlow™</h3>
+            <span class="quote-number">$68.99</span>
+            <p class="roi-card-copy">por conductor</p>
             <div class="roi-model">
-              <h4>Modelo de pérdida de flota</h4>
               <dl>
-                <div><dt>Ruta diaria/ingresos por vehículo</dt><dd>$450–$760</dd></div>
-                <div><dt>Cobertura de reemplazo o horas extras</dt><dd>$150–$300</dd></div>
-                <div><dt>Retrasos en el despacho / cambio de ruta / paradas perdidas</dt><dd>$100–$250</dd></div>
-                <div><dt>Pérdida estimada por turno de conductor perdido</dt><dd>$800–$1,300</dd></div>
+                <div><dt>Piloto típico</dt><dd>4–8 conductores</dd></div>
+                <div><dt>Duración del piloto</dt><dd>21 días</dd></div>
               </dl>
             </div>
-            <p class="roi-footnote"><b>Pérdida promedio ilustrativa: $1,050 por turno perdido.</b><br>Comparación únicamente ilustrativa. El impacto real varía según el tamaño de la flota, el valor de la ruta, la disponibilidad de mano de obra y la flexibilidad de despacho. No es una afirmación sobre el rendimiento del producto.</p>
+            <p class="roi-footnote">Si decide escalar, cotizamos precios de flota después del piloto.</p>
+          </article>
+          <article class="quote-card roi-stat-card">
+            <h3>Comparación de costos</h3>
+            <span class="quote-number roi-number-reveal reveal">15x</span>
+            <p class="roi-card-copy">Un turno perdido de ~$1,050 equivale aproximadamente al costo de 15 unidades de PillowFlow.</p>
+            <div class="roi-model">
+              <dl>
+                <div><dt>Turno perdido (ilustrativo)</dt><dd>~$1,050</dd></div>
+                <div><dt>PillowFlow</dt><dd>$68.99 por conductor</dd></div>
+              </dl>
+            </div>
+            <p class="roi-footnote">Comparación de costos únicamente ilustrativa. El impacto real en cada flota varía.</p>
           </article>
           <article class="table-card">
             <h3>Fuentes independientes sobre la economía del tiempo de inactividad de la flota</h3>
